@@ -1,0 +1,5 @@
+UnityOpenXRHands.dll
+AudioPluginMicrosoftSpatializerCrossPlatform.dll
+Microsoft.MixedReality.SceneUnderstanding.dll
+HrtfDsp.dll
+openxr_loader.dll

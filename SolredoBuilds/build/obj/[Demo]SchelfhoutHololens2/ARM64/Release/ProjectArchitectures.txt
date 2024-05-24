@@ -1,0 +1,1 @@
+C:\Unity\[Demo]SchelfhoutHololens2\SolredoBuilds\[Demo]SchelfhoutHololens2\[Demo]SchelfhoutHololens2.vcxproj;arm64
