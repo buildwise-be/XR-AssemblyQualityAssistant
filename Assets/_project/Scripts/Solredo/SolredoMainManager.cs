@@ -1,4 +1,5 @@
 using MixedReality.Toolkit;
+using MRTKExtensions.QRCodes;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,11 +7,14 @@ using UnityEngine.XR.ARFoundation;
 
 public class SolredoMainManager : MonoBehaviour
 {
+    [SerializeField] private QRTrackerController _qrTrackerController;
     [SerializeField] private SolredoPlacementManager _placementManager;
     [SerializeField] private SolredoUIManager _UIManager;
     [SerializeField] private ARPlaneManager _ARPlaneManager;
     [SerializeField] private GameObject _moduleOne;
     [SerializeField] private GameObject _moduleTwo;
+    [SerializeField] private GameObject _moduleWKNE02;
+    [SerializeField] private bool _useModuleWKNE02 = true;
 
     private int _selectedModuleID = -1;
 
@@ -22,6 +26,7 @@ public class SolredoMainManager : MonoBehaviour
         _UIManager.OnIntroductionDone.AddListener(() => _placementManager.AllowMiniatureCreation());
         _placementManager.OnModuleSelected = new UnityEvent<int>();
         _placementManager.OnModuleSelected.AddListener(ShowQRCodeDetectionDialog);
+        _placementManager.OnModuleSelected.AddListener(AssignChosenModuleValue);
         _placementManager.OnMiniatureInstantiated.AddListener(ParseMiniatureModules);
         _placementManager.OnModulePlaced = new UnityEvent();
         _placementManager.OnModulePlaced.AddListener(StopARPlanesDetection);
@@ -70,9 +75,8 @@ public class SolredoMainManager : MonoBehaviour
     private void ShowQRCodeDetectionDialog(int moduleID)
     {
         _UIManager.ShowInfoDialog("QR Code", "Scannez le QR Code pour placer le module choisi", null);
-        _selectedModuleID = moduleID;
-        _placementManager.ChosenModule = moduleID == 1 ? _moduleOne : _moduleTwo;
         _placementManager.AllowQRDetection(true);
+        _qrTrackerController.StartTracking();
     }
 
     private void ShowPlaneSelectionDialog(int moduleID)
@@ -80,6 +84,19 @@ public class SolredoMainManager : MonoBehaviour
         _UIManager.ShowInfoDialog("Plan de travail", "Sélectionnez le plan de travail", _UIManager.OnStartFindingPlane);
         _selectedModuleID = moduleID;
         _placementManager.ChosenModule = moduleID == 1 ? _moduleOne : _moduleTwo;
+    }
+
+    private void AssignChosenModuleValue(int moduleID)
+    {
+        if (_useModuleWKNE02)
+        {
+            _placementManager.ChosenModule = _moduleWKNE02;
+        }
+        else
+        {
+            _selectedModuleID = moduleID;
+            _placementManager.ChosenModule = moduleID == 1 ? _moduleOne : _moduleTwo;
+        }
     }
 
     private void StartPlaneDetection()

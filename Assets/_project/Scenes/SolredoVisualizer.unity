@@ -435,6 +435,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ChosenModule: {fileID: 0}
+  _UIManager: {fileID: 0}
 --- !u!224 &585806533 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8376646494505211229, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
@@ -1754,6 +1755,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1885019424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885019426}
+  - component: {fileID: 1885019425}
+  m_Layer: 0
+  m_Name: GlobalServiceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1885019425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885019424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4490c9d63e26f42a5ef632438faae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serviceProvidersProfile: {fileID: 11400000, guid: 81bfc83909e682e4cba4b3c9266dd234, type: 2}
+--- !u!4 &1885019426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885019424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1911062169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2149,6 +2195,8 @@ MonoBehaviour:
   _ARPlaneManager: {fileID: 1334784248}
   _moduleOne: {fileID: 4259092400267797667, guid: 0d53048cf40e7264eb40ca4ba0e10acd, type: 3}
   _moduleTwo: {fileID: 919132149155446097, guid: 5fcb374cee401914eb1cd06bb8b0797d, type: 3}
+  _moduleWKNE02: {fileID: 0}
+  _useModuleWKNE02: 1
 --- !u!4 &4430058091589842898
 Transform:
   m_ObjectHideFlags: 0

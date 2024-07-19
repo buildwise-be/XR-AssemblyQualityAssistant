@@ -97,6 +97,7 @@ namespace MRTKExtensions.QRCodes
         private void QRCodeWatcher_Updated(object sender, QRCodeUpdatedEventArgs e)
         {
             SendProgressMessage($"Found QR code {e.Code.Data}");
+            Debug.Log($"Invoking QRCodeFound");
             QRCodeFound?.Invoke(this, new QRInfo(e.Code));
         }
 

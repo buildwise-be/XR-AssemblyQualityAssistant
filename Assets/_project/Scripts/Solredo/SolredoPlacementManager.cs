@@ -8,9 +8,14 @@ using MixedReality.Toolkit.SpatialManipulation;
 using System.Collections;
 using UnityEngine.XR.ARFoundation;
 using MRTKExtensions.QRCodes;
+using TMPro;
 
 public class SolredoPlacementManager : MonoBehaviour
 {
+    // Debug
+    [SerializeField]
+    private TextMeshProUGUI _debugText;
+
     // QR
     [SerializeField]
     private QRTrackerController trackerController;
@@ -25,7 +30,7 @@ public class SolredoPlacementManager : MonoBehaviour
     public UnityEvent<int> OnModuleSelected;
     public UnityEvent OnModulePlaced;
 
-    //private MRTKBaseInteractable _hoveredPlane;
+    [SerializeField] private SpeechInteractor _speechInteractor;
     [HideInInspector]
     public GameObject ChosenModule;
     private GameObject _chosenModuleInstance;
@@ -78,14 +83,13 @@ public class SolredoPlacementManager : MonoBehaviour
             {
                 _chosenModuleInstance = Instantiate(ChosenModule);
             }
-            //_UIManager.ShowInfoDialog("Pose found", $"module placé en {pose.position}");
             _chosenModuleInstance.transform.SetPositionAndRotation(pose.position, pose.rotation);
+            if (_debugText != null)
+            {
+                _debugText.text += $"\nEnabling Speech interactions";
+            }
+            _speechInteractor.enabled = true;
         }
-        /*
-        var childObj = transform.GetChild(0);
-        childObj.SetPositionAndRotation(pose.position, pose.rotation);
-        childObj.gameObject.SetActive(true);
-        */
     }
 
     #region PinchDetection
@@ -222,6 +226,7 @@ public class SolredoPlacementManager : MonoBehaviour
     {
         _rightHandController.selectAction.action.performed -= OnPinchRight;
         _leftHandController.selectAction.action.performed -= OnPinchRight;
+        trackerController.PositionSet -= PoseFound;
     }
 
     #region SceneUnderstanding

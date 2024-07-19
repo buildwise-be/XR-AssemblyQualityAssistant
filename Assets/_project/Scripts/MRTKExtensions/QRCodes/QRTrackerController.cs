@@ -12,7 +12,7 @@ namespace MRTKExtensions.QRCodes
         private SpatialGraphCoordinateSystemSetter spatialGraphCoordinateSystemSetter;
 
         [SerializeField]
-        private TextMeshPro _debugText;
+        private TextMeshProUGUI _debugText;
 
         [SerializeField]
         private string locationQrValue = string.Empty;
@@ -21,7 +21,8 @@ namespace MRTKExtensions.QRCodes
         private AudioSource audioSource;
         private GameObject markerDisplay;
         private QRInfo lastMessage;
-   
+        private bool _isProcessingQRCode = false;
+
         public bool IsTrackingActive { get; private set; } = true;
 
         private IQRCodeTrackingService qrCodeTrackingService;
@@ -31,15 +32,13 @@ namespace MRTKExtensions.QRCodes
 
         private async Task Start()
         {
-            Debug.Log("QRTrackerController.Start()");
-            if (_debugText != null)
-            {
-                _debugText.text = "QRTrackerController.Start()";
-            }
             // Give service time to start;
             await Task.Delay(250);
+
             if (!QRCodeTrackingService.IsSupported)
             {
+                if (_debugText != null)
+                    _debugText.text += "\nQRCodeTrackingService not supported!";
                 return;
             }
 
@@ -53,28 +52,9 @@ namespace MRTKExtensions.QRCodes
             spatialGraphCoordinateSystemSetter.PositionAcquired += SetPosition;
             spatialGraphCoordinateSystemSetter.PositionAcquisitionFailed +=
                 (s, e) => ResetTracking();
-
-
-            if (QRCodeTrackingService.IsInitialized)
-            {
-                StartTracking();
-            }
-            else
-            {
-                QRCodeTrackingService.Initialized += QRCodeTrackingService_Initialized;
-            }
-            if (_debugText != null)
-            {
-                _debugText.text += "\nQRCodeTrackingService.Initialized";
-            }
         }
 
-        private void QRCodeTrackingService_Initialized(object sender, EventArgs e)
-        {
-            StartTracking();
-        }
-
-        private void StartTracking()
+        public void StartTracking()
         {
             QRCodeTrackingService.Enable();
         }
@@ -90,29 +70,29 @@ namespace MRTKExtensions.QRCodes
 
         private void ProcessTrackingFound(object sender, QRInfo msg)
         {
-            if (msg == null || !IsTrackingActive )
+            if (msg == null || !IsTrackingActive)
             {
                 return;
             }
-
-            lastMessage = msg;
-            if (_debugText != null)
+            if (_isProcessingQRCode)
             {
-                _debugText.text += $"\nProcessTrackingFound with message {msg.Data}";
+                Debug.Log($"Already processing QR code! Returning.");
+                return;
             }
+            _isProcessingQRCode = true;
+            
+            lastMessage = msg;
+
             if (msg.Data == locationQrValue && Math.Abs((DateTimeOffset.UtcNow - msg.LastDetectedTime.UtcDateTime).TotalMilliseconds) < 200)
             {
                 spatialGraphCoordinateSystemSetter.SetLocationIdSize(msg.SpatialGraphNodeId,
                     msg.PhysicalSideLength);
             }
+            _isProcessingQRCode = false;
         }
 
         private void SetPosition(object sender, Pose pose)
         {
-            if (_debugText != null)
-            {
-                _debugText.text += $"\nSetting position with pose {pose.position}";
-            }
             IsTrackingActive = false;
             markerHolder.localScale = Vector3.one * lastMessage.PhysicalSideLength;
             markerDisplay.SetActive(true);

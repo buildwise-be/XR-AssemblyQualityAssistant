@@ -14,6 +14,9 @@ public class SolredoUIManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnStartFindingPlane;
 
+    [SerializeField] private DashboardManager _dashboardManager;
+    [SerializeField] private GameObject _dashboard;
+
     void Start()
     {
         _dialogPool = GetComponent<DialogPool>();
@@ -110,5 +113,17 @@ public class SolredoUIManager : MonoBehaviour
     void EnableSlabPlacement()
     {
         _placementManager.IsSlabCreationAuthorized = true;
+    }
+
+    public void ShowStepDashboard()
+    {
+        _dashboard.SetActive(true);
+        _dashboard.transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.rotation);
+        _dashboardManager.UpdateDashboardWithCurrentStep();
+    }
+
+    public void HideStepDashboard()
+    {
+        _dashboard.SetActive(false);
     }
 }
