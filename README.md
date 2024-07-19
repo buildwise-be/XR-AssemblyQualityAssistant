@@ -9,7 +9,7 @@ This application showcases 2 demos:
 ## Solredo Assembly Assistant
 1. See the miniature model of the house to renovate
 2. Select one of the modules to build
-3. Scan a QR code to make the 1st submodule appear
+3. Scan a QR code to make the 1st submodule appear (use the QR code provided in this repo)
 4. Use vocal command 'Next' to make appear subsequent modules
 5. Get current step information from hand menu
 6. Acknowledge the step went fine, or mention problems if any
