@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/MainMenu.unity
     guid: d9a544d146f871e4eb0c302b6702cd9a
   - enabled: 0
     path: Assets/_project/Scenes/SolredoVisualizer.unity
     guid: 162936d8ee4a0514582c624f5c93851f
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/SchelfhoutSlabVisualizer.unity
     guid: c46ba79619c855e419aa3d5284dedbf8
   - enabled: 1
