@@ -5,6 +5,7 @@
 #pragma warning disable CS1591
 
 using MixedReality.Toolkit.Subsystems;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +18,10 @@ namespace MixedReality.Toolkit.Examples.Demos
     [AddComponentMenu("MRTK/Examples/Dictation Handler")]
     public class DictationHandler : MonoBehaviour
     {
+        [Tooltip("The text box in which the dictated text will be printed")]
+        [SerializeField] private TextMeshProUGUI textBox;
+
+        private string _recognizingText;
         /// <summary>
         /// Wrapper of UnityEvent&lt;string&gt; for serialization.
         /// </summary>
@@ -88,18 +93,21 @@ namespace MixedReality.Toolkit.Examples.Demos
 
         private void DictationSubsystem_RecognitionFinished(DictationSessionEventArgs obj)
         {
-            OnRecognitionFinished.Invoke("Recognition finished. Reason: " + obj.ReasonString);
+            //OnRecognitionFinished.Invoke("Recognition finished. Reason: " + obj.ReasonString);
             HandleDictationShutdown();
         }
 
         private void DictationSubsystem_Recognized(DictationResultEventArgs obj)
         {
-            OnSpeechRecognized.Invoke("Recognized:" + obj.Result);
+            //OnSpeechRecognized.Invoke("Recognized:" + obj.Result);
+            OnSpeechRecognized.Invoke(obj.Result);
         }
 
         private void DictationSubsystem_Recognizing(DictationResultEventArgs obj)
         {
-            OnSpeechRecognizing.Invoke("Recognizing:" + obj.Result);
+            //OnSpeechRecognizing.Invoke("Recognizing:" + obj.Result);
+            _recognizingText = obj.Result;
+            OnSpeechRecognizing.Invoke(_recognizingText);
         }
 
         /// <summary>
@@ -132,6 +140,16 @@ namespace MixedReality.Toolkit.Examples.Demos
                 keywordRecognitionSubsystem.Start();
                 keywordRecognitionSubsystem = null;
             }
+        }
+
+        public void SaveDictatedSpeechToTMP(string text)
+        {
+            textBox.text += " " + text;
+        }
+
+        public void ShowRecognizingText(string text)
+        {
+            textBox.text = text;
         }
     }
 }
