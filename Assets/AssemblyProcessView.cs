@@ -69,4 +69,15 @@ public class AssemblyProcessView : MonoBehaviour
     {
         
     }
+
+    public void ValidateStep()
+    {
+        CloseCurrentView();
+        _controller.ValidateStep();
+    }
+
+    private void CloseCurrentView()
+    {
+        
+    }
 }

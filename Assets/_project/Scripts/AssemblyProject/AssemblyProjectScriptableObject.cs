@@ -10,6 +10,8 @@ public class AssemblyProjectScriptableObject : ScriptableObject
     public int m_id;
     [SerializeField] private AssemblyStep[] _assemblySteps;
 
+    public int StepsCount => _assemblySteps.Length;
+
     internal AssemblyStep GetStep(int index)
     {
         return _assemblySteps[index];
