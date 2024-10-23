@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName ="BuildWize/App Data")]
-internal class AppData : ScriptableObject
+namespace _project.Scripts.Entities
 {
-    public AssemblyProjectScriptableObject project;
+    [CreateAssetMenu(menuName ="BuildWize/App Data")]
+    internal class AppData : ScriptableObject
+    {
+        public AssemblyProjectScriptableObject project;
+    }
 }

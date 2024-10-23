@@ -1,14 +1,17 @@
 ﻿using System;
 
-[Serializable]
-public class AssemblyStepFeedback
+namespace _project.Scripts.Entities
 {
-    private readonly int _index;
-    public readonly float _startTime;
-
-    public AssemblyStepFeedback(int index, float _startTime)
+    [Serializable]
+    public class AssemblyStepFeedback
     {
-        _index = index;
-        _startTime = _startTime;
+        private readonly int _index;
+        public readonly float _startTime;
+
+        public AssemblyStepFeedback(int index, float _startTime)
+        {
+            _index = index;
+            _startTime = _startTime;
+        }
     }
 }

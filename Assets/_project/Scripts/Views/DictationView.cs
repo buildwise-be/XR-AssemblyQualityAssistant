@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class DictationView : MonoBehaviour
 {
-    private DictationPanelController _dictationController;
+    private IDictationPanelController _dictationController;
     private DictationHandler _dictationHandler;
     private List<string> _dictations;
     private static bool _exitButtonHasBeenPressed;

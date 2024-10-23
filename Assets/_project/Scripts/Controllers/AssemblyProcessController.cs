@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _project.Scripts.Entities;
 using UnityEngine;
 
 public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessController

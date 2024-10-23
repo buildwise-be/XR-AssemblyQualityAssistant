@@ -1,11 +1,12 @@
 ﻿using System;
+using _project.Scripts.Entities;
 
 public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
 {
     private AssemblyStepFeedback[] _assemblyStepFeedbacks;
     public void StartStepMonitoring(int index,float time)
     {
-        //_assemblyStepFeedbacks
+        
     }
 
     public void EndStepMonitoring(int index, float time)
