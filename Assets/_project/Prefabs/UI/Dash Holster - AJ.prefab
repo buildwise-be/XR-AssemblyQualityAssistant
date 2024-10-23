@@ -3177,7 +3177,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 92.9755, y: 29.73, z: 35.6}
+  m_Size: {x: 86.30884, y: 29.73, z: 35.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5975942354350570934
 MonoBehaviour:
@@ -9958,7 +9958,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -14753,7 +14753,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 92.9755, y: 29.73, z: 35.6}
+  m_Size: {x: 86.30884, y: 29.73, z: 35.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1939529015858314692
 MonoBehaviour:
@@ -26584,21 +26584,9 @@ MonoBehaviour:
   <OnClicked>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 932860980072318357}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StepsManager, Assembly-CSharp
-        m_MethodName: StopStepAnimation
+      - m_Target: {fileID: 2013869770824417072}
+        m_TargetAssemblyTypeName: AssemblyProcessController, Assembly-CSharp
+        m_MethodName: ValidateStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26694,7 +26682,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 92.9755, y: 29.73, z: 35.6}
+  m_Size: {x: 86.30884, y: 29.73, z: 35.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5767133439433020390
 MonoBehaviour:

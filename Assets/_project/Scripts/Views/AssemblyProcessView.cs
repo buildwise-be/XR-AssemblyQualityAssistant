@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AssemblyProcessView : MonoBehaviour
 {
     [SerializeField] private GameObject _instructionPrebab;
-
+    [Header("UI Elements")]
+    [SerializeField] private TMP_Text _headerText;
     [SerializeField] private Image _illustration;
     [SerializeField] private Transform _indicationsContainer;
 
@@ -79,5 +81,10 @@ public class AssemblyProcessView : MonoBehaviour
     private void CloseCurrentView()
     {
         
+    }
+
+    public void OnOpenDictationButtonClick()
+    {
+        _controller.OpenDictationPanel();
     }
 }
