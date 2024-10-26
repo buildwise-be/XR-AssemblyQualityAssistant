@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MixedReality.Toolkit.Examples.Demos;
@@ -10,16 +12,19 @@ public class DictationView : MonoBehaviour
 {
     private IDictationPanelController _dictationController;
     private DictationHandler _dictationHandler;
-    private List<string> _dictations;
+    private List<string> _dictations = new();
     private static bool _exitButtonHasBeenPressed;
     [SerializeField] private TMP_Text _dictationTextField;
     [SerializeField] private RecordingButtonView _recordingButton;
     private bool _isRecording;
+    private StringBuilder _stringBbuilder;
 
     private void Awake()
     {
         _dictationHandler = FindFirstObjectByType<DictationHandler>();
         _dictationController = FindFirstObjectByType<DictationPanelController>();
+
+        _stringBbuilder = new StringBuilder();
     }
 
     private void Start()
@@ -55,6 +60,9 @@ public class DictationView : MonoBehaviour
         _isRecording = false;
         _dictationHandler.StopRecognition();
         _recordingButton.ResetElement();
+        #if UNITY_EDITOR
+        SaveSpeech("This is a debug text");
+        #endif
     }
 
     private void StartRecording()
@@ -76,7 +84,17 @@ public class DictationView : MonoBehaviour
 
     private void SaveSpeech(string arg0)
     {
+#if UNITY_EDITOR
+        arg0 = $"#{_dictations.Count + 1}: {arg0}";
+#endif
         _dictations.Add(arg0);
+        _dictationTextField.SetText(String.Empty);
+        _stringBbuilder.Clear();
+        foreach (var dictation in _dictations)
+        {
+            _stringBbuilder.Append(dictation + "\n\n");
+        }
+        _dictationTextField.SetText(_stringBbuilder.ToString());
     }
 
     public void ClearDictations()
