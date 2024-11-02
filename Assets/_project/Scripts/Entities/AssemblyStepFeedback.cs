@@ -8,10 +8,14 @@ namespace _project.Scripts.Entities
         private readonly int _index;
         public readonly float _startTime;
 
-        public AssemblyStepFeedback(int index, float _startTime)
+        public AssemblyStepFeedback(float _startTime)
         {
-            _index = index;
             _startTime = _startTime;
+        }
+
+        public void Close(float _time)
+        {
+            throw new NotImplementedException();
         }
     }
 }

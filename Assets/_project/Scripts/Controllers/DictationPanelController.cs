@@ -36,6 +36,11 @@ public class DictationPanelController : MonoBehaviour, IDictationPanelController
             {
                 Debug.LogWarning("No data to save");
             }
+            else
+            {
+                
+            }
         }
+        _useCase.SaveMessages(data);
     }
 }

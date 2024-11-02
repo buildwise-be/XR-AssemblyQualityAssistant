@@ -1,17 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using _project.Scripts.Entities;
 
 public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
 {
-    private AssemblyStepFeedback[] _assemblyStepFeedbacks;
-    public void StartStepMonitoring(int index,float time)
+
+    public AssemblyStepFeedbackMonitor()
     {
         
+    }
+    private AssemblyStepFeedback[] _assemblyStepFeedbacks;
+    private int _currentStepIndex;
+
+    public void StartStepMonitoring(int index,float time)
+    {
+        _currentStepIndex = index;
+        _assemblyStepFeedbacks[_currentStepIndex] = new AssemblyStepFeedback(time);
     }
 
     public void EndStepMonitoring(int index, float time)
     {
-        throw new NotImplementedException();
+        _assemblyStepFeedbacks[index].Close(time);
     }
 
     public void StartStepMonitoring(float time)
@@ -26,12 +35,12 @@ public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
 
     public void AddRemark(int currentStepIndex, string data)
     {
-        throw new NotImplementedException();
+        _assemblyStepFeedbacks[currentStepIndex]
     }
 
     public void InitMonitoring(int _nbOfSteps)
     {
-        
+        _assemblyStepFeedbacks = new AssemblyStepFeedback[_nbOfSteps];
     }
 
     public void InitializeDictation()
@@ -43,5 +52,10 @@ public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
     public void SaveMessage(string message)
     {
         
+    }
+
+    public void SaveMessages(List<string> _data)
+    {
+        throw new NotImplementedException();
     }
 }

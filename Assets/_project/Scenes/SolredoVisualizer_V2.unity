@@ -956,8 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af83921ae8da94a47b47c4648818e338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _assemblyProcessController: {fileID: 1313187998}
-  _dictationPanelController: {fileID: 1291450168}
 --- !u!4 &395965347
 Transform:
   m_ObjectHideFlags: 0
@@ -4176,17 +4174,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9b28fbe0dde38c48993d0bda344d7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1313187998 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2013869770824417072, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
-  m_PrefabInstance: {fileID: 4429035789406039830}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51793b5b0c56a234fbad81b9a1308e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1326452759
