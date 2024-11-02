@@ -4,21 +4,26 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using _project.Scripts.Controllers;
+using _project.Scripts.Views;
 using MixedReality.Toolkit.Examples.Demos;
 using TMPro;
 using UnityEngine;
 
 public class DictationView : MonoBehaviour
 {
-    [SerializeField] private GameObject _remarksButtonPrefab;
+    
     private IDictationPanelController _dictationController;
     private DictationHandler _dictationHandler;
     private List<string> _dictations = new();
     private static bool _exitButtonHasBeenPressed;
+    [SerializeField] private GameObject _remarksButtonPrefab;
+    [SerializeField] private Transform _remarksButtonContainer;
     [SerializeField] private TMP_Text _dictationTextField;
     [SerializeField] private RecordingButtonView _recordingButton;
     private bool _isRecording;
     private StringBuilder _stringBuilder;
+    [SerializeField] private GameObject _panel;
 
     private void Awake()
     {
@@ -31,6 +36,22 @@ public class DictationView : MonoBehaviour
     private void Start()
     {
         _dictationController.OnOpenPanel += HandleDictationProcess;
+        _dictationController.OnRefreshPanel += RefreshView;
+    }
+
+    private void RefreshView()
+    {
+        ClearDictations();
+        ClearRemarks();
+        LoadPreviousRemarks();
+    }
+
+    private void ClearRemarks()
+    {
+        for (var i = _remarksButtonContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_remarksButtonContainer.GetChild(i).gameObject);
+        }
     }
 
     private void OnEnable()
@@ -45,8 +66,15 @@ public class DictationView : MonoBehaviour
 
     public void OnSaveButtonClicked()
     {
+        _dictationController.ProcessDictationData(_stringBuilder.ToString());
+        _stringBuilder.Clear();
+    }
+    public void OnExitButtonClicked()
+    {
         _exitButtonHasBeenPressed = true;
     }
+
+    
 
     public void OnStartRecordingButtonClick()
     {
@@ -68,6 +96,7 @@ public class DictationView : MonoBehaviour
 
     private void StartRecording()
     {
+        _dictationTextField.SetText(string.Empty);
         _isRecording = true;
         StartCoroutine(OnStartRecordingCoroutine());
     }
@@ -111,18 +140,31 @@ public class DictationView : MonoBehaviour
 
     private async void HandleDictationProcess()
     {
-        gameObject.SetActive(true);
+        _panel.SetActive(true);
+        ClearDictations();
+        ClearRemarks();
         LoadPreviousRemarks();
         _dictations = new List<string>();
         _exitButtonHasBeenPressed = false;
         await ProcessDictation();
-        _dictationController.ProcessDictationData(_dictations);
-        gameObject.SetActive(false);
+        if (_stringBuilder.Length > 0)
+        {
+            Debug.Log("String Builder contains data");
+        }
+        //_dictationController.ProcessDictationData(_stringBuilder.ToString());
+        _panel.SetActive(false);
     }
 
     private void LoadPreviousRemarks()
     {
-        //_dictationController.GetSavedRemarks();
+        var remarksCollection = _dictationController.GetSavedRemarks();
+        var previousMessages = remarksCollection.GetRemarkMessages();
+        for(var i =0;i< previousMessages.Length;i++)
+        {
+            var remarkButtonInstance = Instantiate(_remarksButtonPrefab, _remarksButtonContainer);
+            remarkButtonInstance.GetComponent<IRemarkButtonView>().SetText(previousMessages[i], _dictationTextField);
+            remarkButtonInstance.GetComponent<IRemarkButtonView>().SetTitle($"Remark #{i}");
+        }
     }
 
     private async Task ProcessDictation()

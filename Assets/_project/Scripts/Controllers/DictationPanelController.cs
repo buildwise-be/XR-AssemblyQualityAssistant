@@ -1,46 +1,48 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using _project.Scripts.Controllers.DTO;
+using _project.Scripts.UseCases;
 using UnityEngine;
 
-public class DictationPanelController : MonoBehaviour, IDictationPanelController
+namespace _project.Scripts.Controllers
 {
-    private IAssemblyProcessMonitorUseCase _useCase;
-    private bool _dictationProcessIsDone;
-
-    public void SetUseCase(IAssemblyProcessMonitorUseCase useCase)
+    public class DictationPanelController : MonoBehaviour, IDictationPanelController
     {
-        _useCase = useCase;
-        _useCase.OnStartDictationProcess += OpenDictationPanel;
-    }
+        private IAssemblyProcessMonitorUseCase _useCase;
+        private bool _dictationProcessIsDone;
 
-    private void OpenDictationPanel()
-    {
-        Debug.Log("Open OpenDictationPanel");
-        OnOpenPanel.Invoke();
-    }
+        public void SetUseCase(IAssemblyProcessMonitorUseCase useCase)
+        {
+            _useCase = useCase;
+            _useCase.OnStartDictationProcess += OpenDictationPanel;
+        }
 
-    public Action OnOpenPanel { get; set; }
+        private void OpenDictationPanel()
+        {
+            Debug.Log("Open OpenDictationPanel");
+            OnOpenPanel?.Invoke();
+        }
+
+        public Action OnOpenPanel { get; set; }
+        public Action OnRefreshPanel { get; set; }
     
 
-    public void CloseDictation(string message)
-    {
-        
-    }
-
-    public void ProcessDictationData(List<string> data)
-    {
-        foreach (var VARIABLE in data)
+        public void CloseDictation(string message)
         {
-            if (string.IsNullOrEmpty(VARIABLE))
-            {
-                Debug.LogWarning("No data to save");
-            }
-            else
-            {
-                
-            }
+        
         }
-        _useCase.SaveMessages(data);
+
+        public void ProcessDictationData(string data)
+        {
+            if (!string.IsNullOrEmpty(data)) _useCase.AddRemark(data);
+            OnRefreshPanel?.Invoke();
+        }
+        
+        public IRemarksCollection GetSavedRemarks()
+        {
+            var data = _useCase.GetCurrentStepRemarkList();
+            var messages = data.GetMessages();
+            return new AssemblyRemarkCollection(messages);
+        }
     }
 }

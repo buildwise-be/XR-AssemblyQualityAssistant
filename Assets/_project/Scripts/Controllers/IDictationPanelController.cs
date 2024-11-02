@@ -1,9 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using _project.Scripts.Controllers.DTO;
 
-public interface IDictationPanelController
+namespace _project.Scripts.Controllers
 {
-    void CloseDictation(string message);
-    Action OnOpenPanel { get; set; }
-    void ProcessDictationData(List<string> dictations);
+    public interface IDictationPanelController
+    {
+        void CloseDictation(string message);
+        Action OnOpenPanel { get; set; }
+        Action OnRefreshPanel { get; set; }
+        void ProcessDictationData(string dictations);
+        IRemarksCollection GetSavedRemarks();
+    }
 }

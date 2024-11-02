@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public interface IAssemblyProcessMonitorUseCase
+namespace _project.Scripts.UseCases
 {
-    void StartStepMonitoring(int index, float time);
-    void EndStepMonitoring(int index,float time);
-    void EndMonitoring(float time);
-    void AddRemark(int currentStepIndex, string data);
-    void InitMonitoring(int numberOfSteps);
-    void InitializeDictation();
+    public interface IAssemblyProcessMonitorUseCase
+    {
+        void StartStepMonitoring(int index, float time);
+        void EndStepMonitoring(int index,float time);
+        void EndMonitoring(float time);
+        void AddRemark(string data);
+        void InitMonitoring(string projectId);
+        void InitializeDictation();
     
-    Action OnStartDictationProcess { get; set; }
-    void SaveMessage(string message);
-    void SaveMessages(List<string> _data);
+        Action OnStartDictationProcess { get; set; }
+        IRemarkDto GetCurrentStepRemarkList();
+    }
 }

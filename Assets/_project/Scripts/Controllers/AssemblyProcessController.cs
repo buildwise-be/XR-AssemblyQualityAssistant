@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using _project.Scripts.Entities;
+using _project.Scripts.UseCases;
 using UnityEngine;
 
 public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessController
@@ -29,7 +28,7 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
     {
         _currentProject = _appData.project;
         _currentStepIndex = -1;
-        _assemblyProcessMonitorUseCase.InitMonitoring(_currentProject.StepsCount);
+        _assemblyProcessMonitorUseCase.InitMonitoring(_currentProject.m_guid);
     }
 
     // Update is called once per frame

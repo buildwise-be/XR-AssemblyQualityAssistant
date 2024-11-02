@@ -5,15 +5,21 @@ namespace _project.Scripts.Entities
     [Serializable]
     public class AssemblyStepFeedback
     {
-        private readonly int _index;
-        public readonly float _startTime;
-
-        public AssemblyStepFeedback(float _startTime)
+        private readonly float _startTime;
+        public AssemblyRemark[] m_remarks;
+        
+        public AssemblyStepFeedback(float startTime)
         {
-            _startTime = _startTime;
+            _startTime = startTime;
+        }
+        
+        public AssemblyStepFeedback(float startTime, AssemblyRemark[] remarks)
+        {
+            _startTime = startTime;
+            m_remarks = remarks;
         }
 
-        public void Close(float _time)
+        public void Close(float time)
         {
             throw new NotImplementedException();
         }

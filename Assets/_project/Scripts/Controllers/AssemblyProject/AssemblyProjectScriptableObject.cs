@@ -6,8 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="BuildWize/Assembly Project", fileName =nameof(AssemblyProjectScriptableObject))]
 public class AssemblyProjectScriptableObject : ScriptableObject
 {
+    
+    [ScriptableObjectId] public string m_guid;
     public string m_name;
-    public int m_id;
     [SerializeField] private AssemblyStep[] _assemblySteps;
 
     public int StepsCount => _assemblySteps.Length;
