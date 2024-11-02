@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class DictationView : MonoBehaviour
 {
+    [SerializeField] private GameObject _remarksButtonPrefab;
     private IDictationPanelController _dictationController;
     private DictationHandler _dictationHandler;
     private List<string> _dictations = new();
@@ -17,14 +18,14 @@ public class DictationView : MonoBehaviour
     [SerializeField] private TMP_Text _dictationTextField;
     [SerializeField] private RecordingButtonView _recordingButton;
     private bool _isRecording;
-    private StringBuilder _stringBbuilder;
+    private StringBuilder _stringBuilder;
 
     private void Awake()
     {
         _dictationHandler = FindFirstObjectByType<DictationHandler>();
         _dictationController = FindFirstObjectByType<DictationPanelController>();
 
-        _stringBbuilder = new StringBuilder();
+        _stringBuilder = new StringBuilder();
     }
 
     private void Start()
@@ -89,12 +90,12 @@ public class DictationView : MonoBehaviour
 #endif
         _dictations.Add(arg0);
         _dictationTextField.SetText(String.Empty);
-        _stringBbuilder.Clear();
+        _stringBuilder.Clear();
         foreach (var dictation in _dictations)
         {
-            _stringBbuilder.Append(dictation + "\n\n");
+            _stringBuilder.Append(dictation + "\n\n");
         }
-        _dictationTextField.SetText(_stringBbuilder.ToString());
+        _dictationTextField.SetText(_stringBuilder.ToString());
     }
 
     public void ClearDictations()
@@ -111,11 +112,17 @@ public class DictationView : MonoBehaviour
     private async void HandleDictationProcess()
     {
         gameObject.SetActive(true);
+        LoadPreviousRemarks();
         _dictations = new List<string>();
         _exitButtonHasBeenPressed = false;
         await ProcessDictation();
         _dictationController.ProcessDictationData(_dictations);
         gameObject.SetActive(false);
+    }
+
+    private void LoadPreviousRemarks()
+    {
+        //_dictationController.GetSavedRemarks();
     }
 
     private async Task ProcessDictation()

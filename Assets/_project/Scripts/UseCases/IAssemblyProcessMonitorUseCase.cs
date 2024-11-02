@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public interface IAssemblyProcessMonitorUseCase
 {
-    void StartStepMonitoring(int index, float time, out  _currentStepIndex);
+    void StartStepMonitoring(int index, float time);
     void EndStepMonitoring(int index,float time);
     void EndMonitoring(float time);
     void AddRemark(int currentStepIndex, string data);

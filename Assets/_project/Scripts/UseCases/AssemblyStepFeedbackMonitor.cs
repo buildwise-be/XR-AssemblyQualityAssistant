@@ -35,7 +35,7 @@ public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
 
     public void AddRemark(int currentStepIndex, string data)
     {
-        _assemblyStepFeedbacks[currentStepIndex]
+        //_assemblyStepFeedbacks[currentStepIndex]
     }
 
     public void InitMonitoring(int _nbOfSteps)
