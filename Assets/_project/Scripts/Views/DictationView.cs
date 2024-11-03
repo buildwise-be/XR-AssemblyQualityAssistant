@@ -37,6 +37,12 @@ public class DictationView : MonoBehaviour
     {
         _dictationController.OnOpenPanel += HandleDictationProcess;
         _dictationController.OnRefreshPanel += RefreshView;
+        _dictationController.OnClosePanel += ClosePanel;
+    }
+
+    private void ClosePanel()
+    {
+        gameObject.SetActive(false);
     }
 
     private void RefreshView()
@@ -151,8 +157,8 @@ public class DictationView : MonoBehaviour
         {
             Debug.Log("String Builder contains data");
         }
-        //_dictationController.ProcessDictationData(_stringBuilder.ToString());
         _panel.SetActive(false);
+        _dictationController.StopDictationProcess();
     }
 
     private void LoadPreviousRemarks()

@@ -15,20 +15,22 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartAssembly();
+        //StartAssembly();
         
     }
     
     public void SetMonitor(IAssemblyProcessMonitorUseCase monitor)
     {
         _assemblyProcessMonitorUseCase = monitor;
-    }
-
-    public void StartAssembly()
-    {
         _currentProject = _appData.project;
         _currentStepIndex = -1;
-        _assemblyProcessMonitorUseCase.InitMonitoring(_currentProject.m_guid);
+        _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
+    }
+
+    private void StartAssembly()
+    {
+        LoadFirstStep();
+        
     }
 
     // Update is called once per frame
@@ -80,6 +82,7 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
     public void OpenDictationPanel()
     {
         _assemblyProcessMonitorUseCase.InitializeDictation();
+        
     }
     
 }

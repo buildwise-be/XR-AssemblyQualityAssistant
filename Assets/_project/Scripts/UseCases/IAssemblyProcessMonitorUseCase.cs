@@ -13,6 +13,7 @@ namespace _project.Scripts.UseCases
         void InitializeDictation();
     
         Action OnStartDictationProcess { get; set; }
+        Action OnStartAssemblyProcessEvent { get; set; }
         IRemarkDto GetCurrentStepRemarkList();
     }
 }

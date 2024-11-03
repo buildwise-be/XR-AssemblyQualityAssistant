@@ -8,25 +8,40 @@ namespace _project.Scripts.UseCases
 {
     public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
     {
-        private AssemblyStepFeedback[] _assemblyStepFeedbacks;
+        private AssemblyProcessDataEntity _assemblyProcessDataEntity;
         private int _currentStepIndex;
         private readonly IFeedbackDataLoaderGateway _feedbackDataLoader;
+        
+        public Action OnStartDictationProcess { get; set; }
+        public Action OnStartAssemblyProcessEvent { get; set; }
         
         public AssemblyStepFeedbackMonitor(IFeedbackDataLoaderGateway feedbackDataLoader)
         {
             _feedbackDataLoader = feedbackDataLoader;
         }
         
+        public void InitMonitoring(string projectId)
+        {
+            _assemblyProcessDataEntity = _feedbackDataLoader.GetAssemblyData(projectId);
+            OnStartAssemblyProcessEvent?.Invoke();
+        }
+
+        public void OpenAssemblyPanel()
+        {
+            
+        }
+        
 
         public void StartStepMonitoring(int index,float time)
         {
             _currentStepIndex = index;
-            _assemblyStepFeedbacks[_currentStepIndex] = new AssemblyStepFeedback(time);
+            _assemblyProcessDataEntity.SetStepStartTime(_currentStepIndex,time);
         }
 
         public void EndStepMonitoring(int index, float time)
         {
-            _assemblyStepFeedbacks[index].Close(time);
+            _assemblyProcessDataEntity.SetStepEndTime(index,time);
+            _feedbackDataLoader.SaveData(_assemblyProcessDataEntity);
         }
 
         public void EndMonitoring(float time)
@@ -34,45 +49,40 @@ namespace _project.Scripts.UseCases
             throw new NotImplementedException();
         }
         
-        public void InitMonitoring(string projectId)
-        {
-            _assemblyStepFeedbacks = _feedbackDataLoader.GetAssemblyData(projectId);
-        }
+       
 
         public void InitializeDictation()
         {
             OnStartDictationProcess.Invoke();
         }
 
-        public Action OnStartDictationProcess { get; set; }
+        
         public IRemarkDto GetCurrentStepRemarkList()
         {
-            var data = new string[_assemblyStepFeedbacks[_currentStepIndex].m_remarks.Length];
+            var remarks = _assemblyProcessDataEntity.GetStepRemarks(_currentStepIndex);
+            var data = new string[remarks.Length];
             for (var i = 0; i < data.Length; i++)
             {
-                data[i] = _assemblyStepFeedbacks[_currentStepIndex].m_remarks[i].m_message;
+                data[i] = remarks[i].m_message;
             }
             return new RemarkData(data); 
         }
 
         public void AddRemark(string message)
         {
-            var listOfPreviousRemarks = _assemblyStepFeedbacks[_currentStepIndex].m_remarks.ToList();
-            listOfPreviousRemarks.Add(new AssemblyRemark(AssemblyRemark.TYPE.REMARK,message) );
-            _assemblyStepFeedbacks[_currentStepIndex].m_remarks = listOfPreviousRemarks.ToArray();
+            var listOfPreviousRemarks = _assemblyProcessDataEntity.GetStepRemarks(_currentStepIndex).ToList();
+            listOfPreviousRemarks.Add(new AssemblyRemark(AssemblyRemark.TYPE.REMARK,message));
+            _assemblyProcessDataEntity.SetStepRemarks(_currentStepIndex, listOfPreviousRemarks.ToArray());
+            _feedbackDataLoader.SaveData(_assemblyProcessDataEntity);
         }
         
         public void AddIssue(string message)
         {
-            var listOfPreviousRemarks = _assemblyStepFeedbacks[_currentStepIndex].m_remarks.ToList();
+            var listOfPreviousRemarks = _assemblyProcessDataEntity.GetStepRemarks(_currentStepIndex).ToList();
             listOfPreviousRemarks.Add(new AssemblyRemark(AssemblyRemark.TYPE.ISSUE,message) );
-            _assemblyStepFeedbacks[_currentStepIndex].m_remarks = listOfPreviousRemarks.ToArray();
+            _assemblyProcessDataEntity.SetStepRemarks(_currentStepIndex, listOfPreviousRemarks.ToArray());
         }
-
-        public void SaveMessages(List<string> data)
-        {
-            
-        }
+        
     }
 
     public readonly struct RemarkData : IRemarkDto

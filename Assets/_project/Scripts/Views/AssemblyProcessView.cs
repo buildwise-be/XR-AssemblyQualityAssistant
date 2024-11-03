@@ -14,19 +14,16 @@ public class AssemblyProcessView : MonoBehaviour
     [SerializeField] private Transform _indicationsContainer;
 
     private IAssemblyProcessController _controller;
-
-
-    private void Awake()
+    
+    public void SetController(IAssemblyProcessController controller)
     {
-        _controller = GetComponent<IAssemblyProcessController>();
-    }
-    void OnEnable()
-    {
+        _controller = controller;
         _controller.OnDisplayStep += DisplayStepInfo;  
     }
 
     private void DisplayStepInfo(AssemblyStep step)
     {
+        gameObject.SetActive(true);
         ClearContent();
         UpdateIllustration(step.StepIllustration);
         UpdateInstructions(step.Indications);
@@ -86,5 +83,6 @@ public class AssemblyProcessView : MonoBehaviour
     public void OnOpenDictationButtonClick()
     {
         _controller.OpenDictationPanel();
+        gameObject.SetActive(false);
     }
 }

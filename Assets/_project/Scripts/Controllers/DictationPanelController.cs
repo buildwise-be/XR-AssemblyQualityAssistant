@@ -24,12 +24,13 @@ namespace _project.Scripts.Controllers
         }
 
         public Action OnOpenPanel { get; set; }
+        public Action OnClosePanel { get; set; }
         public Action OnRefreshPanel { get; set; }
     
 
-        public void CloseDictation(string message)
+        public void StopDictationProcess()
         {
-        
+            OnClosePanel?.Invoke();
         }
 
         public void ProcessDictationData(string data)
