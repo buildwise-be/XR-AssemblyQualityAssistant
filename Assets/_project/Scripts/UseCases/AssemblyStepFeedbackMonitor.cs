@@ -14,7 +14,8 @@ namespace _project.Scripts.UseCases
         
         public Action OnStartDictationProcess { get; set; }
         public Action OnStartAssemblyProcessEvent { get; set; }
-        
+        public Action OnShowAssemblyPanel { get; set; }
+
         public AssemblyStepFeedbackMonitor(IFeedbackDataLoaderGateway feedbackDataLoader)
         {
             _feedbackDataLoader = feedbackDataLoader;
@@ -25,12 +26,6 @@ namespace _project.Scripts.UseCases
             _assemblyProcessDataEntity = _feedbackDataLoader.GetAssemblyData(projectId);
             OnStartAssemblyProcessEvent?.Invoke();
         }
-
-        public void OpenAssemblyPanel()
-        {
-            
-        }
-        
 
         public void StartStepMonitoring(int index,float time)
         {
@@ -66,6 +61,11 @@ namespace _project.Scripts.UseCases
                 data[i] = remarks[i].m_message;
             }
             return new RemarkData(data); 
+        }
+
+        public void StopDictation()
+        {
+            OnShowAssemblyPanel.Invoke();
         }
 
         public void AddRemark(string message)

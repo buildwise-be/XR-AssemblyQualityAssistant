@@ -2,8 +2,10 @@
 
 public interface IAssemblyProcessController
 {
-    public Action<AssemblyStep> OnDisplayStep { get; set; }
+    public Action<int,AssemblyStep> OnDisplayStep { get; set; }
+    public Action OnShowPanel { get; set; }
 
     void ValidateStep();
     void OpenDictationPanel();
+    void GoToPreviousStep();
 }

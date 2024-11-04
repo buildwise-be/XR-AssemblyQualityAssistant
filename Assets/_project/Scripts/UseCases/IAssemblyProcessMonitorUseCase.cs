@@ -14,6 +14,8 @@ namespace _project.Scripts.UseCases
     
         Action OnStartDictationProcess { get; set; }
         Action OnStartAssemblyProcessEvent { get; set; }
+        Action OnShowAssemblyPanel { get; set; }
         IRemarkDto GetCurrentStepRemarkList();
+        void StopDictation();
     }
 }

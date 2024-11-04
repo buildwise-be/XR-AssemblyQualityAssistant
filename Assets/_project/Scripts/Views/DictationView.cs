@@ -42,7 +42,7 @@ public class DictationView : MonoBehaviour
 
     private void ClosePanel()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void RefreshView()

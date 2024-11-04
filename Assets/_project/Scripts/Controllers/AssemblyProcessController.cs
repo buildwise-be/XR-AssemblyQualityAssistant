@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessController
 {
-    public Action<AssemblyStep> OnDisplayStep {  get; set; }
+    public Action<int, AssemblyStep> OnDisplayStep {  get; set; }
+    public Action OnShowPanel { get; set; }
     [SerializeField] private AppData _appData;
 
     private AssemblyProjectScriptableObject _currentProject;
@@ -12,6 +13,9 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
     private float _stepStartTime;
 
     private IAssemblyProcessMonitorUseCase _assemblyProcessMonitorUseCase;
+
+    private AssemblyStep _currentStep;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +29,12 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
         _currentProject = _appData.project;
         _currentStepIndex = -1;
         _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
+        _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
+    }
+
+    private void ShowPanel()
+    {
+        OnShowPanel?.Invoke();
     }
 
     private void StartAssembly()
@@ -70,13 +80,14 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
     private void LoadStep(int _i)
     {
         _assemblyProcessMonitorUseCase.StartStepMonitoring(_i, Time.time);
-        var step = _currentProject.GetStep(_i);
-        OnDisplayStep?.Invoke(step);
+        _currentStep = _currentProject.GetStep(_i);
+        OnDisplayStep?.Invoke(_i,_currentStep);
     }
     
     public void ValidateStep()
     {
         _assemblyProcessMonitorUseCase.EndStepMonitoring(_currentStepIndex, Time.time);
+        LoadNextStep();
     }
 
     public void OpenDictationPanel()
@@ -84,5 +95,10 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
         _assemblyProcessMonitorUseCase.InitializeDictation();
         
     }
-    
+
+    public void GoToPreviousStep()
+    {
+        _currentStepIndex--;
+        LoadStep(_currentStepIndex);
+    }
 }

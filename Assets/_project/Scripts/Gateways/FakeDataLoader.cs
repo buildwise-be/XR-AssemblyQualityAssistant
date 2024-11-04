@@ -22,6 +22,10 @@ namespace _project.Scripts.Gateways
                 new AssemblyStepData(10, remarks),
                 new AssemblyStepData(10, remarks),
                 new AssemblyStepData(10, remarks),
+                new AssemblyStepData(10, remarks),
+                new AssemblyStepData(10, remarks),
+                new AssemblyStepData(10, remarks),
+                new AssemblyStepData(10, remarks)
                 
             };
             return data;

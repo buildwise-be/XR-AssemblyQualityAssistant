@@ -31,6 +31,7 @@ namespace _project.Scripts.Controllers
         public void StopDictationProcess()
         {
             OnClosePanel?.Invoke();
+            _useCase.StopDictation();
         }
 
         public void ProcessDictationData(string data)
