@@ -96,8 +96,9 @@ public class DictationView : MonoBehaviour
         _dictationHandler.StopRecognition();
         _recordingButton.ResetElement();
         #if UNITY_EDITOR
-        SaveSpeech("DEBUG SPEECH - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis lacus et cursus efficitur. Integer sed laoreet turpis. Nulla felis sem, mattis sed dolor quis, suscipit eleifend nisi. Sed vitae vehicula eros, eget volutpat mi. Aenean volutpat risus eget est ullamcorper, non pellentesque enim consectetur. Aliquam hendrerit, est sed eleifend rutrum, nunc quam pharetra urna, porta consectetur nulla odio et neque. Aenean euismod mauris nec lectus hendrerit, vitae semper lectus semper. Duis id nisl tempus, gravida justo vel, efficitur augue.");
-        #endif
+        SaveSpeech("DEBUG SPEECH - Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                   "Pellentesque convallis lacus et cursus efficitur. Integer sed laoreet turpis.");
+#endif
     }
 
     private void StartRecording()

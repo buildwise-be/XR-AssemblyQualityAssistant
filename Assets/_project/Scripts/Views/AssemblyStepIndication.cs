@@ -10,7 +10,7 @@ public class AssemblyStepIndication : MonoBehaviour, IAssemblyInsctructionView
     public void SetText(int index, string indicationText)
     {
         var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine($"<size=8 > Etape {index+1} </size> \n<size=6>{indicationText}</size>)");
+        stringBuilder.AppendLine($"<size=8 > Etape {index+1} </size> \n<size=6>{indicationText}</size>");
         _text.SetText(stringBuilder.ToString());
     }
 }

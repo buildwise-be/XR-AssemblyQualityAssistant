@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0655ccb67e564b46827777f6ab99acb, type: 3}
-  m_Name: SolredoProject
+  m_Name: SolredoModule-01
   m_EditorClassIdentifier: 
   m_guid: bb69a044b8f2ac84e9b1edf526642716
   m_name: 'Solredo Assembly  #1 '
