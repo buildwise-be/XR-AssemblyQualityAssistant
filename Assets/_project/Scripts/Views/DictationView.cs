@@ -17,13 +17,18 @@ public class DictationView : MonoBehaviour
     private DictationHandler _dictationHandler;
     private List<string> _dictations = new();
     private static bool _exitButtonHasBeenPressed;
+    [Header("UI Elements Prefabs")]
     [SerializeField] private GameObject _remarksButtonPrefab;
+    [SerializeField] private GameObject _pendingCommentPrefab;
+    [Header("UI Elements Containers")]
     [SerializeField] private Transform _remarksButtonContainer;
+    [SerializeField] private Transform _pendingCommentContainer;
     [SerializeField] private TMP_Text _dictationTextField;
+    [SerializeField] private GameObject _panel;
     [SerializeField] private RecordingButtonView _recordingButton;
     private bool _isRecording;
     private StringBuilder _stringBuilder;
-    [SerializeField] private GameObject _panel;
+ 
 
     private void Awake()
     {
@@ -48,6 +53,7 @@ public class DictationView : MonoBehaviour
     private void RefreshView()
     {
         ClearDictations();
+        ClearPendingCommentContainer();
         ClearRemarks();
         LoadPreviousRemarks();
     }
@@ -72,7 +78,13 @@ public class DictationView : MonoBehaviour
 
     public void OnSaveButtonClicked()
     {
+        foreach (var kvp in _dictations)
+        {
+            _stringBuilder.AppendLine(kvp);
+            _stringBuilder.AppendLine();
+        }
         _dictationController.ProcessDictationData(_stringBuilder.ToString());
+        _dictations.Clear();
         _stringBuilder.Clear();
     }
     public void OnExitButtonClicked()
@@ -103,6 +115,7 @@ public class DictationView : MonoBehaviour
 
     private void StartRecording()
     {
+        _pendingCommentContainer.gameObject.SetActive(false);
         _dictationTextField.SetText(string.Empty);
         _isRecording = true;
         StartCoroutine(OnStartRecordingCoroutine());
@@ -113,6 +126,7 @@ public class DictationView : MonoBehaviour
         yield return _recordingButton.StartRecordingCoroutine();
         #if UNITY_EDITOR
         Debug.Log("Start Recording");
+        
         #else
         _dictationHandler.StartRecognition();
         #endif
@@ -126,12 +140,37 @@ public class DictationView : MonoBehaviour
 #endif
         _dictations.Add(arg0);
         _dictationTextField.SetText(String.Empty);
-        _stringBuilder.Clear();
+        ClearPendingCommentContainer();
+        DisplayPendingComments();
+       
+        //_dictationTextField.SetText(_stringBuilder.ToString());
+    }
+
+    private void HandlePendingCommmentDelete(int obj)
+    {
+        ClearPendingCommentContainer();
+        _dictations.RemoveAt(obj);
+        DisplayPendingComments();
+    }
+
+    private void DisplayPendingComments()
+    {
         foreach (var dictation in _dictations)
         {
-            _stringBuilder.Append(dictation + "\n\n");
+            var pendingComment = Instantiate(_pendingCommentPrefab, _pendingCommentContainer);
+            var pendingCommentView = pendingComment.GetComponent<PendingComment>();
+            pendingCommentView.SetText(dictation);
+            pendingCommentView.OnDeleteButtonEventClick += HandlePendingCommmentDelete;
         }
-        _dictationTextField.SetText(_stringBuilder.ToString());
+        _pendingCommentContainer.gameObject.SetActive(true);
+    }
+
+    private void ClearPendingCommentContainer()
+    {
+        for (var i = _pendingCommentContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_pendingCommentContainer.GetChild(i).gameObject);
+        }
     }
 
     public void ClearDictations()
