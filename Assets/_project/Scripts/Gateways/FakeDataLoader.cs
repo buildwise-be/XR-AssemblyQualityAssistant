@@ -12,15 +12,9 @@ namespace _project.Scripts.Gateways
             var remarks_01 = new[]
             {
                 new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis lacus et cursus efficitur. Integer sed laoreet turpis. Nulla felis sem, mattis sed dolor quis, suscipit eleifend nisi."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Nulla luctus facilisis auctor. Aenean ornare risus nec ipsum mollis, et sodales velit pellentesque."),
+                new AssemblyRemark(AssemblyRemark.TYPE.ISSUE, "Nulla luctus facilisis auctor. Aenean ornare risus nec ipsum mollis, et sodales velit pellentesque."),
                 new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
-                new AssemblyRemark(AssemblyRemark.TYPE.REMARK, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus.")
+                new AssemblyRemark(AssemblyRemark.TYPE.ISSUE, "Vestibulum interdum commodo enim ultricies tristique. Proin sem augue, tincidunt nec risus at, auctor sodales purus."),
             };
             
             var remarks_02 = new[]

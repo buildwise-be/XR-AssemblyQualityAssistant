@@ -8,7 +8,7 @@ namespace _project.Scripts.UseCases
         void StartStepMonitoring(int index, float time);
         void EndStepMonitoring(int index,float time);
         void EndMonitoring(float time);
-        void AddRemark(string data);
+        void AddAssemblyRemark(string data);
         void InitMonitoring(string projectId);
         void InitializeDictation();
     
@@ -17,5 +17,7 @@ namespace _project.Scripts.UseCases
         Action OnShowAssemblyPanel { get; set; }
         IRemarkDto GetCurrentStepRemarkList();
         void StopDictation();
+        void InitializeDictationForRemarkReporting();
+        void InitializeDictationForIssueReporting();
     }
 }

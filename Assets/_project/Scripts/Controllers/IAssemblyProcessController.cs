@@ -6,6 +6,7 @@ public interface IAssemblyProcessController
     public Action OnShowPanel { get; set; }
 
     void ValidateStep();
-    void OpenDictationPanel();
     void GoToPreviousStep();
+    void OpenDictationPanelForRemarkReporting();
+    void OpenDictationPanelForIssueReporting();
 }

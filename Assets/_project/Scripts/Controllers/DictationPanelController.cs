@@ -36,7 +36,7 @@ namespace _project.Scripts.Controllers
 
         public void ProcessDictationData(string data)
         {
-            if (!string.IsNullOrEmpty(data)) _useCase.AddRemark(data);
+            if (!string.IsNullOrEmpty(data)) _useCase.AddAssemblyRemark(data);
             OnRefreshPanel?.Invoke();
         }
         
@@ -44,7 +44,20 @@ namespace _project.Scripts.Controllers
         {
             var data = _useCase.GetCurrentStepRemarkList();
             var messages = data.GetMessages();
-            return new AssemblyRemarkCollection(messages);
+            var types = data.GetRemarkType();
+            return new AssemblyRemarkCollection(messages, CovertTypesDto(types));
+        }
+
+        private IRemarksCollection.RemarksType[] CovertTypesDto(IRemarkDto.RemarkType[] types)
+        {
+            var result  = new IRemarksCollection.RemarksType[types.Length];
+            for (var i = 0; i < types.Length; i++)
+            {
+                result[i] = types[i] == IRemarkDto.RemarkType.Issue? 
+                    IRemarksCollection.RemarksType.Issue : IRemarksCollection.RemarksType.Remark;
+            }
+
+            return result;
         }
     }
 }

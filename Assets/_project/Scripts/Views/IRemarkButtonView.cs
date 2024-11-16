@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using _project.Scripts.Controllers.DTO;
+using TMPro;
 
 namespace _project.Scripts.Views
 {
@@ -6,5 +7,6 @@ namespace _project.Scripts.Views
     {
         void SetTitle(string title);
         void SetText(string s, TMP_Text dictationTextField);
+        void SetIcon(IRemarksCollection.RemarksType type);
     }
 }

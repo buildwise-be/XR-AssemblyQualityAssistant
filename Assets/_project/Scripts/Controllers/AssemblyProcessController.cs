@@ -89,16 +89,21 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
         _assemblyProcessMonitorUseCase.EndStepMonitoring(_currentStepIndex, Time.time);
         LoadNextStep();
     }
-
-    public void OpenDictationPanel()
-    {
-        _assemblyProcessMonitorUseCase.InitializeDictation();
-        
-    }
+    
 
     public void GoToPreviousStep()
     {
         _currentStepIndex--;
         LoadStep(_currentStepIndex);
+    }
+
+    public void OpenDictationPanelForRemarkReporting()
+    {
+        _assemblyProcessMonitorUseCase.InitializeDictationForRemarkReporting();
+    }
+
+    public void OpenDictationPanelForIssueReporting()
+    {
+        _assemblyProcessMonitorUseCase.InitializeDictationForIssueReporting();
     }
 }

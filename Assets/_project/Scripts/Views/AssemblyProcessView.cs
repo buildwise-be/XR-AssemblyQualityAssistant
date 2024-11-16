@@ -12,10 +12,9 @@ public class AssemblyProcessView : MonoBehaviour
     [SerializeField] private TMP_Text _headerText;
     [SerializeField] private Image _illustration;
     [SerializeField] private Transform _indicationsContainer;
-
-    private IAssemblyProcessController _controller;
     [SerializeField] private GameObject _previousStepButton;
-
+    
+    private IAssemblyProcessController _controller;
     public void SetController(IAssemblyProcessController controller)
     {
         _controller = controller;
@@ -93,7 +92,13 @@ public class AssemblyProcessView : MonoBehaviour
 
     public void OnOpenDictationButtonClick()
     {
-        _controller.OpenDictationPanel();
+        _controller.OpenDictationPanelForRemarkReporting();
+        gameObject.SetActive(false);
+    }
+
+    public void OnOpenDictationButtonClickForIssue()
+    {
+        _controller.OpenDictationPanelForIssueReporting();
         gameObject.SetActive(false);
     }
 }
