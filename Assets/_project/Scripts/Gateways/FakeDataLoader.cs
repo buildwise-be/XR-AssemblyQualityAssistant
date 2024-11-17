@@ -41,10 +41,10 @@ namespace _project.Scripts.Gateways
                 new AssemblyStepData(remarks_03),
                 new AssemblyStepData(remarks),
                 new AssemblyStepData(remarks),
+                /*new AssemblyStepData(remarks),
                 new AssemblyStepData(remarks),
                 new AssemblyStepData(remarks),
-                new AssemblyStepData(remarks),
-                new AssemblyStepData(remarks)
+                new AssemblyStepData(remarks)*/
             };
             return data;
             

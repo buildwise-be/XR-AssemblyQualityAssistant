@@ -7,6 +7,8 @@ namespace _project.Scripts.Controllers
     public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessController
     {
         public Action<int, AssemblyStep> OnDisplayStep {  get; set; }
+        
+
         public Action OnShowPanel { get; set; }
         [SerializeField] private AppData _appData;
 
@@ -25,6 +27,11 @@ namespace _project.Scripts.Controllers
             _currentStepIndex = -1;
             _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
             _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
+        }
+        
+        public Sprite GetAssemblyStepIllustation(int index)
+        {
+            return _currentProject.GetStep(index).StepIllustration;
         }
 
         private void ShowPanel()
@@ -109,18 +116,14 @@ namespace _project.Scripts.Controllers
             for (int i = 0; i < data.Length; i++)
             {
                 result[i] = new AssemblyProcessDataDto(data.StepDuration[i],data.StepSessions[i]);
-                {
-                    
-                };
             }
-            return new AssemblyProcessDataDto[]
-            {
-                new()
-                {
-                    m_stepDuration = 10,
-                    m_nbOfStepSession = 1
-                }
-            };
+
+            return result;
+        }
+
+        public string GetAssemblyStepTitle(int i)
+        {
+            return _currentProject.GetStep(i).Title;
         }
     }
 }

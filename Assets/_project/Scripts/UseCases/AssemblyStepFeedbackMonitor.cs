@@ -46,7 +46,7 @@ namespace _project.Scripts.UseCases
 
         public void EndMonitoring()
         {
-            throw new NotImplementedException();
+            
         }
         
         public void InitializeDictation()

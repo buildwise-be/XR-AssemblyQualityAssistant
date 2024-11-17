@@ -20,11 +20,21 @@ namespace _project.Scripts.Views
 
         private void DisplayPanel()
         {
-            var stepDataArray = _assemblyProcessController.GetAssemblyProcessData();
-            foreach (var stepData in stepDataArray)
+            var stepInfoDataArray = _assemblyProcessController.GetAssemblyProcessData();
+
+            for (var i = 0; i < stepInfoDataArray.Length; i++)
             {
                 var stepInfoInstance = Instantiate(_stepInfoPrefab, _container);
-                stepInfoInstance.GetComponent<IStepInfoView>().SetStepData(stepData);
+                var stepInfoView = stepInfoInstance.GetComponent<IStepInfoView>();
+                
+                stepInfoView.SetStepData(stepInfoDataArray[i]);
+                stepInfoView.SetIllustation(i+1,_assemblyProcessController.GetAssemblyStepIllustation(i));
+                stepInfoView.SetTitle(i+1,_assemblyProcessController.GetAssemblyStepTitle(i));
+                
+            }
+            foreach (var stepData in stepInfoDataArray)
+            {
+                
             }
             _panel.SetActive(true);
         }

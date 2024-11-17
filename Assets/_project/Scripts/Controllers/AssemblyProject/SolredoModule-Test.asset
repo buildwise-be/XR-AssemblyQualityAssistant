@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0655ccb67e564b46827777f6ab99acb, type: 3}
+  m_Name: SolredoModule-Test
+  m_EditorClassIdentifier: 
+  m_guid: e65430f49c36cce49901faca59ea9387
+  m_name: Solredo Assembly  #TEST
+  _assemblySteps:
+  - StepID: 0
+    Title: test
+    Indications:
+    - IndicationID: 0
+      IndicationText: "Positionnement de la lisse inf\xE9rieure"
+    - IndicationID: 0
+      IndicationText: Positionnement du caisson type 2
+    - IndicationID: 0
+      IndicationText: Vissage du caisson sur la lisse <color=red>(3*M4*40)</color>
+    StepIllustration: {fileID: 21300000, guid: c7696d0ce3ddf40479464defd49f8b41, type: 3}
+  - StepID: 0
+    Title: 
+    Indications:
+    - IndicationID: 0
+      IndicationText: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
+    - IndicationID: 0
+      IndicationText: "Positionnement du caisson type 4 (180cm bord \xE0 bord)"
+    - IndicationID: 0
+      IndicationText: Vissage des caissons sur la lisse
+    StepIllustration: {fileID: 21300000, guid: fd1cc998cff42fe48aee7708809d8f34, type: 3}
+  - StepID: 0
+    Title: 
+    Indications:
+    - IndicationID: 0
+      IndicationText: "Positionnement du pr\xE9cadre"
+    StepIllustration: {fileID: 21300000, guid: fdf5b57e624b4d0409e0a02fcda20200, type: 3}
+  - StepID: 0
+    Title: 
+    Indications:
+    - IndicationID: 0
+      IndicationText: "Positionnement du pr\xE9cadre"
+    StepIllustration: {fileID: 21300000, guid: 7b0ef9a4b8e2c16438850d9c5198fede, type: 3}
+  - StepID: 0
+    Title: 
+    Indications:
+    - IndicationID: 0
+      IndicationText: "Positionnement du pr\xE9cadre"
+    StepIllustration: {fileID: 21300000, guid: dbc7eec828052cf448ce6c56427ab35e, type: 3}

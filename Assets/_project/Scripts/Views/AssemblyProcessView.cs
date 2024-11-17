@@ -23,6 +23,12 @@ public class AssemblyProcessView : MonoBehaviour
         _controller = controller;
         _controller.OnDisplayStep += DisplayStepInfo;  
         _controller.OnShowPanel += ShowPanel;  
+        _controller.OnEndProcessEvent += ClosePanel;  
+    }
+
+    private void ClosePanel()
+    {
+        gameObject.SetActive(false);
     }
 
     private void ShowPanel()

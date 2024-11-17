@@ -1,28 +1,21 @@
 ﻿using System;
-using _project.Scripts.Controllers;
+using UnityEngine;
 
-public interface IAssemblyProcessController
+namespace _project.Scripts.Controllers
 {
-    public Action<int,AssemblyStep> OnDisplayStep { get; set; }
-    public Action OnShowPanel { get; set; }
-    int TotalNumberOfSteps { get; }
-    Action OnEndProcessEvent { get; set; }
-
-    void ValidateStep();
-    void GoToPreviousStep();
-    void OpenDictationPanelForRemarkReporting();
-    void OpenDictationPanelForIssueReporting();
-    AssemblyProcessDataDto[] GetAssemblyProcessData();
-}
-
-public struct AssemblyProcessDataDto
-{
-    public float m_stepDuration;
-    public int m_nbOfStepSession;
-
-    public AssemblyProcessDataDto(float f, int dataStepSession)
+    public interface IAssemblyProcessController
     {
-        m_stepDuration = f;
-        m_nbOfStepSession = dataStepSession;
+        public Action<int,AssemblyStep> OnDisplayStep { get; set; }
+        public Sprite GetAssemblyStepIllustation(int index);
+        public Action OnShowPanel { get; set; }
+        int TotalNumberOfSteps { get; }
+        Action OnEndProcessEvent { get; set; }
+
+        void ValidateStep();
+        void GoToPreviousStep();
+        void OpenDictationPanelForRemarkReporting();
+        void OpenDictationPanelForIssueReporting();
+        AssemblyProcessDataDto[] GetAssemblyProcessData();
+        string GetAssemblyStepTitle(int i);
     }
 }
