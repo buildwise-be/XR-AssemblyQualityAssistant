@@ -4,6 +4,7 @@ using System.Linq;
 using _project.Scripts.Entities;
 using _project.Scripts.Gateways;
 
+
 namespace _project.Scripts.UseCases
 {
     public class AssemblyStepFeedbackMonitor : IAssemblyProcessMonitorUseCase
@@ -12,6 +13,7 @@ namespace _project.Scripts.UseCases
         private int _currentStepIndex;
         private readonly IFeedbackDataLoaderGateway _feedbackDataLoader;
         private AssemblyRemark.TYPE _currentReportType;
+        private float _stepStartTimer;
 
         public Action OnStartDictationProcess { get; set; }
         public Action OnStartAssemblyProcessEvent { get; set; }
@@ -31,12 +33,13 @@ namespace _project.Scripts.UseCases
         public void StartStepMonitoring(int index,float time)
         {
             _currentStepIndex = index;
-            _assemblyProcessDataEntity.SetStepStartTime(_currentStepIndex,time);
+            _stepStartTimer = time;
         }
 
         public void EndStepMonitoring(int index, float time)
         {
-            _assemblyProcessDataEntity.SetStepEndTime(index,time);
+            var duration = time - _stepStartTimer;
+            _assemblyProcessDataEntity.SetStepDuration(index,duration);
             _feedbackDataLoader.SaveData(_assemblyProcessDataEntity);
         }
 

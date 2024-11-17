@@ -36,16 +36,15 @@ namespace _project.Scripts.Gateways
             
             data.m_assemblySteps = new[]
             {
-                new AssemblyStepData(10, remarks_01),
-                new AssemblyStepData(10, remarks_02),
-                new AssemblyStepData(10, remarks_03),
-                new AssemblyStepData(10, remarks),
-                new AssemblyStepData(10, remarks),
-                new AssemblyStepData(10, remarks),
-                new AssemblyStepData(10, remarks),
-                new AssemblyStepData(10, remarks),
-                new AssemblyStepData(10, remarks)
-                
+                new AssemblyStepData(remarks_01),
+                new AssemblyStepData(remarks_02),
+                new AssemblyStepData(remarks_03),
+                new AssemblyStepData(remarks),
+                new AssemblyStepData(remarks),
+                new AssemblyStepData(remarks),
+                new AssemblyStepData(remarks),
+                new AssemblyStepData(remarks),
+                new AssemblyStepData(remarks)
             };
             return data;
             

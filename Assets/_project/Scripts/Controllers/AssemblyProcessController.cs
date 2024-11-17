@@ -1,4 +1,5 @@
 using System;
+using _project.Scripts.Controllers;
 using _project.Scripts.UseCases;
 using UnityEngine;
 
@@ -77,13 +78,16 @@ public class AssemblyProcessController : MonoBehaviour, IAssemblyProcessControll
         
     }
 
-    private void LoadStep(int _i)
+    private void LoadStep(int index)
     {
-        _assemblyProcessMonitorUseCase.StartStepMonitoring(_i, Time.time);
-        _currentStep = _currentProject.GetStep(_i);
-        OnDisplayStep?.Invoke(_i,_currentStep);
+        
+        _assemblyProcessMonitorUseCase.StartStepMonitoring(index, Time.time);
+        _currentStep = _currentProject.GetStep(index);
+        OnDisplayStep?.Invoke(index,_currentStep);
     }
-    
+
+    public int TotalNumberOfSteps => _currentProject.StepsCount;
+
     public void ValidateStep()
     {
         _assemblyProcessMonitorUseCase.EndStepMonitoring(_currentStepIndex, Time.time);

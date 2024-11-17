@@ -9,15 +9,10 @@
         {
             m_projectId = projectId;
         }
-
-        public void SetStepStartTime(int currentStepIndex, float time)
+        
+        public void SetStepDuration(int index, float time)
         {
-            m_assemblySteps[currentStepIndex].m_startTime = time;
-        }
-
-        public void SetStepEndTime(int index, float time)
-        {
-            m_assemblySteps[index].m_endTime = time;
+            m_assemblySteps[index].m_duration+= time;
         }
 
         public AssemblyRemark[] GetStepRemarks(int currentStepIndex)

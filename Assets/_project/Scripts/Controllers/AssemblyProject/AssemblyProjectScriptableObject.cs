@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _project.Scripts.Controllers;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="BuildWize/Assembly Project", fileName =nameof(AssemblyProjectScriptableObject))]

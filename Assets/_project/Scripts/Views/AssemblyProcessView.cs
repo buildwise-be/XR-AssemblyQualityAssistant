@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using _project.Scripts.Controllers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,13 +32,13 @@ public class AssemblyProcessView : MonoBehaviour
 
     private void DisplayStepInfo(int i,AssemblyStep step)
     {
+        var nbOfSteps = _controller.TotalNumberOfSteps;
         gameObject.SetActive(true);
         ClearContent();
         UpdateIllustration(step.StepIllustration);
-        _headerText.SetText($"#{i+1}: {step.Title}");
+        _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.Title}");
         UpdateInstructions(step.Indications);
         _previousStepButton.SetActive(i > 0);
-
     }
 
     private void ClearContent()
