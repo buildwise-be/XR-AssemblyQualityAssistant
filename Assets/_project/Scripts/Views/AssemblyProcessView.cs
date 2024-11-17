@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using _project.Scripts.Controllers;
+using _project.Scripts.Views;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class AssemblyProcessView : MonoBehaviour
     [SerializeField] private Image _illustration;
     [SerializeField] private Transform _indicationsContainer;
     [SerializeField] private GameObject _previousStepButton;
+    [SerializeField] private NexStepButtonBaseView _nextStepButton;
     
     private IAssemblyProcessController _controller;
     public void SetController(IAssemblyProcessController controller)
@@ -33,6 +35,15 @@ public class AssemblyProcessView : MonoBehaviour
     private void DisplayStepInfo(int i,AssemblyStep step)
     {
         var nbOfSteps = _controller.TotalNumberOfSteps;
+        if (i == nbOfSteps - 1)
+        {
+            _nextStepButton.SetEndOfProcessText();
+        }
+        else
+        {
+            _nextStepButton.SetDefaultText();
+        }
+       
         gameObject.SetActive(true);
         ClearContent();
         UpdateIllustration(step.StepIllustration);

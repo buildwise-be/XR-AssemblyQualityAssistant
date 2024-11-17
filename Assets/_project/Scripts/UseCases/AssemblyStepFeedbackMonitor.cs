@@ -34,6 +34,7 @@ namespace _project.Scripts.UseCases
         {
             _currentStepIndex = index;
             _stepStartTimer = time;
+            _assemblyProcessDataEntity.StartStep(index);
         }
 
         public void EndStepMonitoring(int index, float time)
@@ -43,13 +44,11 @@ namespace _project.Scripts.UseCases
             _feedbackDataLoader.SaveData(_assemblyProcessDataEntity);
         }
 
-        public void EndMonitoring(float time)
+        public void EndMonitoring()
         {
             throw new NotImplementedException();
         }
         
-       
-
         public void InitializeDictation()
         {
             OnStartDictationProcess.Invoke();
@@ -88,34 +87,29 @@ namespace _project.Scripts.UseCases
             OnStartDictationProcess.Invoke();
         }
 
+        public IStepDataDto GetAssemblyProcessData()
+        {
+            var durations = new float[_assemblyProcessDataEntity.m_assemblySteps.Length];
+            var stepSessions = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
+            for (var i = 0; i < _assemblyProcessDataEntity.m_assemblySteps.Length; i++)
+            {
+                durations[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_duration;
+                stepSessions[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_nbSessions;
+            }
+            return new SimpleStepDataDto
+            {
+                Length = _assemblyProcessDataEntity.m_assemblySteps.Length,
+                StepDuration = durations,
+                StepSessions = stepSessions
+            };
+        }
+
         public void AddAssemblyRemark(string message)
         {
             var listOfPreviousRemarks = _assemblyProcessDataEntity.GetStepRemarks(_currentStepIndex).ToList();
             listOfPreviousRemarks.Add(new AssemblyRemark(_currentReportType,message));
             _assemblyProcessDataEntity.SetStepRemarks(_currentStepIndex, listOfPreviousRemarks.ToArray());
             _feedbackDataLoader.SaveData(_assemblyProcessDataEntity);
-        }
-    }
-
-    public readonly struct RemarkData : IRemarkDto
-    {
-        private readonly string[] _messages;
-        private readonly IRemarkDto.RemarkType[] _types;
-
-        public RemarkData(string[] remarkMessage, IRemarkDto.RemarkType[] types)
-        {
-            _messages = remarkMessage;
-            _types = types;
-        }
-
-        public string[] GetMessages()
-        {
-            return _messages;
-        }
-
-        public IRemarkDto.RemarkType[] GetRemarkType()
-        {
-            return _types;
         }
     }
 }

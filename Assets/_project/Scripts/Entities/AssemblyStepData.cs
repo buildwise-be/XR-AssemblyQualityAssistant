@@ -6,10 +6,10 @@ namespace _project.Scripts.Entities
     [Serializable]
     public class AssemblyStepData
     {
-        //public float m_startTime;
         public float m_duration;
         public AssemblyRemark[] m_remarks;
-        
+        public int m_nbSessions;
+
         public AssemblyStepData()
         {
             

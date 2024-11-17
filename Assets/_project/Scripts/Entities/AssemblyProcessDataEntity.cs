@@ -24,5 +24,10 @@
         {
             m_assemblySteps[currentStepIndex].m_remarks = toArray;
         }
+
+        public void StartStep(int index)
+        {
+            m_assemblySteps[index].m_nbSessions++;
+        }
     }
 }
