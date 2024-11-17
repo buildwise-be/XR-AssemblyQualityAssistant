@@ -8,5 +8,6 @@ namespace _project.Scripts.Views
         void SetStepData(AssemblyProcessDataDto stepData);
         void SetIllustation(int i, Sprite illustrationSprite);
         void SetTitle(int assemblyStepTitle, string getAssemblyStepTitle);
+        void SetDuration(string durationInMinutes);
     }
 }

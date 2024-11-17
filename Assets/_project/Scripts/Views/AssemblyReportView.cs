@@ -11,6 +11,7 @@ namespace _project.Scripts.Views
         [SerializeField] private GameObject _stepInfoPrefab;
         [SerializeField] private Transform _container;
 
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -30,12 +31,11 @@ namespace _project.Scripts.Views
                 stepInfoView.SetStepData(stepInfoDataArray[i]);
                 stepInfoView.SetIllustation(i+1,_assemblyProcessController.GetAssemblyStepIllustation(i));
                 stepInfoView.SetTitle(i+1,_assemblyProcessController.GetAssemblyStepTitle(i));
+                var durationInMinutes = Mathf.FloorToInt(stepInfoDataArray[i].m_stepDuration / 60);
+                stepInfoView.SetDuration(durationInMinutes+" minutes");
                 
             }
-            foreach (var stepData in stepInfoDataArray)
-            {
-                
-            }
+
             _panel.SetActive(true);
         }
     }
