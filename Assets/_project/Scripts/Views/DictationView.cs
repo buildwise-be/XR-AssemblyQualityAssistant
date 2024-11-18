@@ -31,6 +31,9 @@ public class DictationView : MonoBehaviour
     [SerializeField] private RecordingButtonView _recordingButton;
     [SerializeField] private StatefulInteractable _saveButton;
     [SerializeField] private StatefulInteractable _deleteButton;
+    [SerializeField] private GameObject _remarkIcon;
+    [SerializeField] private GameObject _issueIcon;
+    [SerializeField] private Toggle _prematureEndOfAssemblyProcessToggle;
     
     private bool _isRecording;
     private StringBuilder _stringBuilder;
@@ -196,9 +199,11 @@ public class DictationView : MonoBehaviour
         _dictationHandler.OnSpeechRecognized.RemoveListener(SaveSpeech);
     }
 
-    private async void HandleDictationProcess()
+    private async void HandleDictationProcess(bool isInIssueMode)
     {
         _panel.SetActive(true);
+        if (isInIssueMode) SetIssueMode();
+        else SetRemarkMode();
         ClearDictations();
         ClearRemarks();
         LoadPreviousRemarks();
@@ -211,6 +216,20 @@ public class DictationView : MonoBehaviour
         }
         _panel.SetActive(false);
         _dictationController.StopDictationProcess();
+    }
+
+    private void SetRemarkMode()
+    {
+        _issueIcon.SetActive(false);
+        _remarkIcon.SetActive(true);
+        _prematureEndOfAssemblyProcessToggle.gameObject.SetActive(false);
+    }
+
+    private void SetIssueMode()
+    {
+        _issueIcon.SetActive(true);
+        _remarkIcon.SetActive(false);
+        _prematureEndOfAssemblyProcessToggle.gameObject.SetActive(true);
     }
 
     private void LoadPreviousRemarks()

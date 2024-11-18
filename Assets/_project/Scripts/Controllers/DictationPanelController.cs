@@ -19,11 +19,10 @@ namespace _project.Scripts.Controllers
 
         private void OpenDictationPanel()
         {
-            Debug.Log("Open OpenDictationPanel");
-            OnOpenPanel?.Invoke();
+            OnOpenPanel?.Invoke(_useCase.IsInIssueMode);
         }
 
-        public Action OnOpenPanel { get; set; }
+        public Action<bool> OnOpenPanel { get; set; }
         public Action OnClosePanel { get; set; }
         public Action OnRefreshPanel { get; set; }
     

@@ -18,6 +18,7 @@ namespace _project.Scripts.UseCases
         public Action OnStartDictationProcess { get; set; }
         public Action OnStartAssemblyProcessEvent { get; set; }
         public Action OnShowAssemblyPanel { get; set; }
+        public Action OnPrematureAssemblyEnd { get; set; }
 
         public AssemblyStepFeedbackMonitor(IFeedbackDataLoaderGateway feedbackDataLoader)
         {
@@ -49,11 +50,6 @@ namespace _project.Scripts.UseCases
             
         }
         
-        public void InitializeDictation()
-        {
-            OnStartDictationProcess.Invoke();
-        }
-
         
         public IRemarkDto GetCurrentStepRemarkList()
         {
@@ -72,7 +68,15 @@ namespace _project.Scripts.UseCases
 
         public void StopDictation()
         {
-            OnShowAssemblyPanel.Invoke();
+            if (IsInIssueMode)
+            {
+                EndMonitoring();
+                OnPrematureAssemblyEnd?.Invoke();
+            }
+            else
+            {
+                OnShowAssemblyPanel.Invoke();
+            }
         }
 
         public void InitializeDictationForRemarkReporting()
@@ -83,7 +87,7 @@ namespace _project.Scripts.UseCases
 
         public void InitializeDictationForIssueReporting()
         {
-            _currentReportType = AssemblyRemark.TYPE.REMARK;
+            _currentReportType = AssemblyRemark.TYPE.ISSUE;
             OnStartDictationProcess.Invoke();
         }
 
@@ -103,6 +107,8 @@ namespace _project.Scripts.UseCases
                 StepSessions = stepSessions
             };
         }
+
+        public bool IsInIssueMode => _currentReportType == AssemblyRemark.TYPE.ISSUE;
 
         public void AddAssemblyRemark(string message)
         {

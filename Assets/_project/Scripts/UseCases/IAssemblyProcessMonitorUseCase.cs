@@ -10,15 +10,16 @@ namespace _project.Scripts.UseCases
         void EndMonitoring();
         void AddAssemblyRemark(string data);
         void InitMonitoring(string projectId);
-        void InitializeDictation();
     
         Action OnStartDictationProcess { get; set; }
         Action OnStartAssemblyProcessEvent { get; set; }
         Action OnShowAssemblyPanel { get; set; }
+        Action OnPrematureAssemblyEnd { get; set; }
         IRemarkDto GetCurrentStepRemarkList();
         void StopDictation();
         void InitializeDictationForRemarkReporting();
         void InitializeDictationForIssueReporting();
         IStepDataDto GetAssemblyProcessData();
+        bool IsInIssueMode { get; }
     }
 }
