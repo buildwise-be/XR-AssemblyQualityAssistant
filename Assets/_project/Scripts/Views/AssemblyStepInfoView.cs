@@ -1,4 +1,5 @@
 ﻿using _project.Scripts.Controllers;
+using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ namespace _project.Scripts.Views
         [SerializeField] private StepInfoDetail _stepDuration;
         [SerializeField] private StepInfoDetail _stepRemarks;
         [SerializeField] private StepInfoDetail _stepIssues;
+        [SerializeField] private RectTransform _content;
+        [SerializeField] private RectTransform _foldingContent;
 
         public void SetStepData(AssemblyProcessDataDto stepData)
         {
@@ -34,6 +37,19 @@ namespace _project.Scripts.Views
         public void SetDuration(string durationInMinutes)
         {
             _stepDuration.SetText(durationInMinutes);
+        }
+
+        public void UnFoldContent()
+        {
+            var sizeDelta = _content.sizeDelta;
+            sizeDelta.y = 250;
+            Tween.UISizeDelta(_content, sizeDelta, 1, Ease.Default);
+        }
+        public void FoldContent()
+        {
+            var sizeDelta = _content.sizeDelta;
+            sizeDelta.y = 50;
+            Tween.UISizeDelta(_content, sizeDelta, 1, Ease.Default);
         }
     }
 }

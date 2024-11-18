@@ -1,5 +1,7 @@
+using System;
 using _project.Scripts.Controllers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _project.Scripts.Views
 {
@@ -37,6 +39,11 @@ namespace _project.Scripts.Views
             }
 
             _panel.SetActive(true);
+        }
+
+        private void Update()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_container.GetComponent<RectTransform>());
         }
     }
 }
