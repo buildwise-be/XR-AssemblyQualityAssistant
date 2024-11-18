@@ -24,6 +24,17 @@ namespace _project.Scripts.Controllers
 
         public Action<bool> OnOpenPanel { get; set; }
         public Action OnClosePanel { get; set; }
+
+        public bool MustEndAssemblyProcessOnDictationEnd
+        {
+            
+            set
+            {
+                _useCase.StopAssemblyOnDictationEnd = value;
+                
+            }
+        }
+
         public Action OnRefreshPanel { get; set; }
     
 

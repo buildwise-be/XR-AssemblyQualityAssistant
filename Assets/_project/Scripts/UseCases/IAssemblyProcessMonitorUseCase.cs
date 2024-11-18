@@ -21,5 +21,6 @@ namespace _project.Scripts.UseCases
         void InitializeDictationForIssueReporting();
         IStepDataDto GetAssemblyProcessData();
         bool IsInIssueMode { get; }
+        bool StopAssemblyOnDictationEnd { get; set; }
     }
 }

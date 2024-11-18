@@ -29,6 +29,7 @@ namespace _project.Scripts.UseCases
         {
             _assemblyProcessDataEntity = _feedbackDataLoader.GetAssemblyData(projectId);
             OnStartAssemblyProcessEvent?.Invoke();
+            StopAssemblyOnDictationEnd = false;
         }
 
         public void StartStepMonitoring(int index,float time)
@@ -68,7 +69,7 @@ namespace _project.Scripts.UseCases
 
         public void StopDictation()
         {
-            if (IsInIssueMode)
+            if (StopAssemblyOnDictationEnd)
             {
                 EndMonitoring();
                 OnPrematureAssemblyEnd?.Invoke();
@@ -109,6 +110,7 @@ namespace _project.Scripts.UseCases
         }
 
         public bool IsInIssueMode => _currentReportType == AssemblyRemark.TYPE.ISSUE;
+        public bool StopAssemblyOnDictationEnd { get; set; }
 
         public void AddAssemblyRemark(string message)
         {

@@ -27,8 +27,15 @@ namespace _project.Scripts.Controllers
             _currentStepIndex = -1;
             _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
             _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
+            _assemblyProcessMonitorUseCase.OnPrematureAssemblyEnd += EndMonitoring;
         }
-        
+
+        private void EndMonitoring()
+        {
+            _assemblyProcessMonitorUseCase.EndMonitoring();
+            OnEndProcessEvent?.Invoke();
+        }
+
         public Sprite GetAssemblyStepIllustation(int index)
         {
             return _currentProject.GetStep(index).StepIllustration;

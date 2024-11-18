@@ -33,7 +33,7 @@ public class DictationView : MonoBehaviour
     [SerializeField] private StatefulInteractable _deleteButton;
     [SerializeField] private GameObject _remarkIcon;
     [SerializeField] private GameObject _issueIcon;
-    [SerializeField] private Toggle _prematureEndOfAssemblyProcessToggle;
+    [SerializeField] private ToogleXRManipulator _prematureEndOfAssemblyProcessToggle;
     
     private bool _isRecording;
     private StringBuilder _stringBuilder;
@@ -53,6 +53,12 @@ public class DictationView : MonoBehaviour
         _dictationController.OnOpenPanel += HandleDictationProcess;
         _dictationController.OnRefreshPanel += RefreshView;
         _dictationController.OnClosePanel += ClosePanel;
+        _prematureEndOfAssemblyProcessToggle.OnValueChanged+=OntoggleValueChanged;
+    }
+
+    private void OntoggleValueChanged(bool arg0)
+    {
+        _dictationController.MustEndAssemblyProcessOnDictationEnd = arg0;
     }
 
     private void ClosePanel()
@@ -201,6 +207,7 @@ public class DictationView : MonoBehaviour
 
     private async void HandleDictationProcess(bool isInIssueMode)
     {
+        _prematureEndOfAssemblyProcessToggle.SetToggleValue(false);
         _panel.SetActive(true);
         if (isInIssueMode) SetIssueMode();
         else SetRemarkMode();
