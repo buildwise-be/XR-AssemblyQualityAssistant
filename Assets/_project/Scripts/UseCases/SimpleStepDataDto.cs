@@ -5,5 +5,7 @@
         public float[] StepDuration { get; set; }
         public int[] StepSessions { get; set; }
         public int Length { get; set; }
+        public int[] nbOfIssues { get; set; }
+        public int[] nbOfRemarks { get; set; }
     }
 }

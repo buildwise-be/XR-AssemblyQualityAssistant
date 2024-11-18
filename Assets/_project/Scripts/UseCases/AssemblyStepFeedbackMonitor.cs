@@ -96,16 +96,23 @@ namespace _project.Scripts.UseCases
         {
             var durations = new float[_assemblyProcessDataEntity.m_assemblySteps.Length];
             var stepSessions = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
+            var nbOfRemarks = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
+            var nbOfIssues = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
             for (var i = 0; i < _assemblyProcessDataEntity.m_assemblySteps.Length; i++)
             {
                 durations[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_duration;
                 stepSessions[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_nbSessions;
+                nbOfRemarks[i] = _assemblyProcessDataEntity.m_assemblySteps[i].GetNumberOfEntries(AssemblyRemark.TYPE.REMARK);
+                nbOfIssues[i] = _assemblyProcessDataEntity.m_assemblySteps[i].GetNumberOfEntries(AssemblyRemark.TYPE.ISSUE);
             }
             return new SimpleStepDataDto
             {
                 Length = _assemblyProcessDataEntity.m_assemblySteps.Length,
                 StepDuration = durations,
-                StepSessions = stepSessions
+                StepSessions = stepSessions,
+                nbOfIssues = nbOfIssues,
+                nbOfRemarks = nbOfRemarks
+                
             };
         }
 

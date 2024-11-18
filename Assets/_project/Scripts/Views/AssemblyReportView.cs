@@ -27,6 +27,7 @@ namespace _project.Scripts.Views
 
             for (var i = 0; i < stepInfoDataArray.Length; i++)
             {
+ 
                 var stepInfoInstance = Instantiate(_stepInfoPrefab, _container);
                 var stepInfoView = stepInfoInstance.GetComponent<IStepInfoView>();
                 
@@ -35,7 +36,6 @@ namespace _project.Scripts.Views
                 stepInfoView.SetTitle(i+1,_assemblyProcessController.GetAssemblyStepTitle(i));
                 var durationInMinutes = Mathf.FloorToInt(stepInfoDataArray[i].m_stepDuration / 60);
                 stepInfoView.SetDuration(durationInMinutes+" minutes");
-                
             }
 
             _panel.SetActive(true);

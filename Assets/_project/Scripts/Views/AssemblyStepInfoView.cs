@@ -17,10 +17,14 @@ namespace _project.Scripts.Views
         [SerializeField] private StepInfoDetail _stepIssues;
         [SerializeField] private RectTransform _content;
         [SerializeField] private RectTransform _foldingContent;
+        [SerializeField] private float _offset=15;
+        private bool _isUnFolded;
+        [SerializeField] private float _startHeight=60;
 
         public void SetStepData(AssemblyProcessDataDto stepData)
         {
-            
+            SetNumberOfIssues(stepData.m_dataNbOfIssues);
+            SetNumberOfRemarks(stepData.DataNbOfRemarks);
         }
 
         public void SetIllustation(int i, Sprite illustrationSprite)
@@ -39,17 +43,39 @@ namespace _project.Scripts.Views
             _stepDuration.SetText(durationInMinutes);
         }
 
+        public void SetNumberOfIssues(int numberOfIssues)
+        {
+            _stepIssues.SetText(numberOfIssues.ToString());
+        }
+
+        public void SetNumberOfRemarks(int numberOfRemarks)
+        {
+            _stepRemarks.SetText(numberOfRemarks.ToString());
+        }
+
+        public void ToggleFolding()
+        {
+            if (_isUnFolded)
+            {
+                FoldContent();
+                return;
+            }
+            UnFoldContent();
+        }
+
         public void UnFoldContent()
         {
+            _isUnFolded = true;
             var sizeDelta = _content.sizeDelta;
-            sizeDelta.y = 250;
+            sizeDelta.y = _startHeight+_foldingContent.sizeDelta.y+_offset;
             Tween.UISizeDelta(_content, sizeDelta, 1, Ease.Default);
         }
         public void FoldContent()
         {
+            _isUnFolded = false;
             var sizeDelta = _content.sizeDelta;
-            sizeDelta.y = 50;
-            Tween.UISizeDelta(_content, sizeDelta, 1, Ease.Default);
+            sizeDelta.y = _startHeight;
+            Tween.UISizeDelta(_content, sizeDelta, .5f, Ease.Default);
         }
     }
 }

@@ -9,5 +9,8 @@ namespace _project.Scripts.Views
         void SetIllustation(int i, Sprite illustrationSprite);
         void SetTitle(int assemblyStepTitle, string getAssemblyStepTitle);
         void SetDuration(string durationInMinutes);
+        void SetNumberOfIssues(int numberOfIssues);
+        void SetNumberOfRemarks(int numberOfRemarks);
+
     }
 }

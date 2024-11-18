@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine.Serialization;
 
 namespace _project.Scripts.Entities
@@ -18,6 +19,11 @@ namespace _project.Scripts.Entities
         public AssemblyStepData(AssemblyRemark[] remarks)
         {
             m_remarks = remarks;
+        }
+
+        public int GetNumberOfEntries(AssemblyRemark.TYPE type)
+        {
+            return m_remarks.Count(t => t.m_type == type);
         }
     }
 }

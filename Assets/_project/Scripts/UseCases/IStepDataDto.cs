@@ -5,5 +5,7 @@
         float[] StepDuration { get; set; }
         int[] StepSessions { get; set; }
         int Length { get; set; }
+        int[] nbOfIssues { get; set; }
+        int[] nbOfRemarks { get; set; }
     }
 }

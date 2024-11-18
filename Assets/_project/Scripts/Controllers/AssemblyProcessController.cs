@@ -122,7 +122,11 @@ namespace _project.Scripts.Controllers
             var result = new AssemblyProcessDataDto[data.Length];
             for (int i = 0; i < data.Length; i++)
             {
-                result[i] = new AssemblyProcessDataDto(data.StepDuration[i],data.StepSessions[i]);
+                result[i] = new AssemblyProcessDataDto(
+                    data.StepDuration[i],
+                    data.StepSessions[i],
+                    data.nbOfIssues[i],
+                    data.nbOfRemarks[i]);
             }
 
             return result;
