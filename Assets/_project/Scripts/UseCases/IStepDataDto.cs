@@ -1,4 +1,6 @@
-﻿namespace _project.Scripts.UseCases
+﻿using System.Collections.Generic;
+
+namespace _project.Scripts.UseCases
 {
     public interface IStepDataDto
     {
@@ -7,5 +9,8 @@
         int Length { get; set; }
         int[] nbOfIssues { get; set; }
         int[] nbOfRemarks { get; set; }
+        
+        List<string[]> Remarks { get; set; }
+        List<string[]> Issues { get; set; }
     }
 }

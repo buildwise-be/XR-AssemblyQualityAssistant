@@ -98,12 +98,24 @@ namespace _project.Scripts.UseCases
             var stepSessions = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
             var nbOfRemarks = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
             var nbOfIssues = new int[_assemblyProcessDataEntity.m_assemblySteps.Length];
+            var issues = new List<string[]>
+            {
+                Capacity = _assemblyProcessDataEntity.m_assemblySteps.Length
+            };
+            var remarks = new List<string[]>
+            {
+                Capacity = _assemblyProcessDataEntity.m_assemblySteps.Length
+            };
+            
+            
             for (var i = 0; i < _assemblyProcessDataEntity.m_assemblySteps.Length; i++)
             {
                 durations[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_duration;
                 stepSessions[i] = _assemblyProcessDataEntity.m_assemblySteps[i].m_nbSessions;
                 nbOfRemarks[i] = _assemblyProcessDataEntity.m_assemblySteps[i].GetNumberOfEntries(AssemblyRemark.TYPE.REMARK);
                 nbOfIssues[i] = _assemblyProcessDataEntity.m_assemblySteps[i].GetNumberOfEntries(AssemblyRemark.TYPE.ISSUE);
+                remarks.Add(_assemblyProcessDataEntity.m_assemblySteps[i].GetEntries(AssemblyRemark.TYPE.REMARK));
+                issues.Add(_assemblyProcessDataEntity.m_assemblySteps[i].GetEntries(AssemblyRemark.TYPE.ISSUE));
             }
             return new SimpleStepDataDto
             {
@@ -111,7 +123,9 @@ namespace _project.Scripts.UseCases
                 StepDuration = durations,
                 StepSessions = stepSessions,
                 nbOfIssues = nbOfIssues,
-                nbOfRemarks = nbOfRemarks
+                nbOfRemarks = nbOfRemarks,
+                Remarks = remarks,
+                Issues = issues
                 
             };
         }

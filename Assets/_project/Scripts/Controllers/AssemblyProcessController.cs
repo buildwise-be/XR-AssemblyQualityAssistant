@@ -126,7 +126,10 @@ namespace _project.Scripts.Controllers
                     data.StepDuration[i],
                     data.StepSessions[i],
                     data.nbOfIssues[i],
-                    data.nbOfRemarks[i]);
+                    data.nbOfRemarks[i],
+                    data.Issues[i],
+                    data.Remarks[i]);
+
             }
 
             return result;
