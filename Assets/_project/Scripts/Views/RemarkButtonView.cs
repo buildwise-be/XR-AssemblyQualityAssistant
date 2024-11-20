@@ -1,5 +1,6 @@
 using System;
 using _project.Scripts.Controllers.DTO;
+using MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace _project.Scripts.Views
         [SerializeField] private TMP_Text _title;
         [SerializeField] private GameObject _issueIconGameObject;
         [SerializeField] private GameObject _remarkIconGameObject;
+        [SerializeField] private PressableButton _pressableButton;
 
         private TMP_Text _textField;
         private string _text;
@@ -41,6 +43,11 @@ namespace _project.Scripts.Views
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+        }
+
+        public void SetInteractable(bool value)
+        {
+           _pressableButton.enabled = value;
         }
 
 

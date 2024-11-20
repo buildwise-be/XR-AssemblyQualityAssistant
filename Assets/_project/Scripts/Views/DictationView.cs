@@ -11,6 +11,7 @@ using MixedReality.Toolkit.Examples.Demos;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class DictationView : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class DictationView : MonoBehaviour
     
     private bool _isRecording;
     private StringBuilder _stringBuilder;
-
+    private List<IRemarkButtonView> _listOfRemarks;
 
 
     private void Awake()
@@ -46,6 +47,7 @@ public class DictationView : MonoBehaviour
         _dictationController = FindFirstObjectByType<DictationPanelController>();
 
         _stringBuilder = new StringBuilder();
+        _listOfRemarks = new List<IRemarkButtonView>();
     }
 
     private void Start()
@@ -54,6 +56,7 @@ public class DictationView : MonoBehaviour
         _dictationController.OnRefreshPanel += RefreshView;
         _dictationController.OnClosePanel += ClosePanel;
         _prematureEndOfAssemblyProcessToggle.OnValueChanged+=OntoggleValueChanged;
+        
     }
 
     private void OntoggleValueChanged(bool arg0)
@@ -64,6 +67,9 @@ public class DictationView : MonoBehaviour
     private void ClosePanel()
     {
         //gameObject.SetActive(false);
+        _listOfRemarks.Clear();
+        ClearDictations();
+        ClearPendingCommentContainer();
     }
 
     private void RefreshView()
@@ -72,6 +78,7 @@ public class DictationView : MonoBehaviour
         ClearPendingCommentContainer();
         ClearRemarks();
         LoadPreviousRemarks();
+        
     }
 
     private void ClearRemarks()
@@ -80,6 +87,7 @@ public class DictationView : MonoBehaviour
         {
             Destroy(_remarksButtonContainer.GetChild(i).gameObject);
         }
+        _listOfRemarks.Clear();
     }
 
     private void OnEnable()
@@ -101,7 +109,9 @@ public class DictationView : MonoBehaviour
         }
         _dictationController.ProcessDictationData(_stringBuilder.ToString());
         _dictations.Clear();
+        _pendingCommentContainer.gameObject.SetActive(false);
         _stringBuilder.Clear();
+        ActivateRemarksButtons(true);
     }
     public void OnExitButtonClicked()
     {
@@ -133,8 +143,17 @@ public class DictationView : MonoBehaviour
     {
         _pendingCommentContainer.gameObject.SetActive(false);
         _dictationTextField.SetText(string.Empty);
+        ActivateRemarksButtons(false);
         _isRecording = true;
         StartCoroutine(OnStartRecordingCoroutine());
+    }
+
+    private void ActivateRemarksButtons(bool value)
+    {
+        foreach (var kvp in _listOfRemarks)
+        {
+            kvp.SetInteractable(value);
+        }
     }
 
     private IEnumerator OnStartRecordingCoroutine()
@@ -166,6 +185,12 @@ public class DictationView : MonoBehaviour
     {
         ClearPendingCommentContainer();
         _dictations.RemoveAt(obj);
+        if (_dictations.Count == 0)
+        {
+            _pendingCommentContainer.gameObject.SetActive(false);
+            ActivateRemarksButtons(true);
+            return;
+        }
         DisplayPendingComments();
     }
 
@@ -186,6 +211,7 @@ public class DictationView : MonoBehaviour
 
     private void ClearPendingCommentContainer()
     {
+        if(_pendingCommentContainer.childCount == 0) return;
         for (var i = _pendingCommentContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(_pendingCommentContainer.GetChild(i).gameObject);
@@ -209,6 +235,7 @@ public class DictationView : MonoBehaviour
     {
         _prematureEndOfAssemblyProcessToggle.SetToggleValue(false);
         _panel.SetActive(true);
+        _dictationTextField.SetText(string.Empty);
         if (isInIssueMode) SetIssueMode();
         else SetRemarkMode();
         ClearDictations();
@@ -241,15 +268,18 @@ public class DictationView : MonoBehaviour
 
     private void LoadPreviousRemarks()
     {
+        _listOfRemarks.Clear();
         var remarksCollection = _dictationController.GetSavedRemarks();
         var previousMessages = remarksCollection.GetRemarkMessages();
         var remarkType = remarksCollection.GetRemarkType();
         for(var i =0;i< remarkType.Length;i++)
         {
             var remarkButtonInstance = Instantiate(_remarksButtonPrefab, _remarksButtonContainer);
-            remarkButtonInstance.GetComponent<IRemarkButtonView>().SetText(previousMessages[i], _dictationTextField);
-            remarkButtonInstance.GetComponent<IRemarkButtonView>().SetIcon(remarkType[i]);
-            remarkButtonInstance.GetComponent<IRemarkButtonView>().SetTitle($"Remark #{i+1}");
+            var remarkButtonView = remarkButtonInstance.GetComponent<IRemarkButtonView>();
+            remarkButtonView.SetText(previousMessages[i], _dictationTextField);
+            remarkButtonView.SetIcon(remarkType[i]);
+            remarkButtonView.SetTitle($"Remark #{i+1}");
+            _listOfRemarks.Add(remarkButtonView);
         }
     }
 

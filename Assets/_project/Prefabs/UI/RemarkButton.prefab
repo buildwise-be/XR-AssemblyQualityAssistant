@@ -3168,6 +3168,7 @@ MonoBehaviour:
   _title: {fileID: 2491179343202909619}
   _issueIconGameObject: {fileID: 6716430225386838806}
   _remarkIconGameObject: {fileID: 5636602290889876879}
+  _pressableButton: {fileID: 6231728717492392665}
 --- !u!1 &5636602290889876879
 GameObject:
   m_ObjectHideFlags: 0
