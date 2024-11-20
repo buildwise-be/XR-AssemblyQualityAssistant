@@ -1,13 +1,21 @@
-﻿using _project.Scripts.Controllers;
+﻿using System;
+using System.Collections.Generic;
+using _project.Scripts.Controllers;
+using _project.Scripts.Controllers.DTO;
 using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace _project.Scripts.Views
 {
     public class AssemblyStepInfoView : MonoBehaviour, IStepInfoView
     {
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _issueTextPrefab;
+        [SerializeField] private GameObject _remarksTextPrefab;
+        [Header("UI Elements")]
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _stepIndexText;
@@ -20,11 +28,23 @@ namespace _project.Scripts.Views
         [SerializeField] private float _offset=15;
         private bool _isUnFolded;
         [SerializeField] private float _startHeight=60;
+        
 
         public void SetStepData(AssemblyProcessDataDto stepData)
         {
             SetNumberOfIssues(stepData.m_dataNbOfIssues);
             SetNumberOfRemarks(stepData.DataNbOfRemarks);
+            CreateAssemblyEntries(_issueTextPrefab,stepData.m_dataIssues);
+            CreateAssemblyEntries(_remarksTextPrefab, stepData.m_dataRemarks);
+        }
+
+        private void CreateAssemblyEntries(GameObject _prefab, IEnumerable<string> stepDataDataIssues)
+        {
+            foreach (var VARIABLE in stepDataDataIssues)
+            {
+                var instance = Instantiate(_prefab, _foldingContent);
+                instance.GetComponent<UIRemarkListItem>().SetText(VARIABLE);
+            }
         }
 
         public void SetIllustation(int i, Sprite illustrationSprite)

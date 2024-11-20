@@ -12,6 +12,7 @@ namespace _project.Scripts.Views
         [SerializeField] private GameObject _panel;
         [SerializeField] private GameObject _stepInfoPrefab;
         [SerializeField] private Transform _container;
+        private RectTransform _containerRectTransform;
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +20,7 @@ namespace _project.Scripts.Views
         {
             _assemblyProcessController = FindFirstObjectByType<AssemblyProcessController>();
             _assemblyProcessController.OnEndProcessEvent += DisplayPanel;
+            _containerRectTransform = _container.GetComponent<RectTransform>();
         }
 
         private void DisplayPanel()
@@ -43,7 +45,8 @@ namespace _project.Scripts.Views
 
         private void Update()
         {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(_container.GetComponent<RectTransform>());
+            //TODO: Rework for better performance
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_containerRectTransform);
         }
     }
 }
