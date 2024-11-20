@@ -29,6 +29,7 @@ namespace _project.Scripts.UseCases
         {
             _assemblyProcessDataEntity = _feedbackDataLoader.GetAssemblyData(projectId);
             OnStartAssemblyProcessEvent?.Invoke();
+            OnShowAssemblyPanel?.Invoke();
             StopAssemblyOnDictationEnd = false;
         }
 

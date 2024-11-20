@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class QualityAssistantSceneBootstrap : MonoBehaviour
 {
-    [SerializeField] private AssemblyProjectScriptableObject _currentProject;
+    [SerializeField] private AppData _appData;
+    //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
     private HandMenuActions _handMenuActions;
     public AssemblyProcessController _assemblyProcessController;
     public DictationPanelController _dictationPanelController;
@@ -26,8 +27,13 @@ public class QualityAssistantSceneBootstrap : MonoBehaviour
         
     }
 
+    public void StartAssemblyProcess()
+    {
+        _monitor.InitMonitoring(_appData.project.m_guid);
+    }
+
     private void Start()
     {
-        _monitor.InitMonitoring(_currentProject.m_guid);
+        _monitor.InitMonitoring(_appData.project.m_guid);
     }
 }

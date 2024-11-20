@@ -27,7 +27,7 @@ public class SolredoPlacementManager : MonoBehaviour
     private GameObject _miniatureModel;
     [HideInInspector]
     public UnityEvent<GameObject> OnMiniatureInstantiated;
-    public UnityEvent<int> OnModuleSelected;
+    //public UnityEvent<int> OnModuleSelected;
     public UnityEvent OnModulePlaced;
 
     [SerializeField] private SpeechInteractor _speechInteractor;
@@ -89,6 +89,7 @@ public class SolredoPlacementManager : MonoBehaviour
                 _debugText.text += $"\nEnabling Speech interactions";
             }
             _speechInteractor.enabled = true;
+            
         }
     }
 

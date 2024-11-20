@@ -9,29 +9,30 @@ public class SolredoUIManager : MonoBehaviour
     private QualityManager _qualityManager;
     private Dialog d;
 
-    [HideInInspector]
+    //[HideInInspector]
     public UnityEvent OnIntroductionDone;
-    [HideInInspector]
+    //[HideInInspector]
     public UnityEvent OnStartFindingPlane;
 
-    [SerializeField] private DashboardManager _dashboardManager;
-    [SerializeField] private GameObject _dashboard;
+    //[SerializeField] private DashboardManager _dashboardManager;
+    //[SerializeField] private GameObject _dashboard;
+    [SerializeField] QualityAssistantSceneBootstrap _assemblyBootStrap;
 
     void Start()
     {
         _dialogPool = GetComponent<DialogPool>();
         _placementManager = FindObjectOfType<PlacementManager>();
         _qualityManager = FindObjectOfType<QualityManager>();
-        ShowInfoDialog("Démarrage", "Pour commencer, 'clickez' des doigts pour placer le modèle réduit de la maison.", OnIntroductionDone);
+        ShowInfoDialog("Dï¿½marrage", "Pour commencer, 'clickez' des doigts pour placer le modï¿½le rï¿½duit de la maison.", OnIntroductionDone);
     }
 
     private void ShowIntroDialog()
     {
         d = (Dialog)_dialogPool.Get()
        .SetHeader("Instructions")
-       .SetBody("Une fois dans l'application, placez le modèle de dalle béton en 'cliquant' des doigts.\r\n" +
-       "Déplacez-le ensuite de manière à ce qu'il soit superposé à sa contrepartie réelle.\r\n" +
-       "\r\nUne fois placé, utilisez le menu main pour commencer le contrôle qualité.")
+       .SetBody("Une fois dans l'application, placez le modï¿½le de dalle bï¿½ton en 'cliquant' des doigts.\r\n" +
+       "Dï¿½placez-le ensuite de maniï¿½re ï¿½ ce qu'il soit superposï¿½ ï¿½ sa contrepartie rï¿½elle.\r\n" +
+       "\r\nUne fois placï¿½, utilisez le menu main pour commencer le contrï¿½le qualitï¿½.")
        .SetPositive("Ok", (args) => { OnIntroductionDone?.Invoke(); d.Dismiss(); })
        .Show();
     }
@@ -49,8 +50,8 @@ public class SolredoUIManager : MonoBehaviour
     {
         _placementManager.LockSlabPosition();
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Effectuez chaque vérification une à une.")
+       .SetHeader("Contrï¿½le Qualitï¿½")
+       .SetBody("Effectuez chaque vï¿½rification une ï¿½ une.")
        .SetPositive("Commencer", (args) => 
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
@@ -65,7 +66,7 @@ public class SolredoUIManager : MonoBehaviour
     private void UpdateQualityDialog(QualityItem q)
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
+       .SetHeader("Contrï¿½le Qualitï¿½")
        .SetBody(q.Instructions)
        .SetPositive("Suivant", (args) =>
        {
@@ -81,15 +82,15 @@ public class SolredoUIManager : MonoBehaviour
            UpdateQualityDialog(q);
            _qualityManager.HighlightCurrentInspectedItem();
        })
-       .SetNegative("Arrêter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
+       .SetNegative("Arrï¿½ter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
 
     private void ShowEndQualityDialog()
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Tous les points d'attention ont été contrôlés!")
+       .SetHeader("Contrï¿½le Qualitï¿½")
+       .SetBody("Tous les points d'attention ont ï¿½tï¿½ contrï¿½lï¿½s!")
        .SetPositive("Terminer", (args) =>
        {
            d.Dismiss();
@@ -101,7 +102,7 @@ public class SolredoUIManager : MonoBehaviour
     {
         d = (Dialog)_dialogPool.Get()
       .SetHeader("Valider pour production")
-      .SetBody("Etes-vous certain de vouloir valider le contrôle qualité et envoyer le signal pour production ?")
+      .SetBody("Etes-vous certain de vouloir valider le contrï¿½le qualitï¿½ et envoyer le signal pour production ?")
       .SetPositive("Oui", (args) =>
       {
           d.Dismiss();
@@ -117,13 +118,6 @@ public class SolredoUIManager : MonoBehaviour
 
     public void ShowStepDashboard()
     {
-        _dashboard.SetActive(true);
-        _dashboard.transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.rotation);
-        _dashboardManager.UpdateDashboardWithCurrentStep();
-    }
-
-    public void HideStepDashboard()
-    {
-        _dashboard.SetActive(false);
+        _assemblyBootStrap.StartAssemblyProcess();
     }
 }

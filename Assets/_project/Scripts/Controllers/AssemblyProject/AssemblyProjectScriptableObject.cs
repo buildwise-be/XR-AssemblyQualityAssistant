@@ -13,6 +13,7 @@ public class AssemblyProjectScriptableObject : ScriptableObject
     [SerializeField] private AssemblyStep[] _assemblySteps;
 
     public int StepsCount => _assemblySteps.Length;
+    public GameObject m_modulePrefab;
 
     internal AssemblyStep GetStep(int index)
     {

@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af83921ae8da94a47b47c4648818e338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentProject: {fileID: 11400000, guid: bb69a044b8f2ac84e9b1edf526642716, type: 2}
+  _appData: {fileID: 11400000, guid: eb98ac1be3728244a8951f8ed9c0ddd3, type: 2}
   _assemblyProcessController: {fileID: 970821983}
   _dictationPanelController: {fileID: 1291450168}
   _assemblyProcessView: {fileID: 64321001}
@@ -868,9 +868,6 @@ MonoBehaviour:
   _leftHandController: {fileID: 1958322268}
   _miniatureModelPrefab: {fileID: 3579696813546327535, guid: 615fdf1287c92074f8aff9b556a4841d, type: 3}
   OnMiniatureInstantiated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnModuleSelected:
     m_PersistentCalls:
       m_Calls: []
   OnModulePlaced:
@@ -1607,8 +1604,7 @@ MonoBehaviour:
   OnStartFindingPlane:
     m_PersistentCalls:
       m_Calls: []
-  _dashboardManager: {fileID: 722439332}
-  _dashboard: {fileID: 9183109908001462697}
+  _assemblyBootStrap: {fileID: 395965346}
 --- !u!4 &1213152474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5005056125994383561, guid: 2dc7517b8da081c4a9663d8d4844416f, type: 3}
@@ -28892,10 +28888,9 @@ MonoBehaviour:
   _placementManager: {fileID: 574417302}
   _UIManager: {fileID: 1038377821}
   _ARPlaneManager: {fileID: 1334784248}
-  _moduleOne: {fileID: 4259092400267797667, guid: 0d53048cf40e7264eb40ca4ba0e10acd, type: 3}
-  _moduleTwo: {fileID: 919132149155446097, guid: 5fcb374cee401914eb1cd06bb8b0797d, type: 3}
   _moduleWKNE02: {fileID: 8126164730092110433, guid: 9f6fb22cf0b1fb54681d16e0d625ddcc, type: 3}
   _useModuleWKNE02: 1
+  _appData: {fileID: 11400000, guid: eb98ac1be3728244a8951f8ed9c0ddd3, type: 2}
 --- !u!1 &3957525512486128474
 GameObject:
   m_ObjectHideFlags: 0

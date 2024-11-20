@@ -103,3 +103,4 @@ MonoBehaviour:
     - IndicationID: 0
       IndicationText: "Positionnement du ch\xE2ssis dans le pr\xE9cadre"
     StepIllustration: {fileID: 21300000, guid: dcd1f502d1bb3e74187a4d64e059d0ef, type: 3}
+  m_modulePrefab: {fileID: 8126164730092110433, guid: 9f6fb22cf0b1fb54681d16e0d625ddcc, type: 3}
