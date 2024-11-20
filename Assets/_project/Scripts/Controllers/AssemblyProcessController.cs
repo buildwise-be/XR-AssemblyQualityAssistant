@@ -27,7 +27,7 @@ namespace _project.Scripts.Controllers
             _currentStepIndex = -1;
             _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
             _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
-            _assemblyProcessMonitorUseCase.OnPrematureAssemblyEnd += EndMonitoring;
+            _assemblyProcessMonitorUseCase.OnPrematureAssemblyEnd += PrematureEndMonitoring;
             _assemblyProcessMonitorUseCase.OnNewAssemblyProcessDataCreationEvent += CreateNewAssembly;
         }
 
@@ -36,10 +36,10 @@ namespace _project.Scripts.Controllers
             _assemblyProcessMonitorUseCase.CreateNewAssemblyProcessData(_appData.project.m_guid,_appData.project.StepsCount);
         }
 
-        private void EndMonitoring()
+        private void PrematureEndMonitoring()
         {
-            _assemblyProcessMonitorUseCase.EndMonitoring();
-            OnEndProcessEvent?.Invoke();
+            //_assemblyProcessMonitorUseCase.EndMonitoring();
+            OnEndProcessEvent?.Invoke(true);
         }
 
         public Sprite GetAssemblyStepIllustation(int index)
@@ -84,7 +84,7 @@ namespace _project.Scripts.Controllers
             else
             {
                 _assemblyProcessMonitorUseCase.EndMonitoring();
-                OnEndProcessEvent?.Invoke();
+                OnEndProcessEvent?.Invoke(false);
             }
         }
 
@@ -97,7 +97,7 @@ namespace _project.Scripts.Controllers
         }
 
         public int TotalNumberOfSteps => _currentProject.StepsCount;
-        public Action OnEndProcessEvent { get; set; }
+        public Action<bool> OnEndProcessEvent { get; set; }
 
         public void ValidateStep()
         {
@@ -144,6 +144,11 @@ namespace _project.Scripts.Controllers
         public string GetAssemblyStepTitle(int i)
         {
             return _currentProject.GetStep(i).Title;
+        }
+
+        public void CloseAssemblyProcess()
+        {
+            
         }
     }
 }

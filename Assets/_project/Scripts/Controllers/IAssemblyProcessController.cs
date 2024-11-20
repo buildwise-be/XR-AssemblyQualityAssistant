@@ -9,7 +9,7 @@ namespace _project.Scripts.Controllers
         public Sprite GetAssemblyStepIllustation(int index);
         public Action OnShowPanel { get; set; }
         int TotalNumberOfSteps { get; }
-        Action OnEndProcessEvent { get; set; }
+        Action<bool> OnEndProcessEvent { get; set; }
 
         void ValidateStep();
         void GoToPreviousStep();
@@ -17,5 +17,6 @@ namespace _project.Scripts.Controllers
         void OpenDictationPanelForIssueReporting();
         AssemblyProcessDataDto[] GetAssemblyProcessData();
         string GetAssemblyStepTitle(int i);
+        void CloseAssemblyProcess();
     }
 }

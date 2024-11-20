@@ -8,12 +8,8 @@ namespace _project.Scripts.Gateways
     public class PersistantDataLoaderGateway : IFeedbackDataLoaderGateway
     {
         private string _path;
-        private readonly string _directoryPath;
+        private readonly string _directoryPath = Application.persistentDataPath+"/AssemblyData/";
 
-        public PersistantDataLoaderGateway()
-        {
-            _directoryPath = Application.persistentDataPath+"/AssemblyData/";
-        }
         public AssemblyProcessDataEntity GetAssemblyData(string projectId)
         {
             _path = _directoryPath + projectId+".json";
