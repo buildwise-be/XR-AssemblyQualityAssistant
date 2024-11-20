@@ -2,6 +2,7 @@ using System;
 using _project.Scripts.Controllers;
 using _project.Scripts.Gateways;
 using _project.Scripts.UseCases;
+using TMPro;
 using UnityEngine;
 
 public class QualityAssistantSceneBootstrap : MonoBehaviour
@@ -14,11 +15,13 @@ public class QualityAssistantSceneBootstrap : MonoBehaviour
     public AssemblyProcessView _assemblyProcessView;
 
     private AssemblyStepFeedbackMonitor _monitor;
+    [SerializeField] private int _fakeLoaderStepCount = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _monitor = new AssemblyStepFeedbackMonitor(new FakeDataLoader());
+        //_monitor = new AssemblyStepFeedbackMonitor(new FakeDataLoader(_fakeLoaderStepCount));
+        _monitor = new AssemblyStepFeedbackMonitor(new PersistantDataLoaderGateway());
         _handMenuActions = FindFirstObjectByType<HandMenuActions>();
         _assemblyProcessController.SetMonitor(_monitor);
         _dictationPanelController.SetUseCase(_monitor);

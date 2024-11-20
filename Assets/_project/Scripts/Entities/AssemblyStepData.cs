@@ -24,11 +24,13 @@ namespace _project.Scripts.Entities
 
         public int GetNumberOfEntries(AssemblyRemark.TYPE type)
         {
+            if(m_remarks == null) return 0;
             return m_remarks.Count(t => t.m_type == type);
         }
         
         public string[] GetEntries(AssemblyRemark.TYPE type)
         {
+            if(m_remarks == null) return Array.Empty<string>();
             return (from entry in m_remarks where entry.m_type == type select entry.m_message).ToArray();
         }
     }

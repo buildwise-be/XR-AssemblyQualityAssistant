@@ -11,6 +11,7 @@ namespace _project.Scripts.UseCases
         void AddAssemblyRemark(string data);
         void InitMonitoring(string projectId);
     
+        Action OnNewAssemblyProcessDataCreationEvent { get; set; }
         Action OnStartDictationProcess { get; set; }
         Action OnStartAssemblyProcessEvent { get; set; }
         Action OnShowAssemblyPanel { get; set; }
@@ -22,5 +23,7 @@ namespace _project.Scripts.UseCases
         IStepDataDto GetAssemblyProcessData();
         bool IsInIssueMode { get; }
         bool StopAssemblyOnDictationEnd { get; set; }
+        void CreateNewAssemblyProcessData(string projectId, int nbOfSteps);
+
     }
 }

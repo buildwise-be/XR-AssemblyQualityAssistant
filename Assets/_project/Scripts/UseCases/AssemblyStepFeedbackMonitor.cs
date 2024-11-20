@@ -28,6 +28,39 @@ namespace _project.Scripts.UseCases
         public void InitMonitoring(string projectId)
         {
             _assemblyProcessDataEntity = _feedbackDataLoader.GetAssemblyData(projectId);
+            if (_assemblyProcessDataEntity != null)
+            {
+                ClearSessionData(_assemblyProcessDataEntity);
+                OnStartAssemblyProcessEvent?.Invoke();
+                OnShowAssemblyPanel?.Invoke();
+                StopAssemblyOnDictationEnd = false;
+                return;
+            }
+            
+            OnNewAssemblyProcessDataCreationEvent?.Invoke();
+            
+            //_assemblyProcessDataEntity.m_assemblySteps = new AssemblyStepData[]
+            
+        }
+
+        private void ClearSessionData(AssemblyProcessDataEntity assemblyProcessDataEntity)
+        {
+            foreach (var step in _assemblyProcessDataEntity.m_assemblySteps)
+            {
+                step.m_duration = 0;
+                step.m_nbSessions = 0;
+            }
+        }
+
+        public Action OnNewAssemblyProcessDataCreationEvent { get; set; }
+
+        public void CreateNewAssemblyProcessData(string projectId, int nbOfSteps)
+        {
+            _assemblyProcessDataEntity = new AssemblyProcessDataEntity.Builder()
+                .Create(projectId)
+                .WithNumberOfSteps(nbOfSteps)
+                .Build();
+            
             OnStartAssemblyProcessEvent?.Invoke();
             OnShowAssemblyPanel?.Invoke();
             StopAssemblyOnDictationEnd = false;

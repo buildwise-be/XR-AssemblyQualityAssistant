@@ -28,6 +28,12 @@ namespace _project.Scripts.Controllers
             _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
             _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
             _assemblyProcessMonitorUseCase.OnPrematureAssemblyEnd += EndMonitoring;
+            _assemblyProcessMonitorUseCase.OnNewAssemblyProcessDataCreationEvent += CreateNewAssembly;
+        }
+
+        private void CreateNewAssembly()
+        {
+            _assemblyProcessMonitorUseCase.CreateNewAssemblyProcessData(_appData.project.m_guid,_appData.project.StepsCount);
         }
 
         private void EndMonitoring()
