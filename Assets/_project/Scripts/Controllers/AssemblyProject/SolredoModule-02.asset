@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0655ccb67e564b46827777f6ab99acb, type: 3}
-  m_Name: SolredoModule-01
+  m_Name: SolredoModule-02
   m_EditorClassIdentifier: 
-  m_guid: bb69a044b8f2ac84e9b1edf526642716
+  m_guid: c40244c30ab4ae74284930fa08f9f0c5
   m_name: 'Solredo Assembly  #1 '
   _assemblySteps:
   - StepID: 0
-    Title: "Positionnement de la lisse inf\xE9rieure"
+    Title: test
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement de la lisse inf\xE9rieure"
@@ -26,7 +26,7 @@ MonoBehaviour:
       IndicationText: Vissage du caisson sur la lisse <color=red>(3*M4*40)</color>
     StepIllustration: {fileID: 21300000, guid: c7696d0ce3ddf40479464defd49f8b41, type: 3}
   - StepID: 0
-    Title: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
+    Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
@@ -36,13 +36,13 @@ MonoBehaviour:
       IndicationText: Vissage des caissons sur la lisse
     StepIllustration: {fileID: 21300000, guid: fd1cc998cff42fe48aee7708809d8f34, type: 3}
   - StepID: 0
-    Title: "Positionnement du pr\xE9cadre"
+    Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du pr\xE9cadre"
     StepIllustration: {fileID: 21300000, guid: fdf5b57e624b4d0409e0a02fcda20200, type: 3}
   - StepID: 0
-    Title: Positionnement du caisson type 6
+    Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 6 (120cm bord \xE0 bord)"
@@ -50,7 +50,7 @@ MonoBehaviour:
       IndicationText: "Positionnement du caisson type 6 (180cm bord \xE0 bord)"
     StepIllustration: {fileID: 21300000, guid: 7b0ef9a4b8e2c16438850d9c5198fede, type: 3}
   - StepID: 0
-    Title: Positionnement du caisson type 2
+    Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 2 (240cm bord \xE0 bord)"

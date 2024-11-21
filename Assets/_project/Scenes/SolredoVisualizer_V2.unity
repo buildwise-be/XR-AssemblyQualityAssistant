@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bb37faf0c54f3985d51d6b63e31dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultText: "Aucun Probl\xE8me"
+  _defaultText: Next Step
   _textMeshProUGUI: {fileID: 985098421}
 --- !u!1 &1291450165
 GameObject:
@@ -32695,6 +32695,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -7.2749944
       objectReference: {fileID: 0}
+    - target: {fileID: 5665294695184218285, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: m_text
+      value: Nex Step
+      objectReference: {fileID: 0}
     - target: {fileID: 6177449203944671515, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
       propertyPath: _nextStepButton
       value: 
@@ -32782,6 +32786,18 @@ PrefabInstance:
     - target: {fileID: 6785690423039546007, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
       propertyPath: m_Center.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395475698865120893, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: m_text
+      value: Add Comment
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395475698865120893, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: m_fontSize
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395475698865120893, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7432877589793116279, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
       propertyPath: m_Size.x
@@ -32978,6 +32994,10 @@ PrefabInstance:
     - target: {fileID: 8770528577051798110, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -14.865
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784634129122538798, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: m_text
+      value: Add Issue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

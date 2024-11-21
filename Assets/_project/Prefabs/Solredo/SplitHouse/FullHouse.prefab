@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 1207010679483681750}
   - component: {fileID: 1078699326785420712}
   - component: {fileID: 7453905566114411644}
+  - component: {fileID: 1059726841454766155}
   m_Layer: 0
   m_Name: ModuleBox1
   m_TagString: Untagged
@@ -958,6 +959,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1059726841454766155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767536642729925819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e91620519238194a9ec1fb2f7ee24f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _assemblyProject: {fileID: 11400000, guid: bb69a044b8f2ac84e9b1edf526642716, type: 2}
 --- !u!1 &8031685703653602732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e91620519238194a9ec1fb2f7ee24f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _assemblyProject: {fileID: 11400000, guid: c40244c30ab4ae74284930fa08f9f0c5, type: 2}
 --- !u!1001 &724028136394248912
 PrefabInstance:
   m_ObjectHideFlags: 0
