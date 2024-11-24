@@ -1,6 +1,5 @@
 using System.IO;
 using _project.Scripts.Entities;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 
 namespace _project.Scripts.Gateways
@@ -16,7 +15,7 @@ namespace _project.Scripts.Gateways
             if (File.Exists(_path))
             {
                 var json = File.ReadAllText(_path);
-                return JsonConvert.DeserializeObject<AssemblyProcessDataEntity>(json);
+                return JsonUtility.FromJson<AssemblyProcessDataEntity>(json);
             }
             else
             {
