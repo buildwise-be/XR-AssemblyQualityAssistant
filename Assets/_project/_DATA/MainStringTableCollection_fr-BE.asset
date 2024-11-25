@@ -38,6 +38,18 @@ MonoBehaviour:
     m_Localized: Indications
     m_Metadata:
       m_Items: []
+  - m_Id: 139274266681344
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140087361871872
+    m_Localized: "Choix de la d\xE9mo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143798289113088
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

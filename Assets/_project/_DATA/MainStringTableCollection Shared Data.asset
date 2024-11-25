@@ -44,6 +44,18 @@ MonoBehaviour:
     m_Key: New Entry
     m_Metadata:
       m_Items: []
+  - m_Id: 139274266681344
+    m_Key: MainMenu/MainMenu/MenuLayout/GameObject/Solredo Button (1)/Frontplate/AnimatedContent/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140087361871872
+    m_Key: MainMenu/MainMenu/MenuLayout/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143798289113088
+    m_Key: MainMenu/MainMenu/MenuLayout/GameObject/Action Button/Frontplate/AnimatedContent/Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
