@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainStringTableCollection_fr-BE
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr-BE
+  m_SharedData: {fileID: 11400000, guid: c50b883bda886c2438021a1a19338424, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5068622389248
+    m_Localized: Etape suivante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5674208583680
+    m_Localized: "Signaler un probl\xE8me"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5879695925248
+    m_Localized: Ajouter un commentaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450137821184
+    m_Localized: "Etape pr\xE9c\xE9dente"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14086950608896
+    m_Localized: Indications
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

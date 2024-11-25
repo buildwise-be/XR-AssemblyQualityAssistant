@@ -1,9 +1,6 @@
 using UnityEngine;
 using MixedReality.Toolkit.Input;
 using UnityEngine.InputSystem;
-using Microsoft.MixedReality.SceneUnderstanding;
-using System.Threading.Tasks;
-using System.Linq;
 using MixedReality.Toolkit.Subsystems;
 using MixedReality.Toolkit;
 using UnityEngine.Events;

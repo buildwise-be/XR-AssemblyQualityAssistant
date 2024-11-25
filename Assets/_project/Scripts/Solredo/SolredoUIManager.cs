@@ -2,6 +2,7 @@ using _project.Scripts;
 using MixedReality.Toolkit.UX;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization;
 
 public class SolredoUIManager : MonoBehaviour
 {
@@ -18,24 +19,37 @@ public class SolredoUIManager : MonoBehaviour
     //[SerializeField] private DashboardManager _dashboardManager;
     //[SerializeField] private GameObject _dashboard;
     [SerializeField] QualityAssistantSceneBootstrap _assemblyBootStrap;
+    private LocalizedString _introHeader = new LocalizedString("InfoDialogueTable", "introHeader");
+    private LocalizedString _introMessage = new LocalizedString("InfoDialogueTable", "introMessage");
+    private LocalizedString _qualityControlMessage = new LocalizedString("InfoDialogueTable", "qualityControlMessage");
+    private LocalizedString _qualityControlHeader = new LocalizedString("InfoDialogueTable", "qualityControlHeader");
+    private LocalizedString _qualityControlStart = new LocalizedString("InfoDialogueTable", "qualityControlStart");
+    private LocalizedString _qualityControlCancel = new LocalizedString("InfoDialogueTable", "qualityControlCancel");
 
+
+    private string _introHeaderValue => _introHeader.GetLocalizedString();
+    private string _introMessageValue => _introMessage.GetLocalizedString();
+    private string _qualityControlMessageValue => _qualityControlMessage.GetLocalizedString();
+    private string _qualityControlHeaderValue => _qualityControlHeader.GetLocalizedString();
+    private string _qualityControlStartValue => _qualityControlStart.GetLocalizedString();
     void Start()
     {
+
         _dialogPool = GetComponent<DialogPool>();
         _placementManager = FindObjectOfType<PlacementManager>();
         _qualityManager = FindObjectOfType<QualityManager>();
-        ShowInfoDialog("D�marrage", "Pour commencer, 'clickez' des doigts pour placer le mod�le r�duit de la maison.", OnIntroductionDone);
+        ShowInfoDialog(_introHeaderValue, _introMessageValue/*""*/, OnIntroductionDone);
     }
 
     private void ShowIntroDialog()
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Instructions")
-       .SetBody("Une fois dans l'application, placez le mod�le de dalle b�ton en 'cliquant' des doigts.\r\n" +
-       "D�placez-le ensuite de mani�re � ce qu'il soit superpos� � sa contrepartie r�elle.\r\n" +
-       "\r\nUne fois plac�, utilisez le menu main pour commencer le contr�le qualit�.")
-       .SetPositive("Ok", (args) => { OnIntroductionDone?.Invoke(); d.Dismiss(); })
-       .Show();
+            .SetHeader(_introHeaderValue/*"Instructions"*/)
+            .SetBody(_introMessageValue/*"Une fois dans l'application, placez le modèle de dalle béton en 'cliquant' des doigts.\r\n" +
+                                  "Déplacez-le ensuite de manière à ce qu'il soit superpos� � sa contrepartie r�elle.\r\n" +
+                                  "\r\nUne fois plac�, utilisez le menu main pour commencer le contr�le qualit�.")*/)
+            .SetPositive("Ok", (args) => { OnIntroductionDone?.Invoke(); d.Dismiss(); })
+            .Show();
     }
 
     public void ShowInfoDialog(string header, string body, UnityEvent action)
@@ -51,9 +65,9 @@ public class SolredoUIManager : MonoBehaviour
     {
         _placementManager.LockSlabPosition();
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contr�le Qualit�")
-       .SetBody("Effectuez chaque v�rification une � une.")
-       .SetPositive("Commencer", (args) => 
+       .SetHeader(_qualityControlHeaderValue/**/)
+       .SetBody(_qualityControlMessageValue/*"Effectuez chaque v�rification une � une."*/)
+       .SetPositive(_qualityControlStartValue/*"Commencer"*/, (args) => 
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
            QualityItem q = _qualityManager.GetNextInspectionElement();
