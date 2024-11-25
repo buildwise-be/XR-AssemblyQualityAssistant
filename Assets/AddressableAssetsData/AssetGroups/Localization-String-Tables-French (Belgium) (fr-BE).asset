@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-French (Belgium) (fr-BE)
   m_GUID: 3621da4ff6fbf3248b0f1debf684638d
   m_SerializeEntries:
+  - m_GUID: 86452d63659f6e142a0c8f4801c529a1
+    m_Address: Soldero-01_fr-BE
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr-BE
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e251de42c75f4f545934c33041ace2e3
     m_Address: MainStringTableCollection_fr-BE
     m_ReadOnly: 1

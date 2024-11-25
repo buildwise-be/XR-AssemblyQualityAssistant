@@ -22,6 +22,12 @@ MonoBehaviour:
     - Locale-nl-BE
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fcb8c783c013fd41b7306f63ec4ace5
+    m_Address: Soldero-01_nl-BE
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-nl-BE
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8419af8fc3f45734e8b3714b035ca14e
     m_Address: MainStringTableCollection_nl-BE
     m_ReadOnly: 1

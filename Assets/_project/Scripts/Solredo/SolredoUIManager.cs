@@ -25,6 +25,7 @@ public class SolredoUIManager : MonoBehaviour
     private LocalizedString _qualityControlHeader = new LocalizedString("InfoDialogueTable", "qualityControlHeader");
     private LocalizedString _qualityControlStart = new LocalizedString("InfoDialogueTable", "qualityControlStart");
     private LocalizedString _qualityControlCancel = new LocalizedString("InfoDialogueTable", "qualityControlCancel");
+    private LocalizedString _qualityControlNext = new LocalizedString("InfoDialogueTable", "qualityControlNext");
 
 
     private string _introHeaderValue => _introHeader.GetLocalizedString();
@@ -32,6 +33,8 @@ public class SolredoUIManager : MonoBehaviour
     private string _qualityControlMessageValue => _qualityControlMessage.GetLocalizedString();
     private string _qualityControlHeaderValue => _qualityControlHeader.GetLocalizedString();
     private string _qualityControlStartValue => _qualityControlStart.GetLocalizedString();
+    private string _qualityControlCancelValue => _qualityControlCancel.GetLocalizedString();
+    private string _qualityControlNextValue => _qualityControlNext.GetLocalizedString();
     void Start()
     {
 
@@ -74,16 +77,16 @@ public class SolredoUIManager : MonoBehaviour
            UpdateQualityDialog(q);
            _qualityManager.HighlightCurrentInspectedItem(); 
        })
-       .SetNegative("Annuler", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
+       .SetNegative(_qualityControlCancelValue, (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
 
     private void UpdateQualityDialog(QualityItem q)
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contr�le Qualit�")
+       .SetHeader(_qualityControlHeaderValue)
        .SetBody(q.Instructions)
-       .SetPositive("Suivant", (args) =>
+       .SetPositive(_qualityControlNextValue/*"Suivant"*/, (args) =>
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
            QualityItem q = _qualityManager.GetNextInspectionElement();
@@ -100,6 +103,8 @@ public class SolredoUIManager : MonoBehaviour
        .SetNegative("Arr�ter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
+
+
 
     private void ShowEndQualityDialog()
     {

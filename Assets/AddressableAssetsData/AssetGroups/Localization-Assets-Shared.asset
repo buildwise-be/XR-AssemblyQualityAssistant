@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 971344459c0d014438f4c90c25238711
+    m_Address: Assets/_project/_DATA/Soldero-01 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c50b883bda886c2438021a1a19338424
     m_Address: Assets/_project/_DATA/MainStringTableCollection Shared Data.asset
     m_ReadOnly: 1
