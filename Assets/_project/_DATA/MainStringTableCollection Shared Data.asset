@@ -56,6 +56,30 @@ MonoBehaviour:
     m_Key: MainMenu/MainMenu/MenuLayout/GameObject/Action Button/Frontplate/AnimatedContent/Text
     m_Metadata:
       m_Items: []
+  - m_Id: 144480568156160
+    m_Key: MainMenu/DescriptionPanelSolredo/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144703696740352
+    m_Key: MainMenu/DescriptionPanelSolredo/Content
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145312994893824
+    m_Key: MainMenu/DescriptionPanelSolredo/BottomButtons/Back Button/Frontplate/AnimatedContent/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145759465971712
+    m_Key: MainMenu/DescriptionPanelSchelfhout/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146156758835200
+    m_Key: MainMenu/DescriptionPanelSchelfhout/Content
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146347041824768
+    m_Key: MainMenu/DescriptionPanelSchelfhout/BottomButtons/Back Button/Frontplate/AnimatedContent/Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
