@@ -11,9 +11,9 @@ public class ChangeLanguageButtonView : MonoBehaviour
     {
         yield return LocalizationSettings.InitializationOperation;
         
-        if (PlayerPrefs.HasKey("LANGUAGE-ID"))
+        if (PlayerPrefs.HasKey(LanguageKey))
         {
-            var currentLanguage = PlayerPrefs.GetString("LANGUAGE-ID");
+            var currentLanguage = PlayerPrefs.GetString(LanguageKey);
             for(var i =0;i<LocalizationSettings.AvailableLocales.Locales.Count;i++)
             {
                 if (LocalizationSettings.AvailableLocales.Locales[i].LocaleName == currentLanguage)
@@ -30,14 +30,18 @@ public class ChangeLanguageButtonView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.Space)) OnNextLocaleShowed();
+        #endif
     }
     
     public void OnNextLocaleShowed()
     {
         _localeIndex = _localeIndex + 1 >= LocalizationSettings.AvailableLocales.Locales.Count ? 0 : _localeIndex + 1;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_localeIndex];
-        Debug.Log(_localeIndex+ " - "+LocalizationSettings.SelectedLocale.Identifier);
-        PlayerPrefs.SetString("LANGUAGE-ID",LocalizationSettings.SelectedLocale.LocaleName);
+        //Debug.Log(_localeIndex+ " - "+LocalizationSettings.SelectedLocale.Identifier);
+        PlayerPrefs.SetString(LanguageKey,LocalizationSettings.SelectedLocale.LocaleName);
     }
+
+    private const string LanguageKey = "LANGUAGE-ID";
 }
