@@ -64,10 +64,9 @@ public class SolredoMainManager : MonoBehaviour
             s.IsRaySelected.OnEntered.AddListener((time) =>
             {
                 var assemblyProcessData = moduleSelector.GetData();
-                _appData.project = assemblyProcessData;
+                InitializeQRDetection(assemblyProcessData);
                 moduleSelector.OnModuleSelection();
-                AssignChosenModuleValue(assemblyProcessData.m_modulePrefab);
-                ShowQrCodeDetectionDialog();
+                
             });
             /*
             s.IsRayHovered.OnEntered.AddListener((time) => { OnModuleRayHover(s.gameObject); });
@@ -82,6 +81,14 @@ public class SolredoMainManager : MonoBehaviour
                 s.IsRaySelected.OnEntered.AddListener((time) => { _placementManager.OnModuleSelected?.Invoke(2); });
             }*/
         }
+    }
+
+    private void InitializeQRDetection(AssemblyProjectScriptableObject assemblyProcessData)
+    {
+        _appData.project = assemblyProcessData;
+        
+        AssignChosenModuleValue(assemblyProcessData.m_modulePrefab);
+        ShowQrCodeDetectionDialog();
     }
 
     private void ShowQrCodeDetectionDialog()

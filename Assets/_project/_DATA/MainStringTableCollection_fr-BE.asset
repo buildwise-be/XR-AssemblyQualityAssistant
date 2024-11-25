@@ -56,7 +56,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 144703696740352
     m_Localized: "Dans cette d\xE9monstration, la r\xE9alit\xE9 augment\xE9e est
-      utilis\xE9e pour aider \xE0 l'assemblage de sous-modules de fa\xE7ade. \n\nL'op\xE9rateur
+      utilis\xE9e pour aider \xE0 l'assemblage de sous-modules de fa\xE7ade. \n\\nL'op\xE9rateur
       choisit d'abord le module qu'il veut traiter en s\xE9lectionnant celui-ci sur
       le mod\xE8le miniature du projet de r\xE9novation. Il place ensuite le premier
       sous-module en taille r\xE9elle sur son plan de travail. Ce sous-module taille
@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Localized: "Dans cette d\xE9monstration, la r\xE9alit\xE9 augment\xE9e est
       utilis\xE9e pour aider au contr\xF4le qualit\xE9 de dalles de b\xE9ton. Le
       contr\xF4le qualit\xE9 porte ici sur la pr\xE9sence et la position de crochets
-      utilis\xE9s pour le transport des dalles.\r\n\r\nL'op\xE9rateur place d'abord
+      utilis\xE9s pour le transport des dalles.\r\n\r\\nL'op\xE9rateur place d'abord
       le mod\xE8le de dalle \xE0 inspecter qu'il veut inspecter au-dessus de la dalle
       r\xE9elle. Il utilise ensuite le menu \"main\" pour commencer l'inspection,
       crochet par crochet."

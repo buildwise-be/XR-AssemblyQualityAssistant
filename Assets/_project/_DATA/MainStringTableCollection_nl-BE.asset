@@ -58,10 +58,8 @@ MonoBehaviour:
     m_Localized: 'In deze demonstratie wordt augmented reality gebruikt om te helpen
       bij het samenstellen van geveldeelmodules.
 
-      
-
-      De uitbater kiest
-      eerst de module die hij wil behandelen door deze te selecteren op het miniatuurmodel
+      \nDe uitbater kiest eerst
+      de module die hij wil behandelen door deze te selecteren op het miniatuurmodel
       van het renovatieproject. Vervolgens plaatst hij de eerste submodule op ware
       grootte op zijn werkblad. Deze submodule op volledige grootte dient als leidraad
       en maakt het mogelijk om de te plaatsen submodule te identificeren. Zo gaat
@@ -81,8 +79,7 @@ MonoBehaviour:
       van betonplaten te helpen. Kwaliteitscontrole betreft hier de aanwezigheid
       en positie van haken die worden gebruikt voor het transport van de platen.
 
-
-      De
+      \nDe
       operator plaatst eerst het model van de te inspecteren plaat die hij wil inspecteren
       bovenop de echte plaat. Vervolgens gebruikt het het "hoofd"-menu om haak voor
       haak met de inspectie te beginnen.'
