@@ -61,13 +61,6 @@ namespace _project.Scripts.Controllers
         // Update is called once per frame
         void Update()
         {
-#if UNITY_EDITOR
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                LoadNextStep();
-
-            }
-#endif
 
         }
 
@@ -79,6 +72,7 @@ namespace _project.Scripts.Controllers
 
         private void LoadNextStep()
         {
+            if(_currentProject==null) return;
             _currentStepIndex++;
             if(_currentStepIndex < _currentProject.StepsCount) LoadStep(_currentStepIndex);
             else

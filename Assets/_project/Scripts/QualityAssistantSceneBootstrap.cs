@@ -37,7 +37,7 @@ namespace _project.Scripts
 
         private void Start()
         {
-            _monitor.InitMonitoring(_appData.project.m_guid);
+            //_monitor.InitMonitoring(_appData.project.m_guid);
         }
     }
 }

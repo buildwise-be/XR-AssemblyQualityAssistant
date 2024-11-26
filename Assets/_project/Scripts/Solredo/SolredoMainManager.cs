@@ -1,3 +1,5 @@
+using System;
+using _project.Scripts;
 using MixedReality.Toolkit;
 using MRTKExtensions.QRCodes;
 using _project.Scripts.Controllers;
@@ -16,8 +18,25 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private GameObject _moduleWKNE02;
     [SerializeField] private bool _useModuleWKNE02 = true;
     [SerializeField] private AppData _appData;
+    [SerializeField] private AssemblyProjectScriptableObject _assemblyData;
+    [SerializeField] private bool _skipFullHousePlacementPhase;
+    [SerializeField] private QualityAssistantSceneBootstrap _assemblyBootStrap;
 
     //private int _selectedModuleID = -1;
+
+    private void Start()
+    {
+        if (_skipFullHousePlacementPhase)
+        {
+            InitializeQRDetection(_assemblyData);
+            //_placementManager.enabled = false;
+            //_placementManager.gameObject.SetActive(false);
+        }
+        else
+        {
+            _placementManager.Subscribe();
+        }
+    }
 
     void OnEnable()
     {
@@ -33,6 +52,13 @@ public class SolredoMainManager : MonoBehaviour
         _placementManager.OnModulePlaced.AddListener(StopARPlanesDetection);
 
         _ARPlaneManager.planesChanged += OnARPlanesChanged;
+        _qrTrackerController.PositionSet += SpawnModule;
+    }
+
+    private void SpawnModule(object sender, Pose e)
+    {
+        _placementManager.PoseFound(sender,pose:e);
+        _assemblyBootStrap.StartAssemblyProcess();
     }
 
     private void StopARPlanesDetection()

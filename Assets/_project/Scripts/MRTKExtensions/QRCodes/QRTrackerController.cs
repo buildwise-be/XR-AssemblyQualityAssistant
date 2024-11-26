@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RealityCollective.ServiceFramework.Services;
 using TMPro;
@@ -30,7 +32,7 @@ namespace MRTKExtensions.QRCodes
         private IQRCodeTrackingService QRCodeTrackingService =>
             qrCodeTrackingService ??= ServiceManager.Instance.GetService<IQRCodeTrackingService>();
 
-        private async Task Start()
+        private async void Start()
         {
             // Give service time to start;
             await Task.Delay(250);
@@ -56,10 +58,32 @@ namespace MRTKExtensions.QRCodes
 
         public void StartTracking()
         {
-            QRCodeTrackingService.Enable();
+            StartCoroutine(InitializeTrackingCoroutine());
+            //QRCodeTrackingService.Enable();
         }
 
-        public void ResetTracking()
+        private IEnumerator InitializeTrackingCoroutine( )
+        {
+            yield return new WaitForSeconds(1);
+            while (ServiceManager.IsActiveAndInitialized==false)
+            {
+                Debug.Log("InitializeTrackingCoroutine -- WAITING");
+                yield return null;
+            }
+
+            try
+            {
+                QRCodeTrackingService.Enable();
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e.Data);
+            }
+            
+            Debug.Log("InitializeTrackingCoroutine -- DONE");
+        }
+
+            public void ResetTracking()
         {
             if (QRCodeTrackingService.IsInitialized)
             {
@@ -94,12 +118,25 @@ namespace MRTKExtensions.QRCodes
         private void SetPosition(object sender, Pose pose)
         {
             IsTrackingActive = false;
+            #if !UNITY_EDITOR
             markerHolder.localScale = Vector3.one * lastMessage.PhysicalSideLength;
             markerDisplay.SetActive(true);
-            PositionSet?.Invoke(this, pose);
             audioSource.Play();
+            #endif
+            
+            PositionSet?.Invoke(this, pose);
+            
         }
 
         public EventHandler<Pose> PositionSet;
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SetPosition(this,new Pose(Vector3.forward,Quaternion.identity));
+                enabled = false;
+            }
+        }
     }
 }

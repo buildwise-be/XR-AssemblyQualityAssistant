@@ -31630,6 +31630,9 @@ MonoBehaviour:
   _moduleWKNE02: {fileID: 8126164730092110433, guid: 9f6fb22cf0b1fb54681d16e0d625ddcc, type: 3}
   _useModuleWKNE02: 1
   _appData: {fileID: 11400000, guid: eb98ac1be3728244a8951f8ed9c0ddd3, type: 2}
+  _assemblyData: {fileID: 11400000, guid: bb69a044b8f2ac84e9b1edf526642716, type: 2}
+  _skipFullHousePlacementPhase: 1
+  _assemblyBootStrap: {fileID: 395965346}
 --- !u!1 &3957525512486128474
 GameObject:
   m_ObjectHideFlags: 0

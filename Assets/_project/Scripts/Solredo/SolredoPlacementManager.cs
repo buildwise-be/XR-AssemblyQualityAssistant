@@ -6,6 +6,7 @@ using MixedReality.Toolkit;
 using UnityEngine.Events;
 using MixedReality.Toolkit.SpatialManipulation;
 using System.Collections;
+using _project.Scripts.Controllers;
 using UnityEngine.XR.ARFoundation;
 using MRTKExtensions.QRCodes;
 using TMPro;
@@ -59,6 +60,13 @@ public class SolredoPlacementManager : MonoBehaviour
 
     void Start()
     {
+        
+
+        trackerController.PositionSet += PoseFound;
+    }
+
+    public void Subscribe()
+    {
         _rightHandController.selectAction.action.performed += OnPinchRight;
         _leftHandController.selectAction.action.performed += OnPinchLeft;
         handsAggregatorSubsystem = XRSubsystemHelpers.GetFirstRunningSubsystem<IHandsAggregatorSubsystem>();
@@ -66,8 +74,6 @@ public class SolredoPlacementManager : MonoBehaviour
         //Get the MRTK Ray Interactors
         _rightRayInteractor = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
         _rightLineRenderer = _rightRayInteractor.GetComponentInChildren<LineRenderer>(true);
-
-        trackerController.PositionSet += PoseFound;
     }
 
     public void AllowQRDetection(bool on)
@@ -75,13 +81,14 @@ public class SolredoPlacementManager : MonoBehaviour
         _allowQRDetection = on;
     }
 
-    private void PoseFound(object sender, Pose pose)
+    public void PoseFound(object sender, Pose pose)
     {
         if (_allowQRDetection)
         {
             if (_chosenModuleInstance == null)
             {
                 _chosenModuleInstance = Instantiate(ChosenModule);
+                _chosenModuleInstance.GetComponent<AssemblyModuleView>().SetController(FindFirstObjectByType<AssemblyProcessController>());
             }
             _chosenModuleInstance.transform.SetPositionAndRotation(pose.position, pose.rotation);
             if (_debugText != null)
@@ -202,6 +209,7 @@ public class SolredoPlacementManager : MonoBehaviour
         if (_chosenModuleInstance == null)
         {
             _chosenModuleInstance = Instantiate(ChosenModule);
+            _chosenModuleInstance.GetComponent<AssemblyModuleView>().SetController(FindFirstObjectByType<AssemblyProcessController>());
         }
         if (_showModuleCoroutine != null)
         {
