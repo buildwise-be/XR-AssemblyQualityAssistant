@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace _project.Scripts.Views
 {
-    public class RemarkButtonView : MonoBehaviour, IRemarkButtonView
+    public class RemarkButtonView : MonoBehaviour, IRemarkButtonView, IScrollListElement
     {
         [Header("UI Elements")]
         [SerializeField] private TMP_Text _title;
@@ -16,10 +16,20 @@ namespace _project.Scripts.Views
 
         private TMP_Text _textField;
         private string _text;
+        private RectTransform _rectTransform;
+        private float _yPosition;
+        private float _height;
 
         public void SetTitle(string title)
         {
             _title.SetText(title);
+        }
+
+        private void Awake()
+        {
+            _rectTransform = GetComponent<RectTransform>();
+            _yPosition = _rectTransform.anchoredPosition.y;
+            _height = _rectTransform.sizeDelta.y;
         }
 
         public void SetText(string s, TMP_Text dictationTextField)
@@ -59,6 +69,18 @@ namespace _project.Scripts.Views
         public void OnDeleteButtonClick()
         {
             Debug.Log("OnDeleteButtonClick");
+        }
+
+        public void HandleOutOfScrollViewBounds(float rectTransformAnchoredPositionY, float sizeDeltaY)
+        {
+            if (rectTransformAnchoredPositionY > _yPosition + _height || _yPosition > rectTransformAnchoredPositionY+sizeDeltaY)
+            {
+                SetInteractable(false);
+            }
+            else
+            {
+                SetInteractable(true);
+            }
         }
     }
 }

@@ -3327,6 +3327,7 @@ GameObject:
   - component: {fileID: 6123753173725712414}
   - component: {fileID: 1653244346640425903}
   - component: {fileID: 5986659165840023510}
+  - component: {fileID: 7684740631845337138}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -3472,6 +3473,38 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
+--- !u!114 &7684740631845337138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753371436507922391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3516269603049177088
+  references:
+    version: 2
+    RefIds:
+    - rid: 3516269603049177088
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1554001911810777658}
+        m_TrackedProperties:
+          items:
+          - rid: 3516269603049177089
+    - rid: 3516269603049177089
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_LocalPosition.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: nl-BE
+          value: 0
 --- !u!1 &2976677772852800744
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,7 +4234,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 416.9, y: 334.8}
+  m_SizeDelta: {x: 502.5, y: 419.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9206818633148418607
 Canvas:
@@ -4650,7 +4683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.000022888184, y: 29}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4068765696169902933
@@ -5268,7 +5301,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 438.8, y: 349.5, z: 1}
+  m_LocalScale: {x: 575.84, y: 441.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2386928237084706056}

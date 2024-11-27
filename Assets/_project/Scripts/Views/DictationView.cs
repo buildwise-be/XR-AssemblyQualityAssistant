@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ public class DictationView : MonoBehaviour
     private bool _isRecording;
     private StringBuilder _stringBuilder;
     private List<IRemarkButtonView> _listOfRemarks;
+    private ScrollViewContentActivator _scrollViewContentActivator;
 
 
     private void Awake()
@@ -272,15 +274,18 @@ public class DictationView : MonoBehaviour
         var remarksCollection = _dictationController.GetSavedRemarks();
         var previousMessages = remarksCollection.GetRemarkMessages();
         var remarkType = remarksCollection.GetRemarkType();
+        GameObject[] listOfGameObject = new GameObject[remarkType.Length]; 
         for(var i =0;i< remarkType.Length;i++)
         {
             var remarkButtonInstance = Instantiate(_remarksButtonPrefab, _remarksButtonContainer);
+            listOfGameObject[i] = remarkButtonInstance;
             var remarkButtonView = remarkButtonInstance.GetComponent<IRemarkButtonView>();
             remarkButtonView.SetText(previousMessages[i], _dictationTextField);
             remarkButtonView.SetIcon(remarkType[i]);
             remarkButtonView.SetTitle($"Remark #{i+1}");
             _listOfRemarks.Add(remarkButtonView);
         }
+        _scrollViewContentActivator.SetContentList(listOfGameObject);
     }
 
     private async Task ProcessDictation()
