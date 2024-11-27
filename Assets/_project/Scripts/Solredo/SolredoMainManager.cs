@@ -20,25 +20,33 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private AppData _appData;
     [SerializeField] private AssemblyProjectScriptableObject _assemblyData;
     [SerializeField] private bool _skipFullHousePlacementPhase;
-    [SerializeField] private QualityAssistantSceneBootstrap _assemblyBootStrap;
+    //[SerializeField] private QualityAssistantSceneBootstrap _assemblyBootStrap;
+    public event Action OnAssemblyStartProcessEvent;
 
     //private int _selectedModuleID = -1;
 
-    private void Start()
+    private void Awake()
     {
-        if (_skipFullHousePlacementPhase)
-        {
-            InitializeQRDetection(_assemblyData);
-            //_placementManager.enabled = false;
-            //_placementManager.gameObject.SetActive(false);
-        }
-        else
-        {
-            _placementManager.Subscribe();
-        }
+        
     }
 
-    void OnEnable()
+    public void StartAssemblyProcess(bool skipHousePlacement)
+    {
+        if (skipHousePlacement) InitializeQRDetection(_assemblyData);
+        else InitializePlacementManager();
+    }
+
+    private void InitializePlacementManager()
+    {
+        _placementManager.OnMiniatureInstantiated.AddListener(ParseMiniatureModules);
+        _placementManager.OnModulePlaced = new UnityEvent();
+        _placementManager.OnModulePlaced.AddListener(StopARPlanesDetection);
+
+        _ARPlaneManager.planesChanged += OnARPlanesChanged;
+        _placementManager.Subscribe();
+    }
+
+    void Start()
     {
         _UIManager.OnIntroductionDone = new UnityEvent();
         _UIManager.OnStartFindingPlane = new UnityEvent();
@@ -47,24 +55,19 @@ public class SolredoMainManager : MonoBehaviour
         /*_placementManager.OnModuleSelected = new UnityEvent<int>();
         _placementManager.OnModuleSelected.AddListener(ShowQRCodeDetectionDialog);
         _placementManager.OnModuleSelected.AddListener(AssignChosenModuleValue);*/
-        _placementManager.OnMiniatureInstantiated.AddListener(ParseMiniatureModules);
-        _placementManager.OnModulePlaced = new UnityEvent();
-        _placementManager.OnModulePlaced.AddListener(StopARPlanesDetection);
 
-        _ARPlaneManager.planesChanged += OnARPlanesChanged;
         _qrTrackerController.PositionSet += SpawnModule;
     }
 
     private void SpawnModule(object sender, Pose e)
     {
-        _placementManager.PoseFound(sender,pose:e);
-        _assemblyBootStrap.StartAssemblyProcess();
+        _placementManager.PlaceModuleAtPosePosition(sender,pose:e);
+        OnAssemblyStartProcessEvent?.Invoke();
     }
 
     private void StopARPlanesDetection()
     {
         _ARPlaneManager.requestedDetectionMode = UnityEngine.XR.ARSubsystems.PlaneDetectionMode.None;
-        //_ARPlaneManager.enabled = false;
         foreach (ARPlane p in _ARPlaneManager.trackables)
         {
             p.gameObject.SetActive(false);
@@ -85,6 +88,7 @@ public class SolredoMainManager : MonoBehaviour
         foreach (StatefulInteractable s in miniature.GetComponentsInChildren<StatefulInteractable>(true))
         {
             var moduleSelector = s.gameObject.GetComponent<IModuleSelectorController>();
+            if (moduleSelector == null) continue;
             s.IsRayHovered.OnEntered.AddListener((time) => { moduleSelector.OnModuleRayHover(s.gameObject); });
             s.IsRayHovered.OnExited.AddListener((time) => { moduleSelector.OnModuleRayExit(s.gameObject); });
             s.IsRaySelected.OnEntered.AddListener((time) =>

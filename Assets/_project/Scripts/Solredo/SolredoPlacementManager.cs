@@ -46,23 +46,10 @@ public class SolredoPlacementManager : MonoBehaviour
     private IHandsAggregatorSubsystem handsAggregatorSubsystem;
 
     private bool _isMiniatureCreationAuthorized = false;
-    public bool IsMiniatureCreationAuthorized
-    {
-        get
-        {
-            return _isMiniatureCreationAuthorized;
-        }
-        set
-        {
-            _isMiniatureCreationAuthorized = value;
-        }
-    }
-
+    
     void Start()
-    {
+    { 
         
-
-        trackerController.PositionSet += PoseFound;
     }
 
     public void Subscribe()
@@ -74,6 +61,9 @@ public class SolredoPlacementManager : MonoBehaviour
         //Get the MRTK Ray Interactors
         _rightRayInteractor = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
         _rightLineRenderer = _rightRayInteractor.GetComponentInChildren<LineRenderer>(true);
+        trackerController.PositionSet += PlaceModuleAtPosePosition;
+
+        _isMiniatureCreationAuthorized = true;
     }
 
     public void AllowQRDetection(bool on)
@@ -81,7 +71,7 @@ public class SolredoPlacementManager : MonoBehaviour
         _allowQRDetection = on;
     }
 
-    public void PoseFound(object sender, Pose pose)
+    public void PlaceModuleAtPosePosition(object sender, Pose pose)
     {
         if (_allowQRDetection)
         {
@@ -126,7 +116,7 @@ public class SolredoPlacementManager : MonoBehaviour
     }
 
     private void OnPinchRight(InputAction.CallbackContext context)
-    {
+    { 
         if (_isMiniatureCreationAuthorized)
         {
             Vector3 pinchPos = GetPinchPosition(_rightHandController);
@@ -235,7 +225,7 @@ public class SolredoPlacementManager : MonoBehaviour
     {
         _rightHandController.selectAction.action.performed -= OnPinchRight;
         _leftHandController.selectAction.action.performed -= OnPinchRight;
-        trackerController.PositionSet -= PoseFound;
+        trackerController.PositionSet -= PlaceModuleAtPosePosition;
     }
 
     #region SceneUnderstanding

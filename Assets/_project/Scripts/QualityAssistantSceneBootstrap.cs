@@ -1,3 +1,4 @@
+using System.Collections;
 using _project.Scripts.Controllers;
 using _project.Scripts.Gateways;
 using _project.Scripts.UseCases;
@@ -9,20 +10,19 @@ namespace _project.Scripts
     {
         [SerializeField] private AppData _appData;
         //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
-        private HandMenuActions _handMenuActions;
         public AssemblyProcessController _assemblyProcessController;
         public DictationPanelController _dictationPanelController;
         public AssemblyProcessView _assemblyProcessView;
-
+        [SerializeField] private SolredoMainManager _solredoMainManager;
         private AssemblyStepFeedbackMonitor _monitor;
         [SerializeField] private int _fakeLoaderStepCount = 10;
+        [SerializeField] private bool _skipHousePlacement;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
             //_monitor = new AssemblyStepFeedbackMonitor(new FakeDataLoader(_fakeLoaderStepCount));
             _monitor = new AssemblyStepFeedbackMonitor(new PersistantDataLoaderGateway());
-            _handMenuActions = FindFirstObjectByType<HandMenuActions>();
             _assemblyProcessController.SetMonitor(_monitor);
             _dictationPanelController.SetUseCase(_monitor);
         
@@ -35,9 +35,14 @@ namespace _project.Scripts
             _monitor.InitMonitoring(_appData.project.m_guid);
         }
 
-        private void Start()
+        IEnumerator Start()
         {
+            _solredoMainManager.OnAssemblyStartProcessEvent += StartAssemblyProcess;
+            yield return new WaitForSeconds(2);
             //_monitor.InitMonitoring(_appData.project.m_guid);
+            
+            _solredoMainManager.StartAssemblyProcess(_skipHousePlacement);
+           
         }
     }
 }
