@@ -18,9 +18,7 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private GameObject _moduleWKNE02;
     [SerializeField] private bool _useModuleWKNE02 = true;
     [SerializeField] private AppData _appData;
-    [SerializeField] private AssemblyProjectScriptableObject _assemblyData;
-    [SerializeField] private bool _skipFullHousePlacementPhase;
-    //[SerializeField] private QualityAssistantSceneBootstrap _assemblyBootStrap;
+    //[SerializeField] private AssemblyProjectScriptableObject _assemblyData;
     public event Action OnAssemblyStartProcessEvent;
 
     //private int _selectedModuleID = -1;
@@ -30,10 +28,18 @@ public class SolredoMainManager : MonoBehaviour
         
     }
 
-    public void StartAssemblyProcess(bool skipHousePlacement)
+    public void StartAssemblyProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
     {
-        if (skipHousePlacement) InitializeQRDetection(_assemblyData);
-        else InitializePlacementManager();
+        if (skipHousePlacement)
+        {
+            if (project)
+            {
+                InitializeQRDetection(project);
+                return;
+            }
+            Debug.LogWarning("No Project found -> Beginning House Placement phase");
+        }
+        InitializePlacementManager();
     }
 
     private void InitializePlacementManager()
@@ -44,6 +50,9 @@ public class SolredoMainManager : MonoBehaviour
 
         _ARPlaneManager.planesChanged += OnARPlanesChanged;
         _placementManager.Subscribe();
+
+        _UIManager.ShowStartHousePhaseDialog();
+
     }
 
     void Start()

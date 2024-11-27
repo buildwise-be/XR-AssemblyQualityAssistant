@@ -1,3 +1,4 @@
+using System;
 using _project.Scripts;
 using MixedReality.Toolkit.UX;
 using UnityEngine;
@@ -38,9 +39,19 @@ public class SolredoUIManager : MonoBehaviour
     void Start()
     {
 
-        _dialogPool = GetComponent<DialogPool>();
+        
         _placementManager = FindObjectOfType<PlacementManager>();
         _qualityManager = FindObjectOfType<QualityManager>();
+        
+    }
+
+    private void Awake()
+    {
+        _dialogPool = GetComponent<DialogPool>();
+    }
+
+    public void ShowStartHousePhaseDialog()
+    {
         ShowInfoDialog(_introHeaderValue, _introMessageValue/*""*/, OnIntroductionDone);
     }
 

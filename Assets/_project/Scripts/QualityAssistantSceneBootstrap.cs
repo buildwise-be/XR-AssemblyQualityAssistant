@@ -16,7 +16,7 @@ namespace _project.Scripts
         [SerializeField] private SolredoMainManager _solredoMainManager;
         private AssemblyStepFeedbackMonitor _monitor;
         [SerializeField] private int _fakeLoaderStepCount = 10;
-        [SerializeField] private bool _skipHousePlacement;
+        [SerializeField] private AssemblyProcessOptions _options;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
@@ -39,9 +39,7 @@ namespace _project.Scripts
         {
             _solredoMainManager.OnAssemblyStartProcessEvent += StartAssemblyProcess;
             yield return new WaitForSeconds(2);
-            //_monitor.InitMonitoring(_appData.project.m_guid);
-            
-            _solredoMainManager.StartAssemblyProcess(_skipHousePlacement);
+            _solredoMainManager.StartAssemblyProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
            
         }
     }

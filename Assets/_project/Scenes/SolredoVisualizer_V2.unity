@@ -611,7 +611,9 @@ MonoBehaviour:
   _assemblyProcessController: {fileID: 970821983}
   _dictationPanelController: {fileID: 1291450168}
   _assemblyProcessView: {fileID: 64321001}
+  _solredoMainManager: {fileID: 3954811528125101303}
   _fakeLoaderStepCount: 10
+  _skipHousePlacement: 0
 --- !u!4 &395965347
 Transform:
   m_ObjectHideFlags: 0
@@ -31632,7 +31634,6 @@ MonoBehaviour:
   _appData: {fileID: 11400000, guid: eb98ac1be3728244a8951f8ed9c0ddd3, type: 2}
   _assemblyData: {fileID: 11400000, guid: bb69a044b8f2ac84e9b1edf526642716, type: 2}
   _skipFullHousePlacementPhase: 1
-  _assemblyBootStrap: {fileID: 395965346}
 --- !u!1 &3957525512486128474
 GameObject:
   m_ObjectHideFlags: 0
