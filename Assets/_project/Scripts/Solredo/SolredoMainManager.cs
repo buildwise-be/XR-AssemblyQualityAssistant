@@ -132,7 +132,7 @@ public class SolredoMainManager : MonoBehaviour
 
     private void ShowQrCodeDetectionDialog()
     {
-        _UIManager.ShowInfoDialog("QR Code", "Scannez le QR Code pour placer le module choisi", null);
+        _UIManager.ShowQRScanInfoDialog();
         _placementManager.AllowQRDetection(true);
         _qrTrackerController.StartTracking();
     }

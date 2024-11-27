@@ -42,6 +42,14 @@ MonoBehaviour:
     m_Localized: Annuleren
     m_Metadata:
       m_Items: []
+  - m_Id: 753314122371072
+    m_Localized: Scan de QR-code om de gekozen module te plaatsen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753289648607232
+    m_Localized: QR Code
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

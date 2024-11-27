@@ -27,6 +27,8 @@ public class SolredoUIManager : MonoBehaviour
     private LocalizedString _qualityControlStart = new LocalizedString("InfoDialogueTable", "qualityControlStart");
     private LocalizedString _qualityControlCancel = new LocalizedString("InfoDialogueTable", "qualityControlCancel");
     private LocalizedString _qualityControlNext = new LocalizedString("InfoDialogueTable", "qualityControlNext");
+    private LocalizedString _QRScanHeader = new LocalizedString("InfoDialogueTable", "QRScanHeader");
+    private LocalizedString _QRScanMessage = new LocalizedString("InfoDialogueTable", "QRScanMessage");
 
 
     private string _introHeaderValue => _introHeader.GetLocalizedString();
@@ -36,6 +38,8 @@ public class SolredoUIManager : MonoBehaviour
     private string _qualityControlStartValue => _qualityControlStart.GetLocalizedString();
     private string _qualityControlCancelValue => _qualityControlCancel.GetLocalizedString();
     private string _qualityControlNextValue => _qualityControlNext.GetLocalizedString();
+    private string _QRScanMessageValue => _QRScanMessage.GetLocalizedString();
+    private string _QRScanHeaderValue => _QRScanHeader.GetLocalizedString();
     void Start()
     {
 
@@ -66,7 +70,7 @@ public class SolredoUIManager : MonoBehaviour
             .Show();
     }
 
-    public void ShowInfoDialog(string header, string body, UnityEvent action)
+    private void ShowInfoDialog(string header, string body, UnityEvent action)
     {
         d = (Dialog)_dialogPool.Get()
        .SetHeader(header)
@@ -150,5 +154,10 @@ public class SolredoUIManager : MonoBehaviour
     public void ShowStepDashboard()
     {
         _assemblyBootStrap.StartAssemblyProcess();
+    }
+
+    public void ShowQRScanInfoDialog()
+    {
+        ShowInfoDialog(_QRScanHeaderValue, _QRScanMessageValue/*"Scannez le QR Code pour placer le module choisi"*/, null);
     }
 }

@@ -8,6 +8,8 @@ namespace _project.Scripts
 {
     public class QualityAssistantSceneBootstrap : MonoBehaviour
     {
+        [SerializeField] private AssemblyProcessOptions _options;
+        
         [SerializeField] private AppData _appData;
         //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
         public AssemblyProcessController _assemblyProcessController;
@@ -16,7 +18,7 @@ namespace _project.Scripts
         [SerializeField] private SolredoMainManager _solredoMainManager;
         private AssemblyStepFeedbackMonitor _monitor;
         [SerializeField] private int _fakeLoaderStepCount = 10;
-        [SerializeField] private AssemblyProcessOptions _options;
+        
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()

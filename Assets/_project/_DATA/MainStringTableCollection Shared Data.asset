@@ -80,6 +80,15 @@ MonoBehaviour:
     m_Key: MainMenu/DescriptionPanelSchelfhout/BottomButtons/Back Button/Frontplate/AnimatedContent/Text
     m_Metadata:
       m_Items: []
+  - m_Id: 774669060476928
+    m_Key: SolredoVisualizer_V2/======== XR =========/DictationPanelView/DictationPanel/Top/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 775101791014912
+    m_Key: SolredoVisualizer_V2/======== XR =========/DictationPanelView/DictationPanel/Buttons/ExitGroup/ExtendedToggle/Frontplate/AnimatedContent/EndOfAssemblyToggle/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

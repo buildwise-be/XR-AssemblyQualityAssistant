@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Localized: Commencer
     m_Metadata:
       m_Items: []
+  - m_Id: 753289648607232
+    m_Localized: QR Code
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753314122371072
+    m_Localized: Scannez le QR Code pour placer le module choisi
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
