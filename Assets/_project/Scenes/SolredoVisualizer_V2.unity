@@ -588,6 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395965347}
   - component: {fileID: 395965346}
+  - component: {fileID: 395965348}
   m_Layer: 0
   m_Name: SceneBoostrap
   m_TagString: Untagged
@@ -631,6 +632,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395965348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395965345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3516269625947979776
+  references:
+    version: 2
+    RefIds:
+    - rid: 3516269625947979776
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 395965346}
+        m_TrackedProperties:
+          items:
+          - rid: 3516269625947979777
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 3516269625947979777
+      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: _options._skipHousePlacementPhase
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: nl-BE
+          value: 0
+        - localeIdentifier:
+            m_Code: fr-BE
+          value: 1
 --- !u!1 &449623198
 GameObject:
   m_ObjectHideFlags: 0
