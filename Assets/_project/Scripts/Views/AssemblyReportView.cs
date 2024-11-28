@@ -2,6 +2,7 @@ using System;
 using _project.Scripts.Controllers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 namespace _project.Scripts.Views
@@ -54,7 +55,7 @@ namespace _project.Scripts.Views
                 
                 stepInfoView.SetStepData(stepInfoDataArray[i]);
                 stepInfoView.SetIllustation(i+1,_assemblyProcessController.GetAssemblyStepIllustation(i));
-                stepInfoView.SetTitle(i+1,_assemblyProcessController.GetAssemblyStepTitle(i));
+                stepInfoView.SetTitle(i+1,_assemblyProcessController.GetAssemblyStepTitle(i, LocalizationSettings.SelectedLocale.LocaleName));
                 var stepDuration = stepInfoDataArray[i].m_stepDuration;
                 totalDuration += stepDuration;
                 string durationString = ConvertDuration(stepDuration);

@@ -16,7 +16,7 @@ namespace _project.Scripts.Controllers
         void OpenDictationPanelForRemarkReporting();
         void OpenDictationPanelForIssueReporting();
         AssemblyProcessDataDto[] GetAssemblyProcessData();
-        string GetAssemblyStepTitle(int i);
+        string GetAssemblyStepTitle(int i, string selectedLocaleLocaleName);
         void CloseAssemblyProcess();
     }
 }

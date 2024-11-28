@@ -135,9 +135,9 @@ namespace _project.Scripts.Controllers
             return result;
         }
 
-        public string GetAssemblyStepTitle(int i)
+        public string GetAssemblyStepTitle(int i, string selectedLocaleLocaleName)
         {
-            return _currentProject.GetStep(i).Title;
+            return _currentProject.GetStep(i).GetTitle(selectedLocaleLocaleName);
         }
 
         public void CloseAssemblyProcess()

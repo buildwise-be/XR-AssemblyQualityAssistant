@@ -56,7 +56,7 @@ public class AssemblyProcessView : MonoBehaviour
         gameObject.SetActive(true);
         ClearContent();
         UpdateIllustration(step.StepIllustration);
-        _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.Title}");
+        _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.GetTitle(LocalizationSettings.SelectedLocale.LocaleName)}");
         UpdateInstructions(step.Indications);
         _previousStepButton.SetActive(i > 0);
     }

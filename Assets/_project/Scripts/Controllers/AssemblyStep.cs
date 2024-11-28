@@ -8,8 +8,18 @@ namespace _project.Scripts.Controllers
     public class AssemblyStep
     {
         public int StepID;
-        public string Title;
+        [SerializeField] LocalizedStringData[] Title;
         public List<Indication> Indications;
         public Sprite StepIllustration;
+
+        public string GetTitle(string language)
+        {
+            foreach (var VARIABLE in Title)
+            {
+                if (VARIABLE.Language == language) return VARIABLE.TextData;
+            }
+
+            return "NO DATA FOUND FOR THIS LANGUAGE - " + language;
+        }
     }
 }

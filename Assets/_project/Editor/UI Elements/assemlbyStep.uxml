@@ -1,13 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:VisualElement>
-        <ui:VisualElement style="flex-direction: row;">
-            <ui:VisualElement style="flex-shrink: 0.5;">
-                <uie:PropertyField binding-path="StepIllustration" style="flex-grow: 1;" />
-            </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1;">
-                <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" binding-path="Title" />
-            </ui:VisualElement>
-        </ui:VisualElement>
+        <uie:PropertyField binding-path="StepIllustration" style="flex-grow: 1;" />
+        <uie:PropertyField binding-path="Title" />
     </ui:VisualElement>
     <ui:VisualElement>
         <uie:PropertyField binding-path="Indications" />
