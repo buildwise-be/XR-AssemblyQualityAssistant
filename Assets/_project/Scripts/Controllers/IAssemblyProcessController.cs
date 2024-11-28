@@ -18,5 +18,6 @@ namespace _project.Scripts.Controllers
         AssemblyProcessDataDto[] GetAssemblyProcessData();
         string GetAssemblyStepTitle(int i, string selectedLocaleLocaleName);
         void CloseAssemblyProcess();
+        void ReloadCurrentStep();
     }
 }

@@ -5,6 +5,7 @@ using _project.Scripts.Controllers;
 using _project.Scripts.Views;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
@@ -19,6 +20,22 @@ public class AssemblyProcessView : MonoBehaviour
     [SerializeField] private NexStepButtonBaseView _nextStepButton;
     
     private IAssemblyProcessController _controller;
+
+    private void Start()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+    }
+
+    private void OnDestroy()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged(Locale obj)
+    {
+        _controller.ReloadCurrentStep();
+    }
+
     public void SetController(IAssemblyProcessController controller)
     {
         _controller = controller;

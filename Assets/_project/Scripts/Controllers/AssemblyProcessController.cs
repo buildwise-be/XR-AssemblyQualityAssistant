@@ -144,5 +144,10 @@ namespace _project.Scripts.Controllers
         {
             
         }
+
+        public void ReloadCurrentStep()
+        {
+            OnDisplayStep(_currentStepIndex, _currentStep);
+        }
     }
 }
