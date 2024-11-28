@@ -5,6 +5,7 @@ using _project.Scripts.Controllers;
 using _project.Scripts.Views;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class AssemblyProcessView : MonoBehaviour
@@ -70,11 +71,12 @@ public class AssemblyProcessView : MonoBehaviour
 
     private void UpdateInstructions(List<Indication> indications)
     {
+        var currentLanguage = LocalizationSettings.SelectedLocale.LocaleName;
         for (int i = 0; i<indications.Count; i++)
         {
             var instructionInstance = Instantiate(_instructionPrebab, _indicationsContainer);
             var instructionView = instructionInstance.GetComponent<IAssemblyInsctructionView>();
-            instructionView.SetText(i,indications[i].IndicationText);
+            instructionView.SetText(i,indications[i].GetText(currentLanguage));
         }
     }
 

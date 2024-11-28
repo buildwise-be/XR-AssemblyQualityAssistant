@@ -20,63 +20,118 @@ MonoBehaviour:
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement de la lisse inf\xE9rieure"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement de la lisse inf\xE9rieure"
+      - Language: Dutch (Belgium) (nl-BE)
+        TextData: 
     - IndicationID: 0
       IndicationText: Positionnement du caisson type 2
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Positionnement du caisson type 2
     - IndicationID: 0
       IndicationText: Vissage du caisson sur la lisse <color=red>(3*M4*40)</color>
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Vissage du caisson sur la lisse <color=red>(3*M4*40)</color>
     StepIllustration: {fileID: 21300000, guid: c7696d0ce3ddf40479464defd49f8b41, type: 3}
   - StepID: 0
     Title: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 4 (120cm bord \xE0 bord)"
+      - Language: Dutch (Belgium) (nl-BE)
+        TextData: 
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 4 (180cm bord \xE0 bord)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 4 (180cm bord \xE0 bord)"
     - IndicationID: 0
       IndicationText: Vissage des caissons sur la lisse
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Vissage des caissons sur la lisse
     StepIllustration: {fileID: 21300000, guid: fd1cc998cff42fe48aee7708809d8f34, type: 3}
   - StepID: 0
     Title: "Positionnement du pr\xE9cadre"
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du pr\xE9cadre"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du pr\xE9cadre"
     StepIllustration: {fileID: 21300000, guid: fdf5b57e624b4d0409e0a02fcda20200, type: 3}
   - StepID: 0
     Title: Positionnement du caisson type 6
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 6 (120cm bord \xE0 bord)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 6 (120cm bord \xE0 bord)"
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 6 (180cm bord \xE0 bord)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 6 (180cm bord \xE0 bord)"
     StepIllustration: {fileID: 21300000, guid: 7b0ef9a4b8e2c16438850d9c5198fede, type: 3}
   - StepID: 0
     Title: Positionnement du caisson type 2
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 2 (240cm bord \xE0 bord)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 2 (240cm bord \xE0 bord)"
     - IndicationID: 0
       IndicationText: "Positionnement du caisson type 2 (300cm bord \xE0 bord) "
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du caisson type 2 (300cm bord \xE0 bord) "
     - IndicationID: 0
       IndicationText: "86cm bord \xE0 bord "
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "86cm bord \xE0 bord "
     - IndicationID: 0
       IndicationText: "Fixation du pr\xE9cadre<br><space=10>Haut 6*M4*40<br><space=10>Bas
         6*M4*40<br><space=10>Vertical gauche 5*M5*80<br><space=10>Vertical droite
         5*M5*80"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Fixation du pr\xE9cadre<br><space=10>Haut 6*M4*40<br><space=10>Bas
+          6*M4*40<br><space=10>Vertical gauche 5*M5*80<br><space=10>Vertical droite
+          5*M5*80"
     StepIllustration: {fileID: 21300000, guid: dbc7eec828052cf448ce6c56427ab35e, type: 3}
   - StepID: 0
     Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Mise en place de l\u2019isolant dans le pr\xE9cadre"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Mise en place de l\u2019isolant dans le pr\xE9cadre"
     StepIllustration: {fileID: 21300000, guid: ed2643a2eecbf7e4cb10d3f3777756ed, type: 3}
   - StepID: 0
     Title: 
     Indications:
     - IndicationID: 0
       IndicationText: Mise en place du pare pluie
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Mise en place du pare pluie
     - IndicationID: 0
       IndicationText: "Pr\xE9voir un d\xE9passement de 15cm en haut et en  bas du
         module (Mesure conservatoire)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Pr\xE9voir un d\xE9passement de 15cm en haut et en  bas du module
+          (Mesure conservatoire)"
     StepIllustration: {fileID: 21300000, guid: e4e55938e627c1748a4d325a7670f8fd, type: 3}
   - StepID: 0
     Title: 
@@ -84,23 +139,42 @@ MonoBehaviour:
     - IndicationID: 0
       IndicationText: "D\xE9coupe du pare-pluie au niveau des ch\xE2ssis  en laissant
         10cm de surplus et former un seuil. "
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "D\xE9coupe du pare-pluie au niveau des ch\xE2ssis  en laissant
+          10cm de surplus et former un seuil. "
     - IndicationID: 0
       IndicationText: "Mise en place du pare-pluie (ne pas fixer la  zone \xE0 replier)"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Mise en place du pare-pluie (ne pas fixer la  zone \xE0 replier)"
     StepIllustration: {fileID: 21300000, guid: 3b074fa2185de8b41b0cb231aca4fea8, type: 3}
   - StepID: 0
     Title: 
     Indications:
     - IndicationID: 0
       IndicationText: Poses des contre lattes L=298 cm
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Poses des contre lattes L=298 cm
     - IndicationID: 0
       IndicationText: Poses des contre lattes L=60 cm (caisson de gauche)
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Poses des contre lattes L=60 cm (caisson de gauche)
     - IndicationID: 0
       IndicationText: 'Poses des contre lattes L=120 cm (caisson de droite) '
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: 'Poses des contre lattes L=120 cm (caisson de droite) '
     StepIllustration: {fileID: 21300000, guid: a0769b67020b5ec4caa873cdcf730d74, type: 3}
   - StepID: 0
     Title: 
     Indications:
     - IndicationID: 0
       IndicationText: "Positionnement du ch\xE2ssis dans le pr\xE9cadre"
+      LocalizedIndications:
+      - Language: French (Belgium) (fr-BE)
+        TextData: "Positionnement du ch\xE2ssis dans le pr\xE9cadre"
     StepIllustration: {fileID: 21300000, guid: dcd1f502d1bb3e74187a4d64e059d0ef, type: 3}
   m_modulePrefab: {fileID: 8126164730092110433, guid: 9f6fb22cf0b1fb54681d16e0d625ddcc, type: 3}

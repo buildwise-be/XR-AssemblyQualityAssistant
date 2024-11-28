@@ -9,7 +9,7 @@ namespace _project.Scripts.Controllers
     {
         public int StepID;
         public string Title;
-        public List<Indication> Indications = new List<Indication>();
+        public List<Indication> Indications;
         public Sprite StepIllustration;
     }
 }
