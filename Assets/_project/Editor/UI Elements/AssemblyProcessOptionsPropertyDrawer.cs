@@ -9,34 +9,46 @@ public class AssemblyProcessOptionsPropertyDrawer : PropertyDrawer
 {
     public VisualTreeAsset m_assetTree;
     private VisualElement _optionsContainer;
-    private SerializedProperty serializedProperty;
+    private SerializedProperty skipHousePlacementSerializedProperty;
     private SerializedProperty _property;
     private SerializedProperty selectedAssemblyProject;
+    private SerializedProperty skipAllSerializedProperty;
 
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
         _property = property;
-        serializedProperty = property.FindPropertyRelative("_skipHousePlacementPhase");
+        skipHousePlacementSerializedProperty = property.FindPropertyRelative("_skipHousePlacementPhase");
         selectedAssemblyProject = property.FindPropertyRelative("_assemblyProject");
+        skipAllSerializedProperty = property.FindPropertyRelative("_skipAll");
         var container = new VisualElement();
 
         m_assetTree.CloneTree(container);
 
-        var toggle = container.Q<Toggle>("SkipHousePhase-toggle");
+        var skipHouseToggle = container.Q<Toggle>("SkipHousePhase-toggle");
+        var skipAllToggle = container.Q<Toggle>("SkipAll-toggle");
         var objectField = container.Q<ObjectField>("AssemblyProject-ObjectField");
-        toggle.RegisterValueChangedCallback(OnValueChanged);
+        skipHouseToggle.RegisterValueChangedCallback(OnValueChanged);
+        skipAllToggle.RegisterValueChangedCallback(OnSkipAllValueChanged);
         objectField.RegisterValueChangedCallback(OnAssemblyProjectSelection);
        
         _optionsContainer = container.Q<VisualElement>("Options-VisualElement");
-        toggle.value = serializedProperty.boolValue;
+        skipHouseToggle.value = skipHousePlacementSerializedProperty.boolValue;
+        skipAllToggle.value = skipAllSerializedProperty.boolValue;
         objectField.value = selectedAssemblyProject.objectReferenceValue;
         
-        _optionsContainer.style.display = _optionsContainer.style.display = serializedProperty.boolValue?DisplayStyle.Flex:DisplayStyle.None;
+        _optionsContainer.style.display = _optionsContainer.style.display = skipHousePlacementSerializedProperty.boolValue?DisplayStyle.Flex:DisplayStyle.None;
         
         
 
         return container;
 
+    }
+
+    private void OnSkipAllValueChanged(ChangeEvent<bool> evt)
+    {
+        skipAllSerializedProperty.boolValue = evt.newValue;
+        _property.serializedObject.ApplyModifiedProperties();
+        _property.serializedObject.Update();
     }
 
     private void OnAssemblyProjectSelection(ChangeEvent<Object> evt)
@@ -51,7 +63,7 @@ public class AssemblyProcessOptionsPropertyDrawer : PropertyDrawer
     {
         _optionsContainer.visible = evt.newValue;
         _optionsContainer.style.display = evt.newValue?DisplayStyle.Flex:DisplayStyle.None;
-        serializedProperty.boolValue = evt.newValue;
+        skipHousePlacementSerializedProperty.boolValue = evt.newValue;
         _property.serializedObject.ApplyModifiedProperties();
         _property.serializedObject.Update();
 

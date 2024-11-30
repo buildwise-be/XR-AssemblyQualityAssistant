@@ -153,7 +153,8 @@ public class SolredoUIManager : MonoBehaviour
 
     public void ShowStepDashboard()
     {
-        _assemblyBootStrap.StartAssemblyProcess();
+        //TODO: Show Hide Panel 
+        //_assemblyBootStrap.StartAssemblyProcess();
     }
 
     public void ShowQRScanInfoDialog()

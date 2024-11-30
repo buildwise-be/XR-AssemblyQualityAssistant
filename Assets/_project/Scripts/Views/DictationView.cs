@@ -36,11 +36,14 @@ public class DictationView : MonoBehaviour
     [SerializeField] private GameObject _remarkIcon;
     [SerializeField] private GameObject _issueIcon;
     [SerializeField] private ToogleXRManipulator _prematureEndOfAssemblyProcessToggle;
+    [SerializeField] private ScrollViewContentActivator _scrollViewContentActivator;
     
     private bool _isRecording;
     private StringBuilder _stringBuilder;
     private List<IRemarkButtonView> _listOfRemarks;
-    private ScrollViewContentActivator _scrollViewContentActivator;
+    
+    [Header("Debug (EDITOR) parameters")]
+    [SerializeField] private bool _debugSkipLoadPreviousRemarks;
 
 
     private void Awake()
@@ -85,6 +88,9 @@ public class DictationView : MonoBehaviour
 
     private void ClearRemarks()
     {
+#if UNITY_EDITOR
+        if(_debugSkipLoadPreviousRemarks) return;
+#endif
         for (var i = _remarksButtonContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(_remarksButtonContainer.GetChild(i).gameObject);

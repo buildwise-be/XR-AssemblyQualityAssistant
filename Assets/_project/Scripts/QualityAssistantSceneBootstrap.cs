@@ -10,7 +10,7 @@ namespace _project.Scripts
     {
         [SerializeField] private AssemblyProcessOptions _options;
         
-        [SerializeField] private AppData _appData;
+        //[SerializeField] private AppData _appData;
         //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
         public AssemblyProcessController _assemblyProcessController;
         public DictationPanelController _dictationPanelController;
@@ -32,17 +32,19 @@ namespace _project.Scripts
         
         }
 
-        public void StartAssemblyProcess()
+        public void StartAssemblyProcess(string assemblyName)
         {
-            _monitor.InitMonitoring(_appData.project.m_guid);
+            _monitor.InitMonitoring(assemblyName);
         }
 
         IEnumerator Start()
         {
             _solredoMainManager.OnAssemblyStartProcessEvent += StartAssemblyProcess;
             yield return new WaitForSeconds(2);
-            _solredoMainManager.StartAssemblyProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
-           
+            if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
+            else _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
+                
+
         }
     }
 }

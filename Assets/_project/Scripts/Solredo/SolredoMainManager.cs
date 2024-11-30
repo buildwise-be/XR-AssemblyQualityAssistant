@@ -19,7 +19,7 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private bool _useModuleWKNE02 = true;
     [SerializeField] private AppData _appData;
     //[SerializeField] private AssemblyProjectScriptableObject _assemblyData;
-    public event Action OnAssemblyStartProcessEvent;
+    public event Action<string> OnAssemblyStartProcessEvent;
 
     //private int _selectedModuleID = -1;
 
@@ -28,7 +28,7 @@ public class SolredoMainManager : MonoBehaviour
         
     }
 
-    public void StartAssemblyProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
+    public void StartPlacementProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
     {
         if (skipHousePlacement)
         {
@@ -71,7 +71,7 @@ public class SolredoMainManager : MonoBehaviour
     private void SpawnModule(object sender, Pose e)
     {
         _placementManager.PlaceModuleAtPosePosition(sender,pose:e);
-        OnAssemblyStartProcessEvent?.Invoke();
+        OnAssemblyStartProcessEvent?.Invoke(_appData.project.m_guid);
     }
 
     private void StopARPlanesDetection()
@@ -107,18 +107,6 @@ public class SolredoMainManager : MonoBehaviour
                 moduleSelector.OnModuleSelection();
                 
             });
-            /*
-            s.IsRayHovered.OnEntered.AddListener((time) => { OnModuleRayHover(s.gameObject); });
-            s.IsRayHovered.OnExited.AddListener((time) => { OnModuleRayExit(s.gameObject); });
-            
-            if (s.gameObject.name == "ModuleBox1")
-            {
-                
-            }
-            else if (s.gameObject.name == "ModuleBox2")
-            {
-                s.IsRaySelected.OnEntered.AddListener((time) => { _placementManager.OnModuleSelected?.Invoke(2); });
-            }*/
         }
     }
 
@@ -178,5 +166,11 @@ public class SolredoMainManager : MonoBehaviour
     public void ExitApplication()
     {
         Application.Quit();
+    }
+
+    public void StartAssemblyProcess(AssemblyProjectScriptableObject optionsAssemblyProject)
+    {
+        _appData.project = optionsAssemblyProject;
+        OnAssemblyStartProcessEvent?.Invoke(_appData.project.m_guid);
     }
 }
