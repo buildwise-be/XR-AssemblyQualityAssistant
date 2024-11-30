@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:TextField picking-mode="Ignore" label="Project Name" value="filler text" text="Name" binding-path="m_name" />
+        <uie:PropertyField label="Assembly Steps" binding-path="_assemblySteps" style="height: -32px; flex-grow: 0;" />
+    </ui:VisualElement>
+    <ui:Foldout text="Default Inspector" name="Default_Inspector" />
+</ui:UXML>

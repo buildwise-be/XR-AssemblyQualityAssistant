@@ -23,5 +23,5 @@ MonoBehaviour:
       - reference: 5a504905-0968-4b2f-a537-7fe804f1bd8e
       - reference: 16a3125f-31d5-4ec6-a120-8be889a74d27
   initializeOnPlay: 1
-  doNotDestroyServiceManagerOnLoad: 1
+  doNotDestroyServiceManagerOnLoad: 0
   sceneServiceConfiguration: []

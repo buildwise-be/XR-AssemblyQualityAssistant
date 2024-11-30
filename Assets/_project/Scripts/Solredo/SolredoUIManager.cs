@@ -1,6 +1,9 @@
+using System;
+using _project.Scripts;
 using MixedReality.Toolkit.UX;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization;
 
 public class SolredoUIManager : MonoBehaviour
 {
@@ -9,34 +12,65 @@ public class SolredoUIManager : MonoBehaviour
     private QualityManager _qualityManager;
     private Dialog d;
 
-    [HideInInspector]
+    //[HideInInspector]
     public UnityEvent OnIntroductionDone;
-    [HideInInspector]
+    //[HideInInspector]
     public UnityEvent OnStartFindingPlane;
 
-    [SerializeField] private DashboardManager _dashboardManager;
-    [SerializeField] private GameObject _dashboard;
+    //[SerializeField] private DashboardManager _dashboardManager;
+    //[SerializeField] private GameObject _dashboard;
+    [SerializeField] QualityAssistantSceneBootstrap _assemblyBootStrap;
+    private LocalizedString _introHeader = new LocalizedString("InfoDialogueTable", "introHeader");
+    private LocalizedString _introMessage = new LocalizedString("InfoDialogueTable", "introMessage");
+    private LocalizedString _qualityControlMessage = new LocalizedString("InfoDialogueTable", "qualityControlMessage");
+    private LocalizedString _qualityControlHeader = new LocalizedString("InfoDialogueTable", "qualityControlHeader");
+    private LocalizedString _qualityControlStart = new LocalizedString("InfoDialogueTable", "qualityControlStart");
+    private LocalizedString _qualityControlCancel = new LocalizedString("InfoDialogueTable", "qualityControlCancel");
+    private LocalizedString _qualityControlNext = new LocalizedString("InfoDialogueTable", "qualityControlNext");
+    private LocalizedString _QRScanHeader = new LocalizedString("InfoDialogueTable", "QRScanHeader");
+    private LocalizedString _QRScanMessage = new LocalizedString("InfoDialogueTable", "QRScanMessage");
 
+
+    private string _introHeaderValue => _introHeader.GetLocalizedString();
+    private string _introMessageValue => _introMessage.GetLocalizedString();
+    private string _qualityControlMessageValue => _qualityControlMessage.GetLocalizedString();
+    private string _qualityControlHeaderValue => _qualityControlHeader.GetLocalizedString();
+    private string _qualityControlStartValue => _qualityControlStart.GetLocalizedString();
+    private string _qualityControlCancelValue => _qualityControlCancel.GetLocalizedString();
+    private string _qualityControlNextValue => _qualityControlNext.GetLocalizedString();
+    private string _QRScanMessageValue => _QRScanMessage.GetLocalizedString();
+    private string _QRScanHeaderValue => _QRScanHeader.GetLocalizedString();
     void Start()
     {
-        _dialogPool = GetComponent<DialogPool>();
+
+        
         _placementManager = FindObjectOfType<PlacementManager>();
         _qualityManager = FindObjectOfType<QualityManager>();
-        ShowInfoDialog("Démarrage", "Pour commencer, 'clickez' des doigts pour placer le modèle réduit de la maison.", OnIntroductionDone);
+        
+    }
+
+    private void Awake()
+    {
+        _dialogPool = GetComponent<DialogPool>();
+    }
+
+    public void ShowStartHousePhaseDialog()
+    {
+        ShowInfoDialog(_introHeaderValue, _introMessageValue/*""*/, OnIntroductionDone);
     }
 
     private void ShowIntroDialog()
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Instructions")
-       .SetBody("Une fois dans l'application, placez le modèle de dalle béton en 'cliquant' des doigts.\r\n" +
-       "Déplacez-le ensuite de manière à ce qu'il soit superposé à sa contrepartie réelle.\r\n" +
-       "\r\nUne fois placé, utilisez le menu main pour commencer le contrôle qualité.")
-       .SetPositive("Ok", (args) => { OnIntroductionDone?.Invoke(); d.Dismiss(); })
-       .Show();
+            .SetHeader(_introHeaderValue/*"Instructions"*/)
+            .SetBody(_introMessageValue/*"Une fois dans l'application, placez le modÃ¨le de dalle bÃ©ton en 'cliquant' des doigts.\r\n" +
+                                  "DÃ©placez-le ensuite de maniÃ¨re Ã  ce qu'il soit superposï¿½ ï¿½ sa contrepartie rï¿½elle.\r\n" +
+                                  "\r\nUne fois placï¿½, utilisez le menu main pour commencer le contrï¿½le qualitï¿½.")*/)
+            .SetPositive("Ok", (args) => { OnIntroductionDone?.Invoke(); d.Dismiss(); })
+            .Show();
     }
 
-    public void ShowInfoDialog(string header, string body, UnityEvent action)
+    private void ShowInfoDialog(string header, string body, UnityEvent action)
     {
         d = (Dialog)_dialogPool.Get()
        .SetHeader(header)
@@ -49,25 +83,25 @@ public class SolredoUIManager : MonoBehaviour
     {
         _placementManager.LockSlabPosition();
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Effectuez chaque vérification une à une.")
-       .SetPositive("Commencer", (args) => 
+       .SetHeader(_qualityControlHeaderValue/**/)
+       .SetBody(_qualityControlMessageValue/*"Effectuez chaque vï¿½rification une ï¿½ une."*/)
+       .SetPositive(_qualityControlStartValue/*"Commencer"*/, (args) => 
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
            QualityItem q = _qualityManager.GetNextInspectionElement();
            UpdateQualityDialog(q);
            _qualityManager.HighlightCurrentInspectedItem(); 
        })
-       .SetNegative("Annuler", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
+       .SetNegative(_qualityControlCancelValue, (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
 
     private void UpdateQualityDialog(QualityItem q)
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
+       .SetHeader(_qualityControlHeaderValue)
        .SetBody(q.Instructions)
-       .SetPositive("Suivant", (args) =>
+       .SetPositive(_qualityControlNextValue/*"Suivant"*/, (args) =>
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
            QualityItem q = _qualityManager.GetNextInspectionElement();
@@ -81,15 +115,17 @@ public class SolredoUIManager : MonoBehaviour
            UpdateQualityDialog(q);
            _qualityManager.HighlightCurrentInspectedItem();
        })
-       .SetNegative("Arrêter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
+       .SetNegative("Arrï¿½ter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
+
+
 
     private void ShowEndQualityDialog()
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Tous les points d'attention ont été contrôlés!")
+       .SetHeader("Contrï¿½le Qualitï¿½")
+       .SetBody("Tous les points d'attention ont ï¿½tï¿½ contrï¿½lï¿½s!")
        .SetPositive("Terminer", (args) =>
        {
            d.Dismiss();
@@ -101,7 +137,7 @@ public class SolredoUIManager : MonoBehaviour
     {
         d = (Dialog)_dialogPool.Get()
       .SetHeader("Valider pour production")
-      .SetBody("Etes-vous certain de vouloir valider le contrôle qualité et envoyer le signal pour production ?")
+      .SetBody("Etes-vous certain de vouloir valider le contrï¿½le qualitï¿½ et envoyer le signal pour production ?")
       .SetPositive("Oui", (args) =>
       {
           d.Dismiss();
@@ -117,13 +153,12 @@ public class SolredoUIManager : MonoBehaviour
 
     public void ShowStepDashboard()
     {
-        _dashboard.SetActive(true);
-        _dashboard.transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.rotation);
-        _dashboardManager.UpdateDashboardWithCurrentStep();
+        //TODO: Show Hide Panel 
+        //_assemblyBootStrap.StartAssemblyProcess();
     }
 
-    public void HideStepDashboard()
+    public void ShowQRScanInfoDialog()
     {
-        _dashboard.SetActive(false);
+        ShowInfoDialog(_QRScanHeaderValue, _QRScanMessageValue/*"Scannez le QR Code pour placer le module choisi"*/, null);
     }
 }

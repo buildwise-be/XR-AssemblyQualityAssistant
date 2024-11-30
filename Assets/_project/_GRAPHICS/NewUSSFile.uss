@@ -1,0 +1,8 @@
+.mainContainer{
+    flex-direction: row;
+    
+    width: 100%
+}
+.text{
+    width: auto;
+}

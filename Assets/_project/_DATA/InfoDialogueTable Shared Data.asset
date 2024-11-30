@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: InfoDialogueTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: InfoDialogueTable
+  m_TableCollectionNameGuidString: 55713aeb06835de4fae2bd9c8072e311
+  m_Entries:
+  - m_Id: 15400427520
+    m_Key: introHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38884335616
+    m_Key: introMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4733166149632
+    m_Key: qualityControlMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4772148011008
+    m_Key: qualityControlHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4801323589632
+    m_Key: qualityControlStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4970127548416
+    m_Key: qualityControlCancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753289648607232
+    m_Key: QRScanHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753314122371072
+    m_Key: QRScanMessage
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7388818770737234215
+  references:
+    version: 2
+    RefIds:
+    - rid: 7388818770737234215
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1732537506948

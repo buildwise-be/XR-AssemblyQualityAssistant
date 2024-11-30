@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: InfoDialogueTable_fr-BE
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr-BE
+  m_SharedData: {fileID: 11400000, guid: 55713aeb06835de4fae2bd9c8072e311, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 38884335616
+    m_Localized: "Pour commencer,  cliquez des doigts pour placer le mod\xE8le r\xE9duit
+      de la maison."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15400427520
+    m_Localized: Bienvenue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4970127548416
+    m_Localized: Annuler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4733166149632
+    m_Localized: "Effectuez chaque v\xE9rification une \xE0 une."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4772148011008
+    m_Localized: "Contr\xF4le Qualit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4801323589632
+    m_Localized: Commencer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753289648607232
+    m_Localized: QR Code
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753314122371072
+    m_Localized: Scannez le QR Code pour placer le module choisi
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

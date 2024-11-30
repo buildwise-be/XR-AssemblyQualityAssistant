@@ -6,6 +6,7 @@ using MixedReality.Toolkit;
 using UnityEngine.Events;
 using MixedReality.Toolkit.SpatialManipulation;
 using System.Collections;
+using _project.Scripts.Controllers;
 using UnityEngine.XR.ARFoundation;
 using MRTKExtensions.QRCodes;
 using TMPro;
@@ -27,7 +28,7 @@ public class SolredoPlacementManager : MonoBehaviour
     private GameObject _miniatureModel;
     [HideInInspector]
     public UnityEvent<GameObject> OnMiniatureInstantiated;
-    public UnityEvent<int> OnModuleSelected;
+    //public UnityEvent<int> OnModuleSelected;
     public UnityEvent OnModulePlaced;
 
     [SerializeField] private SpeechInteractor _speechInteractor;
@@ -45,19 +46,13 @@ public class SolredoPlacementManager : MonoBehaviour
     private IHandsAggregatorSubsystem handsAggregatorSubsystem;
 
     private bool _isMiniatureCreationAuthorized = false;
-    public bool IsMiniatureCreationAuthorized
-    {
-        get
-        {
-            return _isMiniatureCreationAuthorized;
-        }
-        set
-        {
-            _isMiniatureCreationAuthorized = value;
-        }
+    
+    void Start()
+    { 
+        
     }
 
-    void Start()
+    public void Subscribe()
     {
         _rightHandController.selectAction.action.performed += OnPinchRight;
         _leftHandController.selectAction.action.performed += OnPinchLeft;
@@ -66,8 +61,9 @@ public class SolredoPlacementManager : MonoBehaviour
         //Get the MRTK Ray Interactors
         _rightRayInteractor = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
         _rightLineRenderer = _rightRayInteractor.GetComponentInChildren<LineRenderer>(true);
+        trackerController.PositionSet += PlaceModuleAtPosePosition;
 
-        trackerController.PositionSet += PoseFound;
+        _isMiniatureCreationAuthorized = true;
     }
 
     public void AllowQRDetection(bool on)
@@ -75,13 +71,14 @@ public class SolredoPlacementManager : MonoBehaviour
         _allowQRDetection = on;
     }
 
-    private void PoseFound(object sender, Pose pose)
+    public void PlaceModuleAtPosePosition(object sender, Pose pose)
     {
         if (_allowQRDetection)
         {
             if (_chosenModuleInstance == null)
             {
                 _chosenModuleInstance = Instantiate(ChosenModule);
+                _chosenModuleInstance.GetComponent<AssemblyModuleView>().SetController(FindFirstObjectByType<AssemblyProcessController>());
             }
             _chosenModuleInstance.transform.SetPositionAndRotation(pose.position, pose.rotation);
             if (_debugText != null)
@@ -89,6 +86,7 @@ public class SolredoPlacementManager : MonoBehaviour
                 _debugText.text += $"\nEnabling Speech interactions";
             }
             _speechInteractor.enabled = true;
+            
         }
     }
 
@@ -118,7 +116,7 @@ public class SolredoPlacementManager : MonoBehaviour
     }
 
     private void OnPinchRight(InputAction.CallbackContext context)
-    {
+    { 
         if (_isMiniatureCreationAuthorized)
         {
             Vector3 pinchPos = GetPinchPosition(_rightHandController);
@@ -201,6 +199,7 @@ public class SolredoPlacementManager : MonoBehaviour
         if (_chosenModuleInstance == null)
         {
             _chosenModuleInstance = Instantiate(ChosenModule);
+            _chosenModuleInstance.GetComponent<AssemblyModuleView>().SetController(FindFirstObjectByType<AssemblyProcessController>());
         }
         if (_showModuleCoroutine != null)
         {
@@ -226,7 +225,7 @@ public class SolredoPlacementManager : MonoBehaviour
     {
         _rightHandController.selectAction.action.performed -= OnPinchRight;
         _leftHandController.selectAction.action.performed -= OnPinchRight;
-        trackerController.PositionSet -= PoseFound;
+        trackerController.PositionSet -= PlaceModuleAtPosePosition;
     }
 
     #region SceneUnderstanding

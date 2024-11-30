@@ -1,7 +1,7 @@
 {
     "name": "Microsoft.MixedReality.GraphicsTools.Samples.MaterialGallery",
     "rootNamespace": "Microsoft.MixedReality.GraphicsTools.Samples.MaterialGallery",
-    "references": [],
+    "references": ["UnityEditor.UI","UnityEngine.UI"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

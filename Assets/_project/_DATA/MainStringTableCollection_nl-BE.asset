@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainStringTableCollection_nl-BE
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: nl-BE
+  m_SharedData: {fileID: 11400000, guid: c50b883bda886c2438021a1a19338424, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5068622389248
+    m_Localized: Volgende Stap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5674208583680
+    m_Localized: 'Een probleem '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5879695925248
+    m_Localized: Commentaar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450137821184
+    m_Localized: Vorige stap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14086950608896
+    m_Localized: Indicaties
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139274266681344
+    m_Localized: Nederlands
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140087361871872
+    m_Localized: Kies uw demo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143798289113088
+    m_Localized: Nederlands
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144480568156160
+    m_Localized: Demo Solredo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144703696740352
+    m_Localized: 'In deze demonstratie wordt augmented reality gebruikt om te helpen
+      bij het samenstellen van geveldeelmodules.
+
+      \nDe uitbater kiest eerst
+      de module die hij wil behandelen door deze te selecteren op het miniatuurmodel
+      van het renovatieproject. Vervolgens plaatst hij de eerste submodule op ware
+      grootte op zijn werkblad. Deze submodule op volledige grootte dient als leidraad
+      en maakt het mogelijk om de te plaatsen submodule te identificeren. Zo gaat
+      het door totdat de montage voltooid is.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145312994893824
+    m_Localized: Terug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145759465971712
+    m_Localized: Demo Schelfhout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146156758835200
+    m_Localized: 'In deze demonstratie wordt augmented reality gebruikt om de kwaliteitscontrole
+      van betonplaten te helpen. Kwaliteitscontrole betreft hier de aanwezigheid
+      en positie van haken die worden gebruikt voor het transport van de platen.
+
+      \nDe
+      operator plaatst eerst het model van de te inspecteren plaat die hij wil inspecteren
+      bovenop de echte plaat. Vervolgens gebruikt het het "hoofd"-menu om haak voor
+      haak met de inspectie te beginnen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146347041824768
+    m_Localized: Terug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774669060476928
+    m_Localized: Beschrijving problemen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 775101791014912
+    m_Localized: Onderbreek de procedure
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

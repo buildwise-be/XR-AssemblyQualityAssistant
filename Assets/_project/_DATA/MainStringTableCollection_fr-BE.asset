@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainStringTableCollection_fr-BE
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr-BE
+  m_SharedData: {fileID: 11400000, guid: c50b883bda886c2438021a1a19338424, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5068622389248
+    m_Localized: Etape suivante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5674208583680
+    m_Localized: "Signaler un probl\xE8me"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5879695925248
+    m_Localized: Ajouter un commentaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450137821184
+    m_Localized: "Etape pr\xE9c\xE9dente"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14086950608896
+    m_Localized: Indications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139274266681344
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140087361871872
+    m_Localized: "Choix de la d\xE9mo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143798289113088
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144480568156160
+    m_Localized: "D\xE9mo Solredo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 144703696740352
+    m_Localized: "Dans cette d\xE9monstration, la r\xE9alit\xE9 augment\xE9e est
+      utilis\xE9e pour aider \xE0 l'assemblage de sous-modules de fa\xE7ade. \n\\nL'op\xE9rateur
+      choisit d'abord le module qu'il veut traiter en s\xE9lectionnant celui-ci sur
+      le mod\xE8le miniature du projet de r\xE9novation. Il place ensuite le premier
+      sous-module en taille r\xE9elle sur son plan de travail. Ce sous-module taille
+      r\xE9elle sert de guide et lui permet d'identifier le sous-module \xE0 placer.
+      Il continue ainsi de suite jusqu'\xE0 la compl\xE9tion de l'assemblage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145312994893824
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 145759465971712
+    m_Localized: "D\xE9mo Schelfhout"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146156758835200
+    m_Localized: "Dans cette d\xE9monstration, la r\xE9alit\xE9 augment\xE9e est
+      utilis\xE9e pour aider au contr\xF4le qualit\xE9 de dalles de b\xE9ton. Le
+      contr\xF4le qualit\xE9 porte ici sur la pr\xE9sence et la position de crochets
+      utilis\xE9s pour le transport des dalles.\r\n\r\\nL'op\xE9rateur place d'abord
+      le mod\xE8le de dalle \xE0 inspecter qu'il veut inspecter au-dessus de la dalle
+      r\xE9elle. Il utilise ensuite le menu \"main\" pour commencer l'inspection,
+      crochet par crochet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146347041824768
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774669060476928
+    m_Localized: "Description des probl\xE8mes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 775101791014912
+    m_Localized: "Interrompre la proc\xE9dure"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

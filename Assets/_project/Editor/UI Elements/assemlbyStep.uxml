@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement>
+        <uie:PropertyField binding-path="StepIllustration" style="flex-grow: 1;" />
+        <uie:PropertyField binding-path="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement>
+        <uie:PropertyField binding-path="Indications" />
+    </ui:VisualElement>
+</ui:UXML>
