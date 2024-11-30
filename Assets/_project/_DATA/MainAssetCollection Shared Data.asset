@@ -20,6 +20,11 @@ MonoBehaviour:
       (1)
     m_Metadata:
       m_Items: []
+  - m_Id: 1713068441673728
+    m_Key: SolredoVisualizer_V2/======== XR =========/HandMenuBase/MenuContent-Canvas/Buttons-GridLayout/LanguageButton/Frontplate/AnimatedContent/Image/Image
+      (1)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 3516269557409120263
@@ -37,6 +42,10 @@ MonoBehaviour:
       data:
         m_Entries:
         - m_KeyId: 273295679488
+          m_TableCodes:
+          - nl-BE
+          - fr-BE
+        - m_KeyId: 1713068441673728
           m_TableCodes:
           - nl-BE
           - fr-BE
