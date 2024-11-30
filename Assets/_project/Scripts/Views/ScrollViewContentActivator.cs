@@ -14,21 +14,21 @@ namespace _project.Scripts.Views
         void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
+            var height = _rectTransform.rect.height;
             if (_list == null) return;
             if(_list.Length == 0) return;
-            if (_rectTransform.anchoredPosition.y - _lastYPosition < 0.01f) return;
+            for (var i = 0; i < _list.Length; i++)
             {
-                _lastYPosition = _rectTransform.anchoredPosition.y;
-                for (var i = 0; i < _list.Length; i++)
-                {
-                    _list[i].HandleOutOfScrollViewBounds(_rectTransform.anchoredPosition.y, _rectTransform.sizeDelta.y);
-                }
-            };
+                var localPosition = transform.InverseTransformPoint(_list[i].GetPosition());
+                var activate = !(localPosition.y > 0 || localPosition.y <- height);
+                _list[i].Activate(activate);
+            }
         }
 
         public void SetContentList(GameObject[] contentList)
@@ -42,5 +42,8 @@ namespace _project.Scripts.Views
     public interface IScrollListElement
     {
         void HandleOutOfScrollViewBounds(float rectTransformAnchoredPositionY, float sizeDeltaY);
+        float GetYPosition();
+        void Activate(bool activate);
+        Vector3 GetPosition();
     }
 }

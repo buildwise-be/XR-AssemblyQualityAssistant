@@ -82,6 +82,21 @@ namespace _project.Scripts.Views
                 SetInteractable(true);
             }
         }
+
+        public float GetYPosition()
+        {
+            return GetComponent<RectTransform>().anchoredPosition.y;
+        }
+
+        public void Activate(bool activate)
+        {
+            _pressableButton.enabled = activate;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
     }
 }
 

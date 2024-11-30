@@ -951,7 +951,8 @@ MonoBehaviour:
   _remarkIcon: {fileID: 4022657259050285255}
   _issueIcon: {fileID: 8777677448996693254}
   _prematureEndOfAssemblyProcessToggle: {fileID: 6981178614115401496}
-  _scrollViewContentActivator: {fileID: 3250007392733311938}
+  _scrollViewContentActivator: {fileID: 0}
+  _debugSkipLoadPreviousRemarks: 0
 --- !u!1 &451297564272696701
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,7 +10651,6 @@ GameObject:
   - component: {fileID: 1960595832369057213}
   - component: {fileID: 6511189662627464645}
   - component: {fileID: 3090041386551995712}
-  - component: {fileID: 3250007392733311938}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -10717,18 +10717,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &3250007392733311938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6738489700143363427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c4c097714df7b47a41723a7a16a5a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6739416172532252210
 GameObject:
   m_ObjectHideFlags: 0
