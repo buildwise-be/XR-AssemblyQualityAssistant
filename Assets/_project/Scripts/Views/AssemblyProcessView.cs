@@ -70,7 +70,7 @@ public class AssemblyProcessView : MonoBehaviour
             _nextStepButton.SetDefaultText();
         }
        
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         ClearContent();
         UpdateIllustration(step.StepIllustration);
         _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.GetTitle(LocalizationSettings.SelectedLocale.LocaleName)}");

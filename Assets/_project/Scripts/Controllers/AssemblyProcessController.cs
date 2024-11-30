@@ -88,6 +88,7 @@ namespace _project.Scripts.Controllers
             _assemblyProcessMonitorUseCase.StartStepMonitoring(index, Time.time);
             _currentStep = _currentProject.GetStep(index);
             OnDisplayStep?.Invoke(index,_currentStep);
+            ShowPanel();
         }
 
         public int TotalNumberOfSteps => _currentProject.StepsCount;
