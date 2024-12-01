@@ -7,7 +7,7 @@ namespace _project.Scripts.Controllers
     {
         public Action<int,AssemblyStep> OnDisplayStep { get; set; }
         public Sprite GetAssemblyStepIllustation(int index);
-        public Action OnShowPanel { get; set; }
+        public Action<bool> OnShowPanel { get; set; }
         int TotalNumberOfSteps { get; }
         Action<bool> OnEndProcessEvent { get; set; }
 

@@ -9,5 +9,6 @@ namespace _project.Scripts.Views
         void SetText(string s, TMP_Text dictationTextField);
         void SetIcon(IRemarksCollection.RemarksType type);
         void SetInteractable(bool value);
+        bool IsUsed { get; set; }
     }
 }

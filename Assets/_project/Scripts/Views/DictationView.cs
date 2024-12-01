@@ -104,8 +104,13 @@ public class DictationView : MonoBehaviour
         for (var i = _remarksButtonContainer.childCount - 1; i >= 0; i--)
         {
             _remarksButtonContainer.GetChild(i).gameObject.SetActive(false);
-        }/*
-        _listOfRemarks.Clear();*/
+            
+        }
+
+        foreach (var remark in _listOfRemarks)
+        {
+            remark.IsUsed = false;
+        }
     }
 
     private void OnEnable()
@@ -298,6 +303,7 @@ public class DictationView : MonoBehaviour
             remarkButtonInstance.SetText(previousMessages[i], _dictationTextField);
             remarkButtonInstance.SetIcon(remarkType[i]);
             remarkButtonInstance.SetTitle($"Remark #{i+1}");
+            remarkButtonInstance.IsUsed = true;
             _listOfRemarksGameObjects[i].SetActive(true);
             //_listOfRemarks.Add(remarkButtonView);
         }

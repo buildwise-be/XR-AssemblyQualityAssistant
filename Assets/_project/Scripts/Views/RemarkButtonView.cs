@@ -3,6 +3,7 @@ using _project.Scripts.Controllers.DTO;
 using MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _project.Scripts.Views
 {
@@ -19,6 +20,7 @@ namespace _project.Scripts.Views
         private RectTransform _rectTransform;
         private float _yPosition;
         private float _height;
+        [SerializeField] private RawImage _rawImage;
 
         public void SetTitle(string title)
         {
@@ -60,6 +62,8 @@ namespace _project.Scripts.Views
            _pressableButton.enabled = value;
         }
 
+        public bool IsUsed { get; set; }
+
 
         public void OnClick()
         {
@@ -90,7 +94,9 @@ namespace _project.Scripts.Views
 
         public void Activate(bool activate)
         {
+            //if(IsUsed==false) gameObject.SetActive(false);
             _pressableButton.enabled = activate;
+            _rawImage.enabled = activate;
         }
 
         public Vector3 GetPosition()

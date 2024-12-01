@@ -49,9 +49,10 @@ public class AssemblyProcessView : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void ShowPanel()
+    private void ShowPanel(bool isShow)
     {
         gameObject.SetActive(true);
+        if (isShow) return;
         transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.5f, Camera.main.transform.rotation);
 
     }

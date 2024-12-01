@@ -9,7 +9,7 @@ namespace _project.Scripts.Controllers
         public Action<int, AssemblyStep> OnDisplayStep {  get; set; }
         
 
-        public Action OnShowPanel { get; set; }
+        public Action<bool> OnShowPanel { get; set; }
         [SerializeField] private AppData _appData;
 
         private AssemblyProjectScriptableObject _currentProject;
@@ -19,7 +19,8 @@ namespace _project.Scripts.Controllers
         private IAssemblyProcessMonitorUseCase _assemblyProcessMonitorUseCase;
 
         private AssemblyStep _currentStep;
-    
+        private bool _panelHasBeenPlaced;
+
         public void SetMonitor(IAssemblyProcessMonitorUseCase monitor)
         {
             _assemblyProcessMonitorUseCase = monitor;
@@ -49,11 +50,14 @@ namespace _project.Scripts.Controllers
 
         private void ShowPanel()
         {
-            OnShowPanel?.Invoke();
+            
+            OnShowPanel?.Invoke(_panelHasBeenPlaced);
+            _panelHasBeenPlaced = true;
         }
 
         private void StartAssembly()
         {
+            _panelHasBeenPlaced = false;
             LoadFirstStep();
         
         }
