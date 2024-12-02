@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _project.Scripts.Controllers;
 using TMPro;
 using UnityEngine;
@@ -41,12 +42,11 @@ namespace _project.Scripts.Views
 
         private void DisplayPanel(bool isPrematureEnd)
         {
-            CreateReport();
-            if (isPrematureEnd) SignalPrematureEnd();
-
             _panel.SetActive(true);
             transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.7f, Camera.main.transform.rotation);
 
+            StartCoroutine(CreateReportCoroutine());
+            if (isPrematureEnd) SignalPrematureEnd();
         }
 
         private void SignalPrematureEnd()
@@ -54,12 +54,9 @@ namespace _project.Scripts.Views
             Instantiate(_endOfProcessPrefab, _container);
         }
 
-        private void CreateReport()
+        private IEnumerator CreateReportCoroutine()
         {
-            foreach (var VARIABLE in _stepContainer)
-            {
-                VARIABLE.SetActive(false);
-            }
+          
             var stepInfoDataArray = _assemblyProcessController.GetAssemblyProcessData();
             var totalDuration = 0f;
             for (var i = 0; i < stepInfoDataArray.Length; i++)
@@ -78,7 +75,14 @@ namespace _project.Scripts.Views
                 string durationString = ConvertDuration(stepDuration);
                 stepInfoView.SetDuration(durationString);
                 stepInfoInstance.SetActive(true);
+                yield return new WaitForSeconds(.2f);
             }
+
+            /*for (var i = _stepContainer.Length - 1; i > 0; i--)
+            {
+                if(i> stepInfoDataArray.Length) Destroy(_container.GetChild(i).gameObject);
+            }*/
+            
             _totalDurationText.text = "Total duration: "+ConvertDuration(totalDuration);
         }
 
