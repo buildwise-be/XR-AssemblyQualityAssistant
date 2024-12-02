@@ -9278,7 +9278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6866232965361362307}
   - component: {fileID: 7618240270449212317}
-  - component: {fileID: 8601690636663358533}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -9333,30 +9332,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8601690636663358533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5840812991534101958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33899dd1111fc86498e4859f98dc9994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventRoutes:
-  - rid: 3516269661481336935
-  - rid: 3516269661481336936
-  references:
-    version: 2
-    RefIds:
-    - rid: 3516269661481336935
-      type: {class: BubbleChildHoverEvents, ns: MixedReality.Toolkit.Experimental, asm: MixedReality.Toolkit.Core}
-      data: 
-    - rid: 3516269661481336936
-      type: {class: BubbleChildSelectEvents, ns: MixedReality.Toolkit.Experimental, asm: MixedReality.Toolkit.Core}
-      data: 
 --- !u!1 &5886275159022796539
 GameObject:
   m_ObjectHideFlags: 0

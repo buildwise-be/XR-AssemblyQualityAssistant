@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using _project.Scripts.Controllers;
 using _project.Scripts.Views;
+using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AssemblyProcessView : MonoBehaviour
@@ -20,6 +22,7 @@ public class AssemblyProcessView : MonoBehaviour
     [SerializeField] private NexStepButtonBaseView _nextStepButton;
     
     private IAssemblyProcessController _controller;
+    [SerializeField] private CanvasGroup _canvasGroup;
 
     private void Start()
     {
@@ -70,13 +73,16 @@ public class AssemblyProcessView : MonoBehaviour
         {
             _nextStepButton.SetDefaultText();
         }
-       
-        //gameObject.SetActive(true);
+        
         ClearContent();
         UpdateIllustration(step.StepIllustration);
         _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.GetTitle(LocalizationSettings.SelectedLocale.LocaleName)}");
         UpdateInstructions(step.Indications);
         _previousStepButton.SetActive(i > 0);
+        Tween.Alpha(_canvasGroup, 1, 1f).OnComplete(() =>
+        {
+            _canvasGroup.blocksRaycasts = true;
+        });
     }
 
     private void ClearContent()
@@ -122,12 +128,16 @@ public class AssemblyProcessView : MonoBehaviour
     public void ValidateStep()
     {
         CloseCurrentView();
-        _controller.ValidateStep();
+        
     }
 
     private void CloseCurrentView()
     {
-        
+        _canvasGroup.blocksRaycasts = false;
+        Tween.Alpha(_canvasGroup, 0, 1f).OnComplete(() =>
+        {
+            _controller.ValidateStep();
+        });
     }
 
     public void OnOpenDictationButtonClick()
