@@ -46,6 +46,7 @@ public class DictationView : MonoBehaviour
     [SerializeField] private bool _debugSkipLoadPreviousRemarks;
 
     private GameObject[] _listOfRemarksGameObjects;
+    private bool _isCountingDown;
 
 
     private void Awake()
@@ -139,16 +140,29 @@ public class DictationView : MonoBehaviour
     public void OnExitButtonClicked()
     {
         _exitButtonHasBeenPressed = true;
+        
     }
 
     
 
     public void OnStartRecordingButtonClick()
     {
+        if (_isCountingDown)
+        {
+            CancelRecording();
+            return;
+        }
         if (_isRecording) StopRecording();
         else StartRecording();
 
         
+    }
+
+    private void CancelRecording()
+    {
+        _isCountingDown = false;
+        _recordingButton.ResetElement();
+        StopAllCoroutines();
     }
 
     private void StopRecording()
@@ -167,7 +181,8 @@ public class DictationView : MonoBehaviour
         _pendingCommentContainer.gameObject.SetActive(false);
         _dictationTextField.SetText(string.Empty);
         ActivateRemarksButtons(false);
-        _isRecording = true;
+        _isCountingDown = true;
+       
         StartCoroutine(OnStartRecordingCoroutine());
     }
 
@@ -184,11 +199,12 @@ public class DictationView : MonoBehaviour
         yield return _recordingButton.StartRecordingCoroutine();
         #if UNITY_EDITOR
         Debug.Log("Start Recording");
-        
-        #else
+        _isRecording = true;
+        _isCountingDown = false;
+#else
         _dictationHandler.StartRecognition();
-        #endif
-        
+#endif
+
     }
 
     private void SaveSpeech(string arg0)
@@ -196,6 +212,10 @@ public class DictationView : MonoBehaviour
 #if UNITY_EDITOR
         arg0 = $"#{_dictations.Count + 1}: {arg0}";
 #endif
+        _isRecording = false;
+        _dictationHandler.StopRecognition();
+        _recordingButton.ResetElement();
+        
         _dictations.Add(arg0);
         _dictationTextField.SetText(String.Empty);
         ClearPendingCommentContainer();
