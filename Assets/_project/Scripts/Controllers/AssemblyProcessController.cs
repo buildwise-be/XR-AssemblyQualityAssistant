@@ -20,6 +20,7 @@ namespace _project.Scripts.Controllers
 
         private AssemblyStep _currentStep;
         private bool _panelHasBeenPlaced;
+        public Action OnAssemblyEnd { get; set; }
 
         public void SetMonitor(IAssemblyProcessMonitorUseCase monitor)
         {
@@ -147,7 +148,7 @@ namespace _project.Scripts.Controllers
 
         public void CloseAssemblyProcess()
         {
-            
+            OnAssemblyEnd?.Invoke();
         }
 
         public void ReloadCurrentStep()

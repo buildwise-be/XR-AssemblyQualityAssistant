@@ -15,11 +15,21 @@ namespace _project.Scripts.Views
         [SerializeField] private TMP_Text _totalDurationText;
         [Header("Prefabs and Containers")]
     
-        [SerializeField] private GameObject _stepInfoPrefab;
+        //[SerializeField] private GameObject _stepInfoPrefab;
         [SerializeField] private GameObject _endOfProcessPrefab;
         [SerializeField] private Transform _container;
+        [SerializeField] private GameObject[] _stepContainer;
         private RectTransform _containerRectTransform;
 
+
+        private void Awake()
+        {
+            _stepContainer = new GameObject[_container.childCount];
+            for (var i = 0; i < _container.childCount; i++)
+            {
+                _stepContainer[i] = _container.GetChild(i).gameObject;
+            }
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -35,6 +45,8 @@ namespace _project.Scripts.Views
             if (isPrematureEnd) SignalPrematureEnd();
 
             _panel.SetActive(true);
+            transform.SetPositionAndRotation(Camera.main.transform.position + Camera.main.transform.forward * 0.7f, Camera.main.transform.rotation);
+
         }
 
         private void SignalPrematureEnd()
@@ -44,13 +56,18 @@ namespace _project.Scripts.Views
 
         private void CreateReport()
         {
+            foreach (var VARIABLE in _stepContainer)
+            {
+                VARIABLE.SetActive(false);
+            }
             var stepInfoDataArray = _assemblyProcessController.GetAssemblyProcessData();
             var totalDuration = 0f;
             for (var i = 0; i < stepInfoDataArray.Length; i++)
             {
                 if (stepInfoDataArray[i].m_nbOfStepSession == 0) continue;
-                
-                var stepInfoInstance = Instantiate(_stepInfoPrefab, _container);
+
+
+                var stepInfoInstance = _stepContainer[i];
                 var stepInfoView = stepInfoInstance.GetComponent<IStepInfoView>();
                 
                 stepInfoView.SetStepData(stepInfoDataArray[i]);
@@ -60,6 +77,7 @@ namespace _project.Scripts.Views
                 totalDuration += stepDuration;
                 string durationString = ConvertDuration(stepDuration);
                 stepInfoView.SetDuration(durationString);
+                stepInfoInstance.SetActive(true);
             }
             _totalDurationText.text = "Total duration: "+ConvertDuration(totalDuration);
         }

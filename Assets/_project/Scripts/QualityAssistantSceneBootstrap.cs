@@ -29,7 +29,14 @@ namespace _project.Scripts
             _dictationPanelController.SetUseCase(_monitor);
         
             _assemblyProcessView.SetController(_assemblyProcessController);
-        
+            _assemblyProcessController.OnAssemblyEnd += EndSession;
+
+        }
+
+        private void EndSession()
+        {
+            
+            _solredoMainManager.EndSession();
         }
 
         public void StartAssemblyProcess(string assemblyName)

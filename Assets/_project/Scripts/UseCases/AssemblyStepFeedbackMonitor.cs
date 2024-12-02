@@ -166,6 +166,7 @@ namespace _project.Scripts.UseCases
 
         public bool IsInIssueMode => _currentReportType == AssemblyRemark.TYPE.ISSUE;
         public bool StopAssemblyOnDictationEnd { get; set; }
+        public Action OnAssemblyEnd { get; set; }
 
         public void AddAssemblyRemark(string message)
         {

@@ -4,6 +4,7 @@ using MixedReality.Toolkit.UX;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Localization;
+using UnityEngine.SceneManagement;
 
 public class SolredoUIManager : MonoBehaviour
 {
@@ -136,14 +137,13 @@ public class SolredoUIManager : MonoBehaviour
     public void ShowFinalizeDialog()
     {
         d = (Dialog)_dialogPool.Get()
-      .SetHeader("Valider pour production")
-      .SetBody("Etes-vous certain de vouloir valider le contr�le qualit� et envoyer le signal pour production ?")
-      .SetPositive("Oui", (args) =>
-      {
-          d.Dismiss();
-      })
-      .SetNegative("Non", (args) => { d.Dismiss(); })
-      .Show();
+            .SetHeader("End Of Assembly Process")
+            .SetBody("Click here to go back to start menu.")
+            .SetPositive("Oui", (args) =>
+            {
+                d.Dismiss();
+                SceneManager.LoadScene(0);
+            }).Show();
     }
 
     void EnableSlabPlacement()
@@ -160,5 +160,18 @@ public class SolredoUIManager : MonoBehaviour
     public void ShowQRScanInfoDialog()
     {
         ShowInfoDialog(_QRScanHeaderValue, _QRScanMessageValue/*"Scannez le QR Code pour placer le module choisi"*/, null);
+    }
+
+    public void ShowAssemblyEndDialogue()
+    {
+        d = (Dialog)_dialogPool.Get()
+            .SetHeader("Valider pour production")
+            .SetBody("Etes-vous certain de vouloir valider le contr�le qualit� et envoyer le signal pour production ?")
+            .SetPositive("Oui", (args) =>
+            {
+                d.Dismiss();
+            })
+            .SetNegative("Non", (args) => { d.Dismiss(); })
+            .Show();
     }
 }

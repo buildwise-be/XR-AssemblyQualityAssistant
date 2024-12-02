@@ -173,4 +173,9 @@ public class SolredoMainManager : MonoBehaviour
         _appData.project = optionsAssemblyProject;
         OnAssemblyStartProcessEvent?.Invoke(_appData.project.m_guid);
     }
+
+    public void EndSession()
+    {
+        _UIManager.ShowFinalizeDialog();
+    }
 }
