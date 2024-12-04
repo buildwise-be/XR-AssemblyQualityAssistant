@@ -27,6 +27,8 @@ public class PlacementManager : MonoBehaviour
     private IHandsAggregatorSubsystem handsAggregatorSubsystem;
 
     private bool _isSlabCreationAuthorized = false;
+    public GameObject Prefab;
+
     public bool IsSlabCreationAuthorized 
     { 
         get
@@ -94,7 +96,7 @@ public class PlacementManager : MonoBehaviour
     {
         if (_ConcreteSlab == null)
         {
-            _ConcreteSlab = Instantiate(_ConcreteSlabPrefab, placePosition, Quaternion.identity);
+            _ConcreteSlab = Instantiate(Prefab, placePosition, Quaternion.identity);
             OnConcreteSlabInstantiated?.Invoke(_ConcreteSlab);
         }
     }
