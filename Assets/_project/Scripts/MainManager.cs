@@ -46,11 +46,11 @@ public class MainManager : MonoBehaviour
 
     public event Action OnAssemblyStartProcessEvent;
     
-    public async void StartProcess(QualityProjectScriptableObject qualityProjectScriptableObject)
+    public async void StartProcess(AssemblyProjectScriptableObject qualityProjectScriptableObject)
     {
         try
         {
-            _placementManager.Prefab = qualityProjectScriptableObject.Prefab;
+            _placementManager.Prefab = qualityProjectScriptableObject.m_modulePrefab;
             var result = await _uiManager.DisplayStartProcessMessage();
 
             switch (result)

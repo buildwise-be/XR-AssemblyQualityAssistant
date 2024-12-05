@@ -9,14 +9,14 @@ public class QualityManagerBootstrap : MonoBehaviour
 {
     //[SerializeField] private AssemblyProcessOptions _options;
         
-    //[SerializeField] private AppData _appData;
+    [SerializeField] private AppData _appData;
     //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
     public AssemblyProcessController _assemblyProcessController;
     public DictationPanelController _dictationPanelController;
     public AssemblyProcessView _assemblyProcessView;
     [SerializeField]private MainManager _mainManager;
     private AssemblyStepFeedbackMonitor _monitor;
-    [SerializeField] private QualityProjectScriptableObject _qualityProject;
+    [SerializeField] private AssemblyProjectScriptableObject _qualityProject;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +39,7 @@ public class QualityManagerBootstrap : MonoBehaviour
 
     public void StartAssemblyProcess()
     {
+        _appData.project = _qualityProject;
         _monitor.InitMonitoring(_qualityProject.m_guid);
     }
 
