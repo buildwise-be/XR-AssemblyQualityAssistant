@@ -34,26 +34,33 @@ namespace MRTKExtensions.QRCodes
 
         private async void Start()
         {
-            // Give service time to start;
-            await Task.Delay(250);
-
-            if (!QRCodeTrackingService.IsSupported)
+            try
             {
-                if (_debugText != null)
-                    _debugText.text += "\nQRCodeTrackingService not supported!";
-                return;
+                // Give service time to start;
+                await Task.Delay(250);
+
+                if (!QRCodeTrackingService.IsSupported)
+                {
+                    if (_debugText != null)
+                        _debugText.text += "\nQRCodeTrackingService not supported!";
+                    return;
+                }
+
+                markerHolder = spatialGraphCoordinateSystemSetter.gameObject.transform;
+                markerDisplay = markerHolder.GetChild(0).gameObject;
+                markerDisplay.SetActive(false);
+
+                audioSource = markerHolder.gameObject.GetComponent<AudioSource>();
+
+                QRCodeTrackingService.QRCodeFound += ProcessTrackingFound;
+                spatialGraphCoordinateSystemSetter.PositionAcquired += SetPosition;
+                spatialGraphCoordinateSystemSetter.PositionAcquisitionFailed +=
+                    (s, e) => ResetTracking();
             }
-
-            markerHolder = spatialGraphCoordinateSystemSetter.gameObject.transform;
-            markerDisplay = markerHolder.GetChild(0).gameObject;
-            markerDisplay.SetActive(false);
-
-            audioSource = markerHolder.gameObject.GetComponent<AudioSource>();
-
-            QRCodeTrackingService.QRCodeFound += ProcessTrackingFound;
-            spatialGraphCoordinateSystemSetter.PositionAcquired += SetPosition;
-            spatialGraphCoordinateSystemSetter.PositionAcquisitionFailed +=
-                (s, e) => ResetTracking();
+            catch (Exception e)
+            {
+                throw; // TODO handle exception
+            }
         }
 
         public void StartTracking()
@@ -138,5 +145,6 @@ namespace MRTKExtensions.QRCodes
                 enabled = false;
             }
         }
+        
     }
 }

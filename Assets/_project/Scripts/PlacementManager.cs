@@ -28,6 +28,7 @@ public class PlacementManager : MonoBehaviour
 
     private bool _isSlabCreationAuthorized = false;
     public GameObject Prefab;
+    private bool _isRunning;
 
     public bool IsSlabCreationAuthorized 
     { 
@@ -43,6 +44,11 @@ public class PlacementManager : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    public void Initialize()
+    {
         _rightHandController.selectAction.action.performed += OnPinchRight;
         _leftHandController.selectAction.action.performed += OnPinchLeft;
         handsAggregatorSubsystem = XRSubsystemHelpers.GetFirstRunningSubsystem<IHandsAggregatorSubsystem>();
@@ -50,10 +56,12 @@ public class PlacementManager : MonoBehaviour
         MRTKRayInteractor rightRay = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
         rightRay.translateSpeed = _translateSpeed;
         _previousTranslateSpeed = _translateSpeed;
+        _isRunning = true;
     }
 
     private void Update()
     {
+        if (_isRunning == false) return;
         if (_previousTranslateSpeed != _translateSpeed)
         {
             MRTKRayInteractor rightRay = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
@@ -82,7 +90,7 @@ public class PlacementManager : MonoBehaviour
     }
 
     private void OnPinchRight(InputAction.CallbackContext context)
-    {
+    { 
         if (_isSlabCreationAuthorized)
         {
             Vector3 pinchPos = GetPinchPosition(_rightHandController);
@@ -92,7 +100,7 @@ public class PlacementManager : MonoBehaviour
         _isSlabCreationAuthorized = false;
     }
 
-    private void PlaceConcreteSlab(Vector3 placePosition)
+    public void PlaceConcreteSlab(Vector3 placePosition)
     {
         if (_ConcreteSlab == null)
         {

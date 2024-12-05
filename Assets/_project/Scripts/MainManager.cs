@@ -1,5 +1,6 @@
 using System;
 using _project.Scripts.Controllers.QualityProject;
+using MRTKExtensions.QRCodes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,14 +8,24 @@ public class MainManager : MonoBehaviour
 {
     [SerializeField] private PlacementManager _placementManager;
     [SerializeField] private QualityManager _qualityManager;
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private QRTrackerController _QrDetector;
+
     void OnEnable()
     {
         _placementManager.OnConcreteSlabInstantiated = new UnityEvent<GameObject>();
         _placementManager?.OnConcreteSlabInstantiated.AddListener(OnSlabInstantiated);
+        
+    }
+
+    private void OnPositionFound(object sender, Pose e)
+    {
+        _placementManager.PlaceConcreteSlab(e.position);
     }
 
     private void OnSlabInstantiated(GameObject arg0)
     {
+        
         _qualityManager.SetInspectedObject(arg0);
     }
 
@@ -35,10 +46,32 @@ public class MainManager : MonoBehaviour
 
     public event Action OnAssemblyStartProcessEvent;
     
-    public void StartProcess(QualityProjectScriptableObject qualityProjectScriptableObject)
+    public async void StartProcess(QualityProjectScriptableObject qualityProjectScriptableObject)
     {
-        
-        _placementManager.Prefab = qualityProjectScriptableObject.Prefab;
+        try
+        {
+            _placementManager.Prefab = qualityProjectScriptableObject.Prefab;
+            var result = await _uiManager.DisplayStartProcessMessage();
+
+            switch (result)
+            {
+                case 1: // QRCode
+                    _uiManager.ShowQRIntroDialog();
+                    _QrDetector.StartTracking();
+                    _QrDetector.PositionSet += OnPositionFound;
+                    
+                    break;
+                case 2: // Manual
+                    _uiManager.ShowManualIntroDialog();
+                    _placementManager.Initialize();
+                    _placementManager.OnConcreteSlabInstantiated.AddListener(OnSlabInstantiated);
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            throw; // TODO handle exception
+        }
     }
 
     public void BeginQualityMonitoring()

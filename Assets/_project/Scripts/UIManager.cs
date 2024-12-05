@@ -1,5 +1,6 @@
 using MixedReality.Toolkit.UX;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -13,18 +14,28 @@ public class UIManager : MonoBehaviour
         _dialogPool = GetComponent<DialogPool>();
         _placementManager = FindObjectOfType<PlacementManager>();
         _qualityManager = FindObjectOfType<QualityManager>();
-        ShowIntroDialog();
     }
 
-    private void ShowIntroDialog()
+    public void ShowManualIntroDialog()
     {
         d = (Dialog)_dialogPool.Get()
        .SetHeader("Instructions")
-       .SetBody("Une fois dans l'application, placez le modèle de dalle béton en 'cliquant' des doigts.\r\n" +
-       "Déplacez-le ensuite de manière à ce qu'il soit superposé à sa contrepartie réelle.\r\n" +
-       "\r\nUne fois placé, utilisez le menu main pour commencer le contrôle qualité.")
+       .SetBody("Une fois dans l'application, placez le modï¿½le de dalle bï¿½ton en 'cliquant' des doigts.\r\n" +
+       "Dï¿½placez-le ensuite de maniï¿½re ï¿½ ce qu'il soit superposï¿½ ï¿½ sa contrepartie rï¿½elle.\r\n" +
+       "\r\nUne fois placï¿½, utilisez le menu main pour commencer le contrï¿½le qualitï¿½.")
        .SetPositive("Ok", (args) => { EnableSlabPlacement(); d.Dismiss(); })
        .Show();
+    }
+    
+    public void ShowQRIntroDialog()
+    {
+        d = (Dialog)_dialogPool.Get()
+            .SetHeader("Instructions")
+            .SetBody("Une fois dans l'application, placez le QR au sol.\r\n" +
+                     "Scannez afin de placee automatiquement le modÃ¨le.\r\n" +
+                     "\r\nUne fois placï¿½, utilisez le menu main pour commencer le contrï¿½le qualitï¿½.")
+            .SetPositive("Ok", (args) => { EnableSlabPlacement(); d.Dismiss(); })
+            .Show();
     }
 
     public void ShowInfoDialog(string header, string body)
@@ -40,8 +51,8 @@ public class UIManager : MonoBehaviour
     {
         _placementManager.LockSlabPosition();
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Effectuez chaque vérification une à une.")
+       .SetHeader("Contrï¿½le Qualitï¿½")
+       .SetBody("Effectuez chaque vï¿½rification une ï¿½ une.")
        .SetPositive("Commencer", (args) => 
        {
            _qualityManager.UnHighlightCurrentInspectedItem();
@@ -56,7 +67,7 @@ public class UIManager : MonoBehaviour
     private void UpdateQualityDialog(QualityItem q)
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
+       .SetHeader("Contrï¿½le Qualitï¿½")
        .SetBody(q.Instructions)
        .SetPositive("Suivant", (args) =>
        {
@@ -72,15 +83,15 @@ public class UIManager : MonoBehaviour
            UpdateQualityDialog(q);
            _qualityManager.HighlightCurrentInspectedItem();
        })
-       .SetNegative("Arrêter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
+       .SetNegative("Arrï¿½ter", (args) => { d.Dismiss(); _qualityManager.ResetQualityControl(); })
        .Show();
     }
 
     private void ShowEndQualityDialog()
     {
         d = (Dialog)_dialogPool.Get()
-       .SetHeader("Contrôle Qualité")
-       .SetBody("Tous les points d'attention ont été contrôlés!")
+       .SetHeader("Contrï¿½le Qualitï¿½")
+       .SetBody("Tous les points d'attention ont ï¿½tï¿½ contrï¿½lï¿½s!")
        .SetPositive("Terminer", (args) =>
        {
            d.Dismiss();
@@ -92,7 +103,7 @@ public class UIManager : MonoBehaviour
     {
         d = (Dialog)_dialogPool.Get()
       .SetHeader("Valider pour production")
-      .SetBody("Etes-vous certain de vouloir valider le contrôle qualité et envoyer le signal pour production ?")
+      .SetBody("Etes-vous certain de vouloir valider le contrï¿½le qualitï¿½ et envoyer le signal pour production ?")
       .SetPositive("Oui", (args) =>
       {
           d.Dismiss();
@@ -110,5 +121,30 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         _placementManager.IsSlabCreationAuthorized = true;
+    }
+
+    public async Task<int>  DisplayStartProcessMessage()
+    {
+        var decision = 0;
+        d = (Dialog)_dialogPool.Get()
+            .SetHeader("Choose your placement method")
+            .SetBody("Which placement method would you like to use?")
+            .SetPositive("QR Code", (args) =>
+            {
+                decision = 1;
+                d.Dismiss();
+            })
+            .SetNegative("Manual", (args) =>
+            {
+                decision = 2;
+                d.Dismiss();
+            })
+            .Show();
+        while (decision == 0)
+        {
+            await Task.Yield();
+        }
+        return decision;
+        
     }
 }
