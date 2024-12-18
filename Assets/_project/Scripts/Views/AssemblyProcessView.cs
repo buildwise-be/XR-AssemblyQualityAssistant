@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using _project.Scripts.Controllers;
@@ -65,6 +64,8 @@ public class AssemblyProcessView : MonoBehaviour
     private void DisplayStepInfo(int i,AssemblyStep step)
     {
         var nbOfSteps = _controller.TotalNumberOfSteps;
+        _previousStepButton.SetActive(i > 0);
+        
         if (i == nbOfSteps - 1)
         {
             _nextStepButton.SetEndOfProcessText();
@@ -74,15 +75,27 @@ public class AssemblyProcessView : MonoBehaviour
             _nextStepButton.SetDefaultText();
         }
         
-        ClearContent();
-        UpdateIllustration(step.StepIllustration);
-        _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.GetTitle(LocalizationSettings.SelectedLocale.LocaleName)}");
-        UpdateInstructions(step.Indications);
-        _previousStepButton.SetActive(i > 0);
+        var displayOverride = GetComponent<DisplayOverride>();
+        
         Tween.Alpha(_canvasGroup, 1, 1f).OnComplete(() =>
         {
             _canvasGroup.blocksRaycasts = true;
         });
+        
+        if (displayOverride != null)
+        {
+            displayOverride.OverrideDisplayProcess(i, step);
+            return;
+        }
+        
+        
+        
+        ClearContent();
+        UpdateIllustration(step.StepIllustration);
+        _headerText.SetText($"#{i+1+"-"+nbOfSteps}: {step.GetTitle(LocalizationSettings.SelectedLocale.LocaleName)}");
+        UpdateInstructions(step.Indications);
+        
+        
     }
 
     private void ClearContent()

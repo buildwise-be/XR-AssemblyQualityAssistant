@@ -16,7 +16,9 @@ MonoBehaviour:
   m_name: 
   _assemblySteps:
   - StepID: 0
-    Title: []
+    Title:
+    - Language: 
+      TextData: 
     Indications:
     - IndicationID: 0
       IndicationText: 
@@ -28,6 +30,13 @@ MonoBehaviour:
     StepIllustration: {fileID: 0}
   - StepID: 0
     Title: []
-    Indications: []
+    Indications:
+    - IndicationID: 0
+      IndicationText: 
+      Text:
+      - Language: 
+        TextData: Controleer of er een vinkje staat
+      - Language: French (Belgium) (fr-BE)
+        TextData: "V\xE9rifiez la pr\xE9sence d'un crochet"
     StepIllustration: {fileID: 0}
   m_modulePrefab: {fileID: 532267391907618141, guid: b5ffd0257d343b94c9df5e8ac0ad1452, type: 3}

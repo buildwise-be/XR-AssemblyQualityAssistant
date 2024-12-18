@@ -50,6 +50,59 @@ MonoBehaviour:
     m_Localized: QR Code
     m_Metadata:
       m_Items: []
+  - m_Id: 6949945696395264
+    m_Localized: Instructies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6951010223333376
+    m_Localized: 'Eenmaal in de applicatie plaatst u het betonplaatmodel door met
+      uw vingers te ''klikken''.\r\n
+
+      Verplaats het vervolgens zodat het over
+      zijn echte tegenhanger heen wordt gelegd.\r\n
+
+      \r\nEenmaal geplaatst,
+      gebruikt u het hoofdmenu om de kwaliteitscontrole te starten.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952632664006656
+    m_Localized: Instructies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952663479558144
+    m_Localized: 'Eenmaal in de app plaats je de QR op de grond.\r\n
+
+      Scan
+      om het model automatisch te plaatsen.\r\n
+
+      \r\nEenmaal geplaatst, gebruik
+      je het hoofdmenu om de kwaliteitscontrole te starten.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096380454248448
+    m_Localized: Module plaatsen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096332723068928
+    m_Localized: Kies hoe je de module wilt plaatsen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099141430353920
+    m_Localized: Annuleren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099133356318720
+    m_Localized: Begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099038539882496
+    m_Localized: "Voer elke controle \xE9\xE9n voor \xE9\xE9n uit."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8098914866634752
+    m_Localized: Kwaliteitscontrole
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
