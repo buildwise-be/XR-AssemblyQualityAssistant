@@ -5,5 +5,4 @@ using UnityEngine;
 public class AppData : ScriptableObject
 {
     public AssemblyProjectScriptableObject project;
-    public QualityProjectScriptableObject m_qualityProject;
 }

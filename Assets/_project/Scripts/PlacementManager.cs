@@ -128,6 +128,8 @@ public class PlacementManager : MonoBehaviour
         }
         _ConcreteSlab.GetComponentInChildren<Canvas>(true).gameObject.SetActive(!isCurrentlyLocked);
     }
+    
+    public bool IsSlabLocked => _ConcreteSlab.GetComponent<ObjectManipulator>().AllowedInteractionTypes == InteractionFlags.None;
 
     public void FineTuneVerticalSlabPosition(SliderEventData sliderEventData)
     {
