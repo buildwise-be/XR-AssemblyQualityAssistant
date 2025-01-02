@@ -1707,7 +1707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _options:
     _skipHousePlacementPhase: 1
-    _skipAll: 1
+    _skipAll: 0
     _assemblyProject: {fileID: 11400000, guid: bb69a044b8f2ac84e9b1edf526642716, type: 2}
   _assemblyProcessController: {fileID: 970821983}
   _dictationPanelController: {fileID: 1291450168}
@@ -14364,6 +14364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dash Holster - AJ
       objectReference: {fileID: 0}
+    - target: {fileID: 6177449203944671515, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
+      propertyPath: _spawnDistance
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6785690423039546007, guid: cadb8863d2eecbe488ee9ad63edaaedc, type: 3}
       propertyPath: m_Size.x
       value: 278.9265
@@ -17602,6 +17606,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1484721397}
     m_Modifications:
+    - target: {fileID: 844245368137265796, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844245368137265796, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5157901076612623086, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17640,6 +17652,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157901076612623086, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473478957376546587, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_Size.x
+      value: 488.49902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473478957376546587, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_Center.x
+      value: 244.24951
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989342628205967230, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989342628205967230, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134500849886505528, guid: 4ca776f589aefb747b137b0ed46a8f74, type: 3}

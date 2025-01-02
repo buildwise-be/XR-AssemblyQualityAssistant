@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Schelfhout-01
   m_EditorClassIdentifier: 
   m_guid: 76f6991334c15bf468d4c1fa074a6085
-  m_name: 
+  m_name: tesd
   _assemblySteps:
   - StepID: 0
     Title:
     - Language: 
       TextData: 
+    - Language: French (Belgium) (fr-BE)
+      TextData: "V\xE9rifiez la pr\xE9sence d'un crochet"
     Indications:
     - IndicationID: 0
       IndicationText: 
@@ -29,7 +31,11 @@ MonoBehaviour:
         TextData: "V\xE9rifiez la pr\xE9sence d'un crochet"
     StepIllustration: {fileID: 0}
   - StepID: 0
-    Title: []
+    Title:
+    - Language: 
+      TextData: 
+    - Language: French (Belgium) (fr-BE)
+      TextData: "V\xE9rifiez la pr\xE9sence d'un crochet"
     Indications:
     - IndicationID: 0
       IndicationText: 
