@@ -1,7 +1,6 @@
-﻿using _project.Scripts.Controllers.QualityProject;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(menuName ="BuildWize/App Data")]
+[CreateAssetMenu(menuName ="Buildwise/App Data")]
 public class AppData : ScriptableObject
 {
     public AssemblyProjectScriptableObject project;

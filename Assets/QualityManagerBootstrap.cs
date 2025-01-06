@@ -1,6 +1,6 @@
 using System.Collections;
 using _project.Scripts.Controllers;
-using _project.Scripts.Controllers.QualityProject;
+
 using _project.Scripts.Gateways;
 using _project.Scripts.UseCases;
 using UnityEngine;

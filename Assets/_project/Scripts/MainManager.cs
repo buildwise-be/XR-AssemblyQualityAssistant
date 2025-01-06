@@ -1,5 +1,4 @@
 using System;
-using _project.Scripts.Controllers.QualityProject;
 using MRTKExtensions.QRCodes;
 using UnityEngine;
 using UnityEngine.Events;
