@@ -8,6 +8,7 @@ public class AssemblyModuleView : MonoBehaviour
 
     private IAssemblyProcessController _controller;
     [SerializeField] bool _isAssemblyProcessAdditive = true;
+    private int _lastStepIndex;
 
     public void SetController(IAssemblyProcessController controller)
     {
@@ -27,13 +28,23 @@ public class AssemblyModuleView : MonoBehaviour
                     continue;
                 }
                 _subModules[i].SetActive(true);
-                var animator = _subModules[i].GetComponent<StepAnimator>();
+                var animator = _subModules[i].GetComponent<IStepAnimation>();
                 if (i < arg1)
                 {
-                    if(animator) animator.StopAnimation();
+                    animator?.StopAnimation();
                     continue;
                 }
-                if(animator) animator.PlayAnimation();
+
+                if (_lastStepIndex >= arg1)
+                {
+                    animator?.PlayAnimationReverse();
+                }
+                else
+                {
+                    animator?.PlayAnimation();
+                }
+                
+                _lastStepIndex = arg1;
             }
         }
     }

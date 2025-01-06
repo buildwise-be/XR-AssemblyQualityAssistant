@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StepAnimator : MonoBehaviour
+public class StepAnimator : MonoBehaviour, IStepAnimation
 {
     [SerializeField] private Animator _animator;
     
@@ -12,8 +12,21 @@ public class StepAnimator : MonoBehaviour
     {
         _animator.SetBool("StopAnimBool",true);
     }
+
+    public void PlayAnimationReverse()
+    {
+        _animator.SetBool("StopAnimBool",false);
+    }
+
     public void PlayAnimation()
     {
         _animator.SetBool("StopAnimBool",false);
     }
+}
+
+public interface IStepAnimation
+{
+    void PlayAnimation();
+    void StopAnimation();
+    void PlayAnimationReverse();
 }
