@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StepAnimator : MonoBehaviour, IStepAnimation
@@ -18,6 +16,11 @@ public class StepAnimator : MonoBehaviour, IStepAnimation
         _animator.SetBool("StopAnimBool",false);
     }
 
+    public void Setup(int currentStep)
+    {
+        gameObject.SetActive(currentStep <= Step);
+    }
+
     public void PlayAnimation()
     {
         _animator.SetBool("StopAnimBool",false);
@@ -29,4 +32,5 @@ public interface IStepAnimation
     void PlayAnimation();
     void StopAnimation();
     void PlayAnimationReverse();
+    void Setup(int i);
 }

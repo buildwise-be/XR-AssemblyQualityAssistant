@@ -16,26 +16,22 @@ public class AssemblyModuleView : MonoBehaviour
         _controller.OnDisplayStep += DisplayStep;
     }
 
-    private void DisplayStep(int arg1, AssemblyStep arg2)
+    private void DisplayStep(int stepIndex, AssemblyStep arg2)
     {
         if (_isAssemblyProcessAdditive)
         {
             for (var i = 0; i < _subModules.Length; i++)
             {
-                if (i > arg1)
-                {
-                    _subModules[i].SetActive(false);
-                    continue;
-                }
-                _subModules[i].SetActive(true);
                 var animator = _subModules[i].GetComponent<IStepAnimation>();
-                if (i < arg1)
+                animator.Setup(stepIndex);
+                
+                if (i < stepIndex)
                 {
                     animator?.StopAnimation();
                     continue;
                 }
 
-                if (_lastStepIndex >= arg1)
+                if (_lastStepIndex >= stepIndex)
                 {
                     animator?.PlayAnimationReverse();
                 }
@@ -44,7 +40,7 @@ public class AssemblyModuleView : MonoBehaviour
                     animator?.PlayAnimation();
                 }
                 
-                _lastStepIndex = arg1;
+                _lastStepIndex = stepIndex;
             }
         }
     }
