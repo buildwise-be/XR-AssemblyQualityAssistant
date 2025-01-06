@@ -25,7 +25,6 @@ namespace _project.Scripts.Controllers
         public void SetMonitor(IAssemblyProcessMonitorUseCase monitor)
         {
             _assemblyProcessMonitorUseCase = monitor;
-            _currentProject = _appData.project;
             _currentStepIndex = -1;
             _assemblyProcessMonitorUseCase.OnStartAssemblyProcessEvent += StartAssembly;
             _assemblyProcessMonitorUseCase.OnShowAssemblyPanel += ShowPanel;
@@ -58,6 +57,7 @@ namespace _project.Scripts.Controllers
 
         private void StartAssembly()
         {
+            _currentProject = _appData.project;
             _panelHasBeenPlaced = false;
             LoadFirstStep();
         

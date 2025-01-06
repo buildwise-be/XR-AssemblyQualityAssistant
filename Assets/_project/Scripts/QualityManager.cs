@@ -1,5 +1,7 @@
+using System;
 using MixedReality.Toolkit.SpatialManipulation;
 using System.Collections.Generic;
+using _project.Scripts.Controllers;
 using UnityEngine;
 
 public class QualityManager : MonoBehaviour
@@ -7,14 +9,35 @@ public class QualityManager : MonoBehaviour
     private GameObject _inspectedObject;
     private int _inspectionItemIndex = -1;
     private QualityItem _currentInspectionItem;
-    private List<QualityItem> _qualityItems;
+    private QualityItem[] _qualityItems;
+    
+    public AssemblyProcessController AssemblyStep;
 
     [SerializeField] private GameObject _chevronIndicator;
+    [SerializeField] private GameObject _qualityInspectionHint; 
+
+    private void Start()
+    {
+        AssemblyStep.OnDisplayStep += DisplayStep;
+        AssemblyStep.OnEndProcessEvent += CloseQualityProcess;
+    }
+
+    private void CloseQualityProcess(bool obj)
+    {
+        UnHighlightCurrentInspectedItem();
+    }
+
+    private void DisplayStep(int arg1, AssemblyStep arg2)
+    {
+        UnHighlightCurrentInspectedItem();
+        GetNextInspectionElement(arg1);
+        HighlightCurrentInspectedItem();
+    }
 
     public void SetInspectedObject(GameObject go)
     {
         _inspectedObject = go;
-        _qualityItems = new List<QualityItem>(_inspectedObject.GetComponentsInChildren<QualityItem>());
+        _qualityItems = _inspectedObject.GetComponent<QualityItemManager>().qualityItems;
     }
 
     /*
@@ -40,14 +63,24 @@ public class QualityManager : MonoBehaviour
 
     public void HighlightCurrentInspectedItem()
     {
+
+        if (_currentInspectionItem == null)
+        {
+            _qualityInspectionHint.SetActive(false);
+            return;
+        }
         _currentInspectionItem.GetComponent<HighlightedObject>().HighlightState = HighlightedObject.HighlightStates.Highlighted;
         _chevronIndicator.SetActive(true);
         _chevronIndicator.GetComponent<DirectionalIndicator>().DirectionalTarget = _currentInspectionItem.transform;
+        _qualityInspectionHint.SetActive(true);
+        _qualityInspectionHint.transform.position = _currentInspectionItem.transform.position;
     }
 
     public void UnHighlightCurrentInspectedItem()
     {
         _chevronIndicator.SetActive(false);
+        _qualityInspectionHint.SetActive(false);
+        
         if (_currentInspectionItem != null)
         {
             _currentInspectionItem.GetComponent<HighlightedObject>().HighlightState = HighlightedObject.HighlightStates.NotHighlighted;
@@ -71,6 +104,24 @@ public class QualityManager : MonoBehaviour
         _inspectionItemIndex = -1;
         return item;
     }
+    
+    public QualityItem GetNextInspectionElement(int index)
+    {
+        _inspectionItemIndex = index;
+        QualityItem item = null;
+        foreach (QualityItem i in _qualityItems)
+        {
+            if (i.OrderIndex == _inspectionItemIndex)
+            {
+                _currentInspectionItem = i;
+                return i;
+            }
+        }
+
+        _currentInspectionItem = null;
+        _inspectionItemIndex = -1;
+        return item;
+    }
 
     public void ResetQualityControl()
     {
@@ -80,5 +131,7 @@ public class QualityManager : MonoBehaviour
         {
             obj.HighlightState = HighlightedObject.HighlightStates.NotHighlighted;
         }
+
+        _qualityInspectionHint.SetActive(false);
     }
 }

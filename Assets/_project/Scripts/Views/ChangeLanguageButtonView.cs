@@ -31,7 +31,7 @@ public class ChangeLanguageButtonView : MonoBehaviour
     void Update()
     {
         #if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.Space)) OnNextLocaleShowed();
+        if(Input.GetKeyDown(KeyCode.L)) OnNextLocaleShowed();
         #endif
     }
     

@@ -47,6 +47,46 @@ MonoBehaviour:
     m_Key: QRScanMessage
     m_Metadata:
       m_Items: []
+  - m_Id: 6949945696395264
+    m_Key: ShowManualIntroDialogHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6951010223333376
+    m_Key: ShowManualIntroDialogBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952632664006656
+    m_Key: ShowQRIntroDialogHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952663479558144
+    m_Key: ShowQRIntroDialogBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096332723068928
+    m_Key: ChoosePlacementMethodDialogBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096380454248448
+    m_Key: _choosePlacementMethodDialogHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8098914866634752
+    m_Key: QualityControlDialogHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099038539882496
+    m_Key: QualityControlDialogBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099133356318720
+    m_Key: QualityControlDialogValidate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099141430353920
+    m_Key: QualityControlDialogCancel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

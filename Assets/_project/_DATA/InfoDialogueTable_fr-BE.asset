@@ -51,6 +51,51 @@ MonoBehaviour:
     m_Localized: Scannez le QR Code pour placer le module choisi
     m_Metadata:
       m_Items: []
+  - m_Id: 6949945696395264
+    m_Localized: Instructions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6951010223333376
+    m_Localized: "Une fois dans l'application, placez le mod\xE8le de dalle b\xE9ton
+      en 'cliquant' des doigts.\\r\\n\r\nD\xE9placez-le ensuite de mani\xE8re \xE0
+      ce qu'il soit superpos\xE9 \xE0 sa contrepartie r\xE9elle.\\r\\n\r\n\\r\\nUne
+      fois plac\xE9, utilisez le menu main pour commencer le contr\xF4le qualit\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952632664006656
+    m_Localized: Instructions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6952663479558144
+    m_Localized: "Une fois dans l'application, placez le QR au sol.\\r\\n\r\nScannez
+      afin de placee automatiquement le mod\xE8le.\\r\\n\r\n\\r\\nUne fois plac\xE9,
+      utilisez le menu main pour commencer le contr\xF4le qualit\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096332723068928
+    m_Localized: "Choisissez votre m\xE9thode de placement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8096380454248448
+    m_Localized: Placement du module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8098914866634752
+    m_Localized: "Contr\xF4le Qualit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099038539882496
+    m_Localized: "Effectuez chaque v\xE9rification une \xE0 une."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099133356318720
+    m_Localized: Commencer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8099141430353920
+    m_Localized: Annuler
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
