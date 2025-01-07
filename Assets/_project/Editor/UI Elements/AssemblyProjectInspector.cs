@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(AssemblyProjectScriptableObject))]
+//[CustomEditor(typeof(AssemblyProjectScriptableObject))]
 public class AssemblyProjectInspector : Editor
 {
     public VisualTreeAsset m_assetTree;

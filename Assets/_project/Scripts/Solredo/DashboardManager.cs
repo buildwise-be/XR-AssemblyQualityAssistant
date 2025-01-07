@@ -37,8 +37,8 @@ public class DashboardManager : MonoBehaviour
 
     private void SetHeaderText(AssemblyStep step)
     {
-        string text = "Etape " + step.StepID;
-        _imageHeaderText.text = text;
+        //string text = "Etape " + step.StepID;
+        //_imageHeaderText.text = text;
     }
 
     private void SetIndicationsNumber(AssemblyStep step)

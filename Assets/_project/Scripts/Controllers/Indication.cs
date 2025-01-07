@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Indication
 {
-    public int IndicationID;
     [HideInInspector] public string IndicationText;
     [FormerlySerializedAs("LocalizedIndications")] public LocalizedStringData[] Text;
     public string GetText(string _language)

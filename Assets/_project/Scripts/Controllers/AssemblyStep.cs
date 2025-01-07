@@ -7,7 +7,7 @@ namespace _project.Scripts.Controllers
     [Serializable]
     public class AssemblyStep
     {
-        public int StepID;
+        //public int StepID;
         [SerializeField] LocalizedStringData[] Title;
         public List<Indication> Indications;
         public Sprite StepIllustration;
