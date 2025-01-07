@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383914d3a27c7384aba3981b475a4658, type: 3}
+  m_Name: 2020-06-12-GD-DamienDBK-ToitureSarking-Fig 1.7 3D 5
+  m_EditorClassIdentifier: 
+  <FilePath>k__BackingField: C:/Users/aca/Downloads/2020-06-12-GD-DamienDBK-ToitureSarking-Fig
+    1.7 3D 5.fbx
+  m_Prefab: {fileID: 8571147077183190218, guid: f128a00ba44eb04498269337b0d18392, type: 3}
+  <ImportInScene>k__BackingField: 0
+  <PreferAlternativeImporters>k__BackingField: 0
+  <Scale>k__BackingField: 0.001
+  <Orientation>k__BackingField: 0
+  <IsLeftHanded>k__BackingField: 0
+  <IsZUp>k__BackingField: 0
+  <AvoidNegativeScale>k__BackingField: 1
+  <PreserveHierarchy>k__BackingField: 1
+  <RuleSet>k__BackingField: {fileID: 11400000, guid: d6b6a82c563afe64880f3ccda5c4c512, type: 2}
+  <ImportMetadata>k__BackingField: 1
+  <ImportPatchBoundaries>k__BackingField: 0
+  <ImportLines>k__BackingField: 0
+  <ImportPoints>k__BackingField: 0
+  <ImportNestedPrefabs>k__BackingField: 0
+  <ImportAnimations>k__BackingField: 0
+  <ImportVariants>k__BackingField: 0
+  <ImportPMI>k__BackingField: 0
+  <StitchPatches>k__BackingField: 0
+  <Use16BitsBuffers>k__BackingField: 0
+  <ReorientFaces>k__BackingField: 0
+  <RepairInstances>k__BackingField: 1
+  <MeshQuality>k__BackingField: 0
+  <CreateLightmapUVs>k__BackingField: 0
+  <LightmapResolution>k__BackingField: 1024
+  <LightmapPadding>k__BackingField: 4
+  <CreateUVs>k__BackingField: 0
+  <UVSize>k__BackingField: 1
+  m_MaterialNames: []
+  <LODGenerator>k__BackingField:
+    <Rules>k__BackingField: []
+    <CompressTextures>k__BackingField: 1
+    <GPUBaking>k__BackingField: 0
+    <BakingOffset>k__BackingField: 0
+    <BakingUpSampling>k__BackingField: 2
+    <FilterTransparentObjects>k__BackingField: 1
+    <SaveAssets>k__BackingField: 0
+    <SaveAssetsPath>k__BackingField: Assets/LODs
+    m_FinalSaveAssetsPath: 
+    <Assets>k__BackingField: []
+  references:
+    version: 2
+    RefIds: []
