@@ -29,6 +29,12 @@ public class PlacementManager : MonoBehaviour
     private bool _isSlabCreationAuthorized = false;
     public GameObject Prefab;
     private bool _isRunning;
+    private bool _isTuningXPosition;
+    private float _currentFineTuneXValue;
+    private float _currentFineTuneZValue;
+    private bool _isTuningZPosition;
+    private bool _isTuningYPosition;
+    private float _currentFineTuneYValue;
 
     public bool IsSlabCreationAuthorized 
     { 
@@ -67,6 +73,25 @@ public class PlacementManager : MonoBehaviour
             MRTKRayInteractor rightRay = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
             rightRay.translateSpeed = _translateSpeed;
             _previousTranslateSpeed = _translateSpeed;
+        }
+
+        if (_isTuningXPosition)
+        {
+            float deltaPos = _currentFineTuneXValue  * _positionFineTuneRange;
+            var direction = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+            _ConcreteSlab.transform.localPosition += direction * deltaPos;
+        }
+        if (_isTuningZPosition)
+        {
+            float deltaPos = _currentFineTuneZValue  * _positionFineTuneRange;
+            var direction = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+            _ConcreteSlab.transform.localPosition += direction * deltaPos;
+        }
+        
+        if (_isTuningYPosition)
+        {
+            float deltaPos = _currentFineTuneYValue  * _positionFineTuneRange;
+            _ConcreteSlab.transform.localPosition += Vector3.up * deltaPos;
         }
     }
 
@@ -130,31 +155,9 @@ public class PlacementManager : MonoBehaviour
     }
     
     public bool IsSlabLocked => _ConcreteSlab.GetComponent<ObjectManipulator>().AllowedInteractionTypes == InteractionFlags.None;
-
-    public void FineTuneVerticalSlabPosition(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(0, deltaPos, 0);
-    }
-
-    public void FineTuneHorizontalSlabPositionX(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(deltaPos, 0, 0);
-    }
-
-    public void FineTuneHorizontalSlabPositionZ(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(0, 0, deltaPos);
-    }
-
+    public void FineTuneVerticalSlabPosition(SliderEventData sliderEventData)=>_currentFineTuneYValue = sliderEventData.NewValue;
+    public void FineTuneHorizontalSlabPositionX(SliderEventData sliderEventData)=>_currentFineTuneXValue = sliderEventData.NewValue;
+    public void FineTuneHorizontalSlabPositionZ(SliderEventData sliderEventData)=>_currentFineTuneZValue = sliderEventData.NewValue;
     public void FineTuneSlabRotation(SliderEventData sliderEventData)
     {
         float old = sliderEventData.OldValue;
@@ -171,6 +174,15 @@ public class PlacementManager : MonoBehaviour
         _rightHandController.selectAction.action.performed -= OnPinchRight;
         _leftHandController.selectAction.action.performed -= OnPinchRight;
     }
+
+    public void StartFineTuningPositionOnX() => _isTuningXPosition = true;
+    public void EndFineTuningPositionOnX() =>_isTuningXPosition = false;
+    public void StartFineTuningPositionOnZ() => _isTuningZPosition = true;
+    public void EndFineTuningPositionOnZ() =>_isTuningZPosition = false;
+    public void StartFineTuningPositionOnY() => _isTuningYPosition = true;
+    public void EndFineTuningPositionOnY() =>_isTuningYPosition = false;
+
+
 
     #region SceneUnderstanding
     /*
