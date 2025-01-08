@@ -13,6 +13,33 @@ MonoBehaviour:
   m_Name: SarkingAssemblyProject
   m_EditorClassIdentifier: 
   m_guid: ff525eb7e1446874286565349801f10a
-  m_name: 
-  _assemblySteps: []
-  m_modulePrefab: {fileID: 0}
+  m_name: Sarking
+  _assemblySteps:
+  - Title:
+    - Language: French (Belgium) (fr-BE)
+      TextData: Tuiles existantes
+    Indications:
+    - IndicationText: 
+      Text:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Retirez les tuiles existantes
+    StepIllustration: {fileID: -514834107, guid: ab69f83a19bd7644fa89d458f8fcaf17, type: 3}
+  - Title:
+    - Language: French (Belgium) (fr-BE)
+      TextData: "Isolation de la toiture inclin\xE9e avant la toiture plate"
+    Indications:
+    - IndicationText: 
+      Text:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Retirez les voliges
+    StepIllustration: {fileID: -514834107, guid: ab69f83a19bd7644fa89d458f8fcaf17, type: 3}
+  - Title:
+    - Language: French (Belgium) (fr-BE)
+      TextData: "Isolation de la toiture inclin\xE9e avant la toiture plate"
+    Indications:
+    - IndicationText: 
+      Text:
+      - Language: French (Belgium) (fr-BE)
+        TextData: Retirez les lattes
+    StepIllustration: {fileID: 1382664060, guid: 017f1ed2df4bc2e4db9c2916841dd7ee, type: 3}
+  m_modulePrefab: {fileID: 7994696813176151058, guid: bd9816af4b06d9548b1d120d4bfaadc1, type: 3}

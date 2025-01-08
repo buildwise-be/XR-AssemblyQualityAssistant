@@ -8844,6 +8844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5901843949362929174}
+  - component: {fileID: 9208923820390444804}
   m_Layer: 6
   m_Name: SarkingModel
   m_TagString: Untagged
@@ -8872,6 +8873,25 @@ Transform:
   - {fileID: 5600143833057368427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9208923820390444804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7994696813176151058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd0b8472d2c4d44896cf82cf447d3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subModules:
+  - {fileID: 7937604532468118238}
+  - {fileID: 4575671564704258947}
+  - {fileID: 872617921300059068}
+  - {fileID: 8872697857307106059}
+  - {fileID: 8500898620569614010}
+  _isAssemblyProcessAdditive: 1
 --- !u!1 &8002659308113859141
 GameObject:
   m_ObjectHideFlags: 0

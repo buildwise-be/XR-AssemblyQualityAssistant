@@ -15,6 +15,7 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private ARPlaneManager _ARPlaneManager;
     //[SerializeField] private GameObject _moduleOne;
     //[SerializeField] private GameObject _moduleTwo;
+    [Tooltip("Debug module that will be used only if the 'Use Module WKNE02' flag is True")]
     [SerializeField] private GameObject _moduleWKNE02;
     [SerializeField] private bool _useModuleWKNE02 = true;
     [SerializeField] private AppData _appData;
