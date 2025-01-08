@@ -168,7 +168,13 @@ public class SolredoMainManager : MonoBehaviour
     public void StartAssemblyProcess(AssemblyProjectScriptableObject optionsAssemblyProject)
     {
         _appData.project = optionsAssemblyProject;
+        _placementManager.AllowQRDetection(true);
+        _placementManager.ChosenModule = optionsAssemblyProject.m_modulePrefab;
+        _placementManager.PlaceModuleAtPosePosition(null,new Pose(Vector3.zero,Quaternion.identity));
+        
         OnAssemblyStartProcessEvent?.Invoke(_appData.project.m_guid);
+        
+        
     }
 
     public void EndSession()
