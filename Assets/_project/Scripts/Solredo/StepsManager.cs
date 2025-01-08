@@ -43,14 +43,14 @@ public class StepsManager : MonoBehaviour
         Debug.Log("StopStepAnimation");
         Debug.Log("CurrentStepIndex: " + _currentStepIndex);
 
-        foreach (StepAnimator animator in FindObjectsOfType<StepAnimator>())
+        /*foreach (StepAnimator animator in FindObjectsOfType<StepAnimator>())
         {
             if (animator.Step == _currentStepIndex + 1)
             {
                 Debug.Log("StopAnimation");
-                animator.StopAnimation();
+                animator.LeaveStep();
                 break;
             }   
-        }
+        }*/
     }
 }

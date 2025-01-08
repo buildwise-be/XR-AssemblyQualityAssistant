@@ -17,12 +17,8 @@ public class SolredoMainManager : MonoBehaviour
     //[SerializeField] private GameObject _moduleTwo;
     [SerializeField] private GameObject _moduleWKNE02;
     [SerializeField] private bool _useModuleWKNE02 = true;
-    [SerializeField] private AppData _appData;
-    //[SerializeField] private AssemblyProjectScriptableObject _assemblyData;
+    [SerializeField] [HideInInspector] private AppData _appData; // Pas touche
     public event Action<string> OnAssemblyStartProcessEvent;
-
-    //private int _selectedModuleID = -1;
-
     private void Awake()
     {
         

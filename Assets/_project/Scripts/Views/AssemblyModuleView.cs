@@ -5,9 +5,7 @@ using UnityEngine;
 public class AssemblyModuleView : MonoBehaviour
 {
     [SerializeField]  GameObject[] _subModules;
-
     private IAssemblyProcessController _controller;
-    [SerializeField] bool _isAssemblyProcessAdditive = true;
     private int _lastStepIndex;
 
     public void SetController(IAssemblyProcessController controller)
@@ -18,30 +16,29 @@ public class AssemblyModuleView : MonoBehaviour
 
     private void DisplayStep(int stepIndex, AssemblyStep arg2)
     {
-        if (_isAssemblyProcessAdditive)
+        for (var i = 0; i < _subModules.Length; i++)
         {
-            for (var i = 0; i < _subModules.Length; i++)
+            var stepBehaviour = _subModules[i].GetComponent<IStepBehaviour>();
+            if (stepBehaviour == null) throw new NullReferenceException();
+            
+            stepBehaviour.Initialize(stepIndex);
+                
+            if (i < stepIndex)
             {
-                var animator = _subModules[i].GetComponent<IStepAnimation>();
-                animator.Setup(stepIndex);
-                
-                if (i < stepIndex)
-                {
-                    animator?.StopAnimation();
-                    continue;
-                }
-
-                if (_lastStepIndex >= stepIndex)
-                {
-                    animator?.PlayAnimationReverse();
-                }
-                else
-                {
-                    animator?.PlayAnimation();
-                }
-                
-                _lastStepIndex = stepIndex;
+                stepBehaviour?.LeaveStep();
+                continue;
             }
+
+            if (_lastStepIndex >= stepIndex)
+            {
+                stepBehaviour?.EnterStepReverse();
+            }
+            else
+            {
+                stepBehaviour?.EnterStep();
+            }
+                
+            _lastStepIndex = stepIndex;
         }
     }
 
