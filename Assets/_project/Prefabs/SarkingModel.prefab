@@ -1132,6 +1132,7 @@ GameObject:
   - component: {fileID: 5999104366342309776}
   - component: {fileID: 2012659417104281825}
   - component: {fileID: 5877166733964415271}
+  - component: {fileID: 7992113305282531007}
   m_Layer: 6
   m_Name: Step 3
   m_TagString: Untagged
@@ -1166,7 +1167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872617921300059068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140363e39b5779b43885e2a13eb927a5, type: 3}
   m_Name: 
@@ -1179,11 +1180,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872617921300059068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cc87c7183e0494b81a881c77e0763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7992113305282531007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872617921300059068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3770f53724995d4d9e64e76e4b34e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  Step: 3
 --- !u!1 &929036187287889855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,6 +4686,7 @@ GameObject:
   - component: {fileID: 6776069888383469695}
   - component: {fileID: 3532762659213848779}
   - component: {fileID: 5140288344269472550}
+  - component: {fileID: 1899083783548467888}
   m_Layer: 6
   m_Name: Step 2
   m_TagString: Untagged
@@ -4702,7 +4718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4575671564704258947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140363e39b5779b43885e2a13eb927a5, type: 3}
   m_Name: 
@@ -4715,42 +4731,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4575671564704258947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cc87c7183e0494b81a881c77e0763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4590172822448486435
-GameObject:
+--- !u!114 &1899083783548467888
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5846563236677192090}
-  m_Layer: 6
-  m_Name: CINEMA_4D_Editor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5846563236677192090
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590172822448486435}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.25229192, y: 0.9237454, z: -0.07592437, w: -0.2779905}
-  m_LocalPosition: {x: 0.050135408, y: 3.0905025, z: -8.314692}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8165999611989482547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 4575671564704258947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3770f53724995d4d9e64e76e4b34e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  Step: 2
 --- !u!1 &4616808399136233762
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,7 +5327,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5846563236677192090}
   - {fileID: 5972074062189825576}
   m_Father: {fileID: 5901843949362929174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8700,6 +8698,7 @@ GameObject:
   - component: {fileID: 1709271334979950029}
   - component: {fileID: 3814722503035999653}
   - component: {fileID: 7900675066655597785}
+  - component: {fileID: 2358355080638130142}
   m_Layer: 6
   m_Name: Step 1
   m_TagString: Untagged
@@ -8731,7 +8730,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937604532468118238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140363e39b5779b43885e2a13eb927a5, type: 3}
   m_Name: 
@@ -8744,11 +8743,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937604532468118238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cc87c7183e0494b81a881c77e0763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2358355080638130142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937604532468118238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3770f53724995d4d9e64e76e4b34e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  Step: 1
 --- !u!1 &7940041127919140392
 GameObject:
   m_ObjectHideFlags: 0
@@ -8891,7 +8904,6 @@ MonoBehaviour:
   - {fileID: 872617921300059068}
   - {fileID: 8872697857307106059}
   - {fileID: 8500898620569614010}
-  _isAssemblyProcessAdditive: 1
 --- !u!1 &8002659308113859141
 GameObject:
   m_ObjectHideFlags: 0
@@ -9021,6 +9033,7 @@ GameObject:
   - component: {fileID: 5600143833057368427}
   - component: {fileID: 841679377564566534}
   - component: {fileID: 5398831815865530649}
+  - component: {fileID: 2766073377731333969}
   m_Layer: 6
   m_Name: Step 5
   m_TagString: Untagged
@@ -9055,7 +9068,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8500898620569614010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140363e39b5779b43885e2a13eb927a5, type: 3}
   m_Name: 
@@ -9068,11 +9081,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8500898620569614010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cc87c7183e0494b81a881c77e0763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2766073377731333969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8500898620569614010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3770f53724995d4d9e64e76e4b34e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  Step: 5
 --- !u!1 &8532240665470994602
 GameObject:
   m_ObjectHideFlags: 0
@@ -9374,6 +9401,7 @@ GameObject:
   - component: {fileID: 3921960603430534657}
   - component: {fileID: 4969752762836218073}
   - component: {fileID: 5240604964598090963}
+  - component: {fileID: 5452556380024894748}
   m_Layer: 6
   m_Name: Step 4
   m_TagString: Untagged
@@ -9406,7 +9434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872697857307106059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 140363e39b5779b43885e2a13eb927a5, type: 3}
   m_Name: 
@@ -9419,11 +9447,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872697857307106059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cc87c7183e0494b81a881c77e0763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5452556380024894748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872697857307106059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3770f53724995d4d9e64e76e4b34e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  Step: 4
 --- !u!1 &8942875175813223687
 GameObject:
   m_ObjectHideFlags: 0

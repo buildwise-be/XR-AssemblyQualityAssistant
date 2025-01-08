@@ -1,23 +1,23 @@
 ﻿using System;
 
-public class RenovationStepAnimator : IStepAnimation
+public class RenovationStepAnimator : IStepBehaviour
 {
-    public void PlayAnimation()
+    public void EnterStep()
     {
         throw new NotImplementedException();
     }
 
-    public void PlayAnimationReverse()
+    public void EnterStepReverse()
     {
         throw new NotImplementedException();
     }
 
-    public void Setup(int i)
+    public void Initialize(int i)
     {
         throw new NotImplementedException();
     }
 
-    public void StopAnimation()
+    public void LeaveStep()
     {
         throw new NotImplementedException();
     }

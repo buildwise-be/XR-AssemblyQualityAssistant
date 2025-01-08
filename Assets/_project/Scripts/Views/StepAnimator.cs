@@ -6,12 +6,12 @@ public class StepAnimator : MonoBehaviour, IStepBehaviour
     [SerializeField] int Step;
     public void LeaveStep()
     {
-        _animator.SetBool("StopAnimBool",true);
+        _animator?.SetBool("StopAnimBool",true);
     }
 
     public void EnterStepReverse()
     {
-        _animator.SetBool("StopAnimBool",false);
+        _animator?.SetBool("StopAnimBool",false);
     }
 
     public void Initialize(int currentStep)
@@ -21,7 +21,7 @@ public class StepAnimator : MonoBehaviour, IStepBehaviour
 
     public void EnterStep()
     {
-        _animator.SetBool("StopAnimBool",false);
+        _animator?.SetBool("StopAnimBool", false);
     }
 }
 
