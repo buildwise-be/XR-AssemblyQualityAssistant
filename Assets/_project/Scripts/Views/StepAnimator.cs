@@ -1,35 +1,34 @@
 using UnityEngine;
 
-public class StepAnimator : MonoBehaviour, IStepAnimation
+public class StepAnimator : MonoBehaviour, IStepBehaviour
 {
     [SerializeField] private Animator _animator;
-    
-    public int Step;
-    public void StopAnimation()
+    [SerializeField] int Step;
+    public void LeaveStep()
     {
         _animator.SetBool("StopAnimBool",true);
     }
 
-    public void PlayAnimationReverse()
+    public void EnterStepReverse()
     {
         _animator.SetBool("StopAnimBool",false);
     }
 
-    public void Setup(int currentStep)
+    public void Initialize(int currentStep)
     {
-        gameObject.SetActive(currentStep <= Step);
+        gameObject.SetActive(currentStep >= Step);
     }
 
-    public void PlayAnimation()
+    public void EnterStep()
     {
         _animator.SetBool("StopAnimBool",false);
     }
 }
 
-public interface IStepAnimation
+public interface IStepBehaviour
 {
-    void PlayAnimation();
-    void StopAnimation();
-    void PlayAnimationReverse();
-    void Setup(int i);
+    void EnterStep();
+    void LeaveStep();
+    void EnterStepReverse();
+    void Initialize(int i);
 }

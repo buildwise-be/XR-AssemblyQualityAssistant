@@ -29,6 +29,16 @@ public class PlacementManager : MonoBehaviour
     private bool _isSlabCreationAuthorized = false;
     public GameObject Prefab;
     private bool _isRunning;
+    private bool _isTuningXPosition;
+    private float _currentFineTuneXValue;
+    private float _currentFineTuneZValue;
+    private bool _isTuningZPosition;
+    private bool _isTuningYPosition;
+    private float _currentFineTuneYValue;
+    private bool _isTuningRotation;
+    private float _currentFinTuneRotationValue;
+    private Vector3 _defaultPosition;
+    private Quaternion _defaultRotation;
 
     public bool IsSlabCreationAuthorized 
     { 
@@ -68,6 +78,29 @@ public class PlacementManager : MonoBehaviour
             rightRay.translateSpeed = _translateSpeed;
             _previousTranslateSpeed = _translateSpeed;
         }
+
+        if (_isTuningXPosition)
+        {
+            float deltaPos = _currentFineTuneXValue  * _positionFineTuneRange*Time.deltaTime;
+            var direction = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+            _ConcreteSlab.transform.localPosition += direction * deltaPos;
+        }
+        if (_isTuningZPosition)
+        {
+            float deltaPos = _currentFineTuneZValue  * _positionFineTuneRange*Time.deltaTime;
+            var direction = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+            _ConcreteSlab.transform.localPosition += direction * deltaPos;
+        }
+        if (_isTuningYPosition)
+        {
+            float deltaPos = _currentFineTuneYValue  * _positionFineTuneRange*Time.deltaTime;
+            _ConcreteSlab.transform.localPosition += Vector3.up * deltaPos;
+        }
+        if (_isTuningRotation)
+        {
+            float rotationValue = _currentFinTuneRotationValue  * _rotationFineTuneRange*Time.deltaTime;
+            _ConcreteSlab.transform.rotation*=Quaternion.Euler(0,rotationValue,0);
+        }
     }
 
     private Vector3 GetPinchPosition(ArticulatedHandController handController)
@@ -105,6 +138,8 @@ public class PlacementManager : MonoBehaviour
         if (_ConcreteSlab == null)
         {
             _ConcreteSlab = Instantiate(Prefab, placePosition, Quaternion.identity);
+            _defaultPosition = placePosition;
+            _defaultRotation = _ConcreteSlab.transform.rotation;
             OnConcreteSlabInstantiated?.Invoke(_ConcreteSlab);
         }
     }
@@ -130,41 +165,10 @@ public class PlacementManager : MonoBehaviour
     }
     
     public bool IsSlabLocked => _ConcreteSlab.GetComponent<ObjectManipulator>().AllowedInteractionTypes == InteractionFlags.None;
-
-    public void FineTuneVerticalSlabPosition(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(0, deltaPos, 0);
-    }
-
-    public void FineTuneHorizontalSlabPositionX(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(deltaPos, 0, 0);
-    }
-
-    public void FineTuneHorizontalSlabPositionZ(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaPos = (current - old) * _positionFineTuneRange;
-        _ConcreteSlab.transform.localPosition += new Vector3(0, 0, deltaPos);
-    }
-
-    public void FineTuneSlabRotation(SliderEventData sliderEventData)
-    {
-        float old = sliderEventData.OldValue;
-        float current = sliderEventData.NewValue;
-        float deltaRot = (current - old) * _rotationFineTuneRange;
-
-        Debug.Log($"Rotating by {deltaRot} degrees.");
-        Quaternion rotation = Quaternion.Euler(0, deltaRot, 0);
-        _ConcreteSlab.transform.rotation *= rotation;
-    }
+    public void FineTuneVerticalSlabPosition(SliderEventData sliderEventData)=>_currentFineTuneYValue = sliderEventData.NewValue;
+    public void FineTuneHorizontalSlabPositionX(SliderEventData sliderEventData)=>_currentFineTuneXValue = sliderEventData.NewValue;
+    public void FineTuneHorizontalSlabPositionZ(SliderEventData sliderEventData)=>_currentFineTuneZValue = sliderEventData.NewValue;
+    public void FineTuneSlabRotation(SliderEventData sliderEventData)=> _currentFinTuneRotationValue = sliderEventData.NewValue;
 
     private void OnDestroy()
     {
@@ -172,7 +176,36 @@ public class PlacementManager : MonoBehaviour
         _leftHandController.selectAction.action.performed -= OnPinchRight;
     }
 
+    public void StartFineTuningPositionOnX() => _isTuningXPosition = true;
+    public void EndFineTuningPositionOnX() =>_isTuningXPosition = false;
+    public void StartFineTuningPositionOnZ() => _isTuningZPosition = true;
+    public void EndFineTuningPositionOnZ() =>_isTuningZPosition = false;
+    public void StartFineTuningPositionOnY() => _isTuningYPosition = true;
+    public void EndFineTuningPositionOnY() =>_isTuningYPosition = false;
+    
+    public void StartFineTuningRotation() => _isTuningRotation = true;
+    public void EndFineTuningRotation() =>_isTuningRotation = false;
+
+
+    public void StopFineTuningProcess()
+    {
+        _isTuningXPosition = false;
+        _isTuningZPosition = false;
+        _isTuningYPosition = false;
+        _isTuningRotation = false;
+    }
+
+    public void ResetPosition()
+    {
+        if(_ConcreteSlab != null) _ConcreteSlab.transform.position = _defaultPosition;
+    }
+    public void ResetRotation()
+    {
+        if(_ConcreteSlab != null) _ConcreteSlab.transform.rotation = _defaultRotation;
+    }
+
     #region SceneUnderstanding
+
     /*
     /// <summary>
     /// Gets an immutable scene. Call this when you want to get the current scene and when the room has been scanned.
@@ -231,5 +264,6 @@ public class PlacementManager : MonoBehaviour
         }
         */
     //}
+
     #endregion
 }

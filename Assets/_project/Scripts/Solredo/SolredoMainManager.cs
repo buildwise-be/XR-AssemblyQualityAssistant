@@ -18,12 +18,8 @@ public class SolredoMainManager : MonoBehaviour
     [Tooltip("Debug module that will be used only if the 'Use Module WKNE02' flag is True")]
     [SerializeField] private GameObject _moduleWKNE02;
     [SerializeField] private bool _useModuleWKNE02 = true;
-    [SerializeField] private AppData _appData;
-    //[SerializeField] private AssemblyProjectScriptableObject _assemblyData;
+    [SerializeField] [HideInInspector] private AppData _appData; // Pas touche
     public event Action<string> OnAssemblyStartProcessEvent;
-
-    //private int _selectedModuleID = -1;
-
     private void Awake()
     {
         
