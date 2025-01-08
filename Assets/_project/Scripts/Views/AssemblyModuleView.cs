@@ -19,7 +19,7 @@ public class AssemblyModuleView : MonoBehaviour
         for (var i = 0; i < _subModules.Length; i++)
         {
             var stepBehaviour = _subModules[i].GetComponent<IStepBehaviour>();
-            if (stepBehaviour == null) throw new NullReferenceException();
+            
             
             stepBehaviour.Initialize(stepIndex);
                 

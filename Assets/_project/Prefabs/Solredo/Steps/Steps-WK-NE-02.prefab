@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 9104885229877332455}
-  Step: 1
+  Step: 0
 --- !u!1 &6007159902939109713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8126164729924878032}
+  - component: {fileID: 1294994687104702602}
   m_Layer: 0
   m_Name: Step2_ref
   m_TagString: Untagged
@@ -1615,6 +1616,19 @@ Transform:
   - {fileID: 4347274201735462934}
   m_Father: {fileID: 8126164730092110445}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1294994687104702602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126164729924878039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fc4e3bf0943164f9b8a636a7e0ca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Step: 1
 --- !u!1 &8126164730085810502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1638,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8126164730085810503}
+  - component: {fileID: 4486538420376154053}
   m_Layer: 0
   m_Name: Step4_ref
   m_TagString: Untagged
@@ -1647,6 +1662,19 @@ Transform:
   - {fileID: 7066441230507436647}
   m_Father: {fileID: 8126164730092110445}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &4486538420376154053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126164730085810502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fc4e3bf0943164f9b8a636a7e0ca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Step: 3
 --- !u!1 &8126164730092110433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1975,6 @@ MonoBehaviour:
   - {fileID: 8126164731622219359}
   - {fileID: 8126164730085810502}
   - {fileID: 8126164730672879356}
-  _isAssemblyProcessAdditive: 1
 --- !u!1 &8126164730672879356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,6 +1984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8126164730672879357}
+  - component: {fileID: 8825193832049497737}
   m_Layer: 0
   m_Name: Step5_ref
   m_TagString: Untagged
@@ -1980,6 +2008,19 @@ Transform:
   - {fileID: 6347375856273818603}
   m_Father: {fileID: 8126164730092110445}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8825193832049497737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126164730672879356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fc4e3bf0943164f9b8a636a7e0ca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Step: 4
 --- !u!1 &8126164731622219359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2030,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8126164731622219352}
+  - component: {fileID: 6904749580168392553}
   m_Layer: 0
   m_Name: Step3_ref
   m_TagString: Untagged
@@ -2012,6 +2054,19 @@ Transform:
   - {fileID: 6120011656987288661}
   m_Father: {fileID: 8126164730092110445}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6904749580168392553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126164731622219359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fc4e3bf0943164f9b8a636a7e0ca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Step: 2
 --- !u!1001 &67064917135932337
 PrefabInstance:
   m_ObjectHideFlags: 0
