@@ -13912,7 +13912,7 @@ MonoBehaviour:
   _UIManager: {fileID: 1038377821}
   _ARPlaneManager: {fileID: 1334784248}
   _moduleWKNE02: {fileID: 8126164730092110433, guid: 9f6fb22cf0b1fb54681d16e0d625ddcc, type: 3}
-  _useModuleWKNE02: 1
+  _useModuleWKNE02: 0
   _appData: {fileID: 11400000, guid: eb98ac1be3728244a8951f8ed9c0ddd3, type: 2}
 --- !u!114 &3991729736172258261
 MonoBehaviour:

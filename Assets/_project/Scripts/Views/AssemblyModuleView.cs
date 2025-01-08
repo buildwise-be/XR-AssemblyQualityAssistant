@@ -29,7 +29,7 @@ public class AssemblyModuleView : MonoBehaviour
                 continue;
             }
 
-            if (_lastStepIndex >= stepIndex)
+            if (_lastStepIndex > stepIndex)
             {
                 stepBehaviour?.EnterStepReverse();
             }

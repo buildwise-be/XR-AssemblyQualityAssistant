@@ -48,10 +48,11 @@ namespace _project.Scripts
         {
             _solredoMainManager.OnAssemblyStartProcessEvent += StartAssemblyProcess;
             yield return new WaitForSeconds(2);
-            if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
-            else _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
-                
-
+            /*
+             if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
+             */
+            
+            _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
         }
     }
 }
