@@ -13,18 +13,9 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private SolredoPlacementManager _placementManager;
     [SerializeField] private SolredoUIManager _UIManager;
     [SerializeField] private ARPlaneManager _ARPlaneManager;
-    //[SerializeField] private GameObject _moduleOne;
-    //[SerializeField] private GameObject _moduleTwo;
-    [Tooltip("Debug module that will be used only if the 'Use Module WKNE02' flag is True")]
-    [SerializeField] private GameObject _moduleWKNE02;
-    [SerializeField] private bool _useModuleWKNE02 = true;
     [SerializeField] [HideInInspector] private AppData _appData; // Pas touche
     public event Action<string> OnAssemblyStartProcessEvent;
-    private void Awake()
-    {
-        
-    }
-
+    
     public void StartPlacementProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
     {
         Debug.Log("StartPlacementProcess from SolredoMainManager");
@@ -110,16 +101,13 @@ public class SolredoMainManager : MonoBehaviour
 
     private void InitializeQRDetection(AssemblyProjectScriptableObject assemblyProcessData)
     {
-        Debug.Log("InitializeQRDetection from SolredoMainManager");
         _appData.project = assemblyProcessData;
-        
-        AssignChosenModuleValue(assemblyProcessData.m_modulePrefab);
+        _placementManager.ChosenModule = assemblyProcessData.m_modulePrefab;
         ShowQrCodeDetectionDialog();
     }
 
     private void ShowQrCodeDetectionDialog()
     {
-        Debug.Log("ShowQrCodeDetectionDialog from SolredoMainManager");
         _UIManager.ShowQRScanInfoDialog();
         _placementManager.AllowQRDetection(true);
         _qrTrackerController.StartTracking();
@@ -132,11 +120,7 @@ public class SolredoMainManager : MonoBehaviour
         _placementManager.ChosenModule = moduleID == 1 ? _moduleOne : _moduleTwo;
     }*/
 
-    private void AssignChosenModuleValue(GameObject module)
-    {
-        _placementManager.ChosenModule = _useModuleWKNE02 ? _moduleWKNE02 : module;
-    }
-    
+
     
 
     private void StartPlaneDetection()
