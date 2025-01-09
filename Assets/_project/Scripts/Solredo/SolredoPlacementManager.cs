@@ -61,7 +61,7 @@ public class SolredoPlacementManager : MonoBehaviour
         //Get the MRTK Ray Interactors
         _rightRayInteractor = _rightHandController.GetComponentInChildren<MRTKRayInteractor>();
         _rightLineRenderer = _rightRayInteractor.GetComponentInChildren<LineRenderer>(true);
-        trackerController.PositionSet += PlaceModuleAtPosePosition;
+        //trackerController.PositionSet += PlaceModuleAtPosePosition;
 
         _isMiniatureCreationAuthorized = true;
     }
@@ -225,7 +225,7 @@ public class SolredoPlacementManager : MonoBehaviour
     {
         _rightHandController.selectAction.action.performed -= OnPinchRight;
         _leftHandController.selectAction.action.performed -= OnPinchRight;
-        trackerController.PositionSet -= PlaceModuleAtPosePosition;
+        //trackerController.PositionSet -= PlaceModuleAtPosePosition;
     }
 
     #region SceneUnderstanding
