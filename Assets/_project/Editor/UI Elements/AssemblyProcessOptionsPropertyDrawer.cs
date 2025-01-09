@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-//[CustomPropertyDrawer(typeof(AssemblyProcessOptions))]
+[CustomPropertyDrawer(typeof(AssemblyProcessOptions))]
 public class AssemblyProcessOptionsPropertyDrawer : PropertyDrawer
 {
     public VisualTreeAsset m_assetTree;

@@ -9,8 +9,7 @@ namespace _project.Scripts
     public class QualityAssistantSceneBootstrap : MonoBehaviour
     {
         [SerializeField] private AssemblyProcessOptions _options;
-        [SerializeField] private AssemblyProjectScriptableObject _project;
-        
+
         //[SerializeField] private AppData _appData;
         //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
         public AssemblyProcessController _assemblyProcessController;
@@ -49,11 +48,13 @@ namespace _project.Scripts
         {
             _solredoMainManager.OnAssemblyStartProcessEvent += StartAssemblyProcess;
             yield return new WaitForSeconds(2);
-            /*
-             if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
-             */
+            #if UNITY_EDITOR
+            if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
+            else _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
+            #else
+            _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
+            #endif
             
-            _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _project);
         }
     }
 }

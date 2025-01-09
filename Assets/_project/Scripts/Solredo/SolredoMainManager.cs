@@ -176,8 +176,6 @@ public class SolredoMainManager : MonoBehaviour
         _placementManager.PlaceModuleAtPosePosition(null,new Pose(Vector3.zero,Quaternion.identity));
         
         OnAssemblyStartProcessEvent?.Invoke(_appData.project.m_guid);
-        
-        
     }
 
     public void EndSession()
