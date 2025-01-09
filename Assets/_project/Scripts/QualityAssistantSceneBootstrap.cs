@@ -9,6 +9,7 @@ namespace _project.Scripts
     public class QualityAssistantSceneBootstrap : MonoBehaviour
     {
         [SerializeField] private AssemblyProcessOptions _options;
+        [SerializeField] private AssemblyProjectScriptableObject _project;
         
         //[SerializeField] private AppData _appData;
         //[SerializeField] private AssemblyProjectScriptableObject _currentProject;
@@ -52,7 +53,7 @@ namespace _project.Scripts
              if (_options._skipAll) _solredoMainManager.StartAssemblyProcess(_options._assemblyProject);
              */
             
-            _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _options._assemblyProject);
+            _solredoMainManager.StartPlacementProcess(_options._skipHousePlacementPhase, _project);
         }
     }
 }

@@ -1709,6 +1709,7 @@ MonoBehaviour:
     _skipHousePlacementPhase: 1
     _skipAll: 0
     _assemblyProject: {fileID: 11400000, guid: ff525eb7e1446874286565349801f10a, type: 2}
+  _project: {fileID: 11400000, guid: ff525eb7e1446874286565349801f10a, type: 2}
   _assemblyProcessController: {fileID: 970821983}
   _dictationPanelController: {fileID: 1291450168}
   _assemblyProcessView: {fileID: 64321001}
