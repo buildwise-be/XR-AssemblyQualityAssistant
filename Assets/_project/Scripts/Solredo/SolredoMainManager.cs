@@ -27,6 +27,7 @@ public class SolredoMainManager : MonoBehaviour
 
     public void StartPlacementProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
     {
+        Debug.Log("StartPlacementProcess from SolredoMainManager");
         if (skipHousePlacement)
         {
             if (project)
@@ -109,6 +110,7 @@ public class SolredoMainManager : MonoBehaviour
 
     private void InitializeQRDetection(AssemblyProjectScriptableObject assemblyProcessData)
     {
+        Debug.Log("InitializeQRDetection from SolredoMainManager");
         _appData.project = assemblyProcessData;
         
         AssignChosenModuleValue(assemblyProcessData.m_modulePrefab);
@@ -117,6 +119,7 @@ public class SolredoMainManager : MonoBehaviour
 
     private void ShowQrCodeDetectionDialog()
     {
+        Debug.Log("ShowQrCodeDetectionDialog from SolredoMainManager");
         _UIManager.ShowQRScanInfoDialog();
         _placementManager.AllowQRDetection(true);
         _qrTrackerController.StartTracking();
