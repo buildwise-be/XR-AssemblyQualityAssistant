@@ -13,12 +13,11 @@ public class SolredoMainManager : MonoBehaviour
     [SerializeField] private SolredoPlacementManager _placementManager;
     [SerializeField] private SolredoUIManager _UIManager;
     [SerializeField] private ARPlaneManager _ARPlaneManager;
-    [SerializeField] [HideInInspector] private AppData _appData; // Pas touche
+    [SerializeField] [HideInInspector] private AppData _appData;
     public event Action<string> OnAssemblyStartProcessEvent;
     
     public void StartPlacementProcess(bool skipHousePlacement, AssemblyProjectScriptableObject project)
     {
-        Debug.Log("StartPlacementProcess from SolredoMainManager");
         if (skipHousePlacement)
         {
             if (project)
@@ -152,7 +151,7 @@ public class SolredoMainManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void StartAssemblyProcess(AssemblyProjectScriptableObject optionsAssemblyProject)
+    public void StartAssemblyProcessImmediate(AssemblyProjectScriptableObject optionsAssemblyProject)
     {
         _appData.project = optionsAssemblyProject;
         _placementManager.AllowQRDetection(true);
